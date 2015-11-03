@@ -1,8 +1,8 @@
 #MyEclipse Hibernate Properties
-#Thu Oct 29 16:35:44 CST 2015
+#Sat Oct 31 17:19:20 CST 2015
 genVersionTag=false
 genAnnotations=false
-configFile=/JourneyHelper-Web/src/applicationContext.xml
+configFile=/JourneyHelper-Web/WebRoot/WEB-INF/applicationContext.xml
 reStrategyClass=
 sessionFactoryId=sessionFactory
 profile=
