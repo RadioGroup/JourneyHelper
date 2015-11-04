@@ -2,4 +2,21 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
+	<package name="fzu" extends="struts-default">
+
+		<action name="login" class="com.fzu.action.authentication.LoginAction"
+			method="login">
+			<result name="success">/WEB-INF/feedback/success.jsp</result>
+			<result name="error">/WEB-INF/feedback/error.jsp</result>
+		</action>
+
+		<action name="register" class="com.fzu.action.authentication.RegisterAction"
+			method="register">
+			<result name="success">/WEB-INF/feedback/success.jsp</result>
+			<result name="error">/WEB-INF/feedback/error.jsp</result>
+		</action>
+
+	</package>
+
+
 </struts>    
