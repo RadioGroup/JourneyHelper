@@ -2,7 +2,7 @@ package com.fzu.action.authentication;
 
 import com.opensymphony.xwork2.Action;
 
-public class RegisterAction implements Action {
+public class RegistAction implements Action {
 
 	private String userName;
 	private String passWord;
@@ -36,7 +36,7 @@ public class RegisterAction implements Action {
 		return null;
 	}
 
-	public String register() throws Exception {
+	public String regist() throws Exception {
 		System.out.println(toString());
 		return SUCCESS;
 	}
