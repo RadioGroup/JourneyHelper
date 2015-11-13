@@ -11,8 +11,8 @@
 			<interceptor-ref name="json"/>
 			<!-- 登录成功 -->
 			<result name="success" type="json">
-				<param name="excludeProperties">userName,passWord,users.passWord</param>
-				<param name="root">users</param>
+				<param name="excludeProperties">userName,passWord,user.passWord</param>
+				<param name="root">user</param>
 				<!-- <param name="root">users</param> -->
 				<!-- <param name="excludeNullProperties">true</param> -->
 				<!-- <param name="includeProperties">users.*</param> -->
@@ -20,7 +20,7 @@
 			
 			<!-- 登录失败 -->
 			<result name="error" type="json">
-				<param name="root">users</param>
+				<param name="root">user</param>
 			</result>
 			
 		</action>

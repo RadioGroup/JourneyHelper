@@ -1,19 +1,19 @@
 package com.fzu.action.authentication;
 
-import com.fzu.model.Users;
+import com.fzu.model.User;
 import com.opensymphony.xwork2.Action;
 
 public class LoginAction implements Action {
 
 	
-	private Users users;
+	private User user;
 	
-	public Users getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	private String userName;
@@ -61,10 +61,10 @@ public class LoginAction implements Action {
 	public String login() throws Exception {
 		System.out.println(toString());
 		
-		users = new Users();
-		users.setUserName("test");
-		users.setNickName("nicheng");
-		users.setUserId("123");
+		user = new User();
+		user.setUserName("test");
+		user.setNickName("nicheng");
+		user.setUserId("123");
 		
 		return SUCCESS;
 	}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.fzu.model">
+
+	<class name="User" table="user" discriminator-value="1">
+		<cache usage="read-only"/>
+		
+		<id name="id">
+			<generator class="identity"/>
+		</id>
+	
+		<property name="userId" type="string"/>
+		<property name="userName" type="string"/>
+		<property name="passWord" type="string"/>
+		<property name="nickName" type="string"/>
+		<property name="Email" type="string"/>
+		<property name="Telephone" type="string"/>
+		<property name="headUrl" type="string"/>
+
+		<set name="routelist" table="user_route">
+			<key column="id"/>
+			<many-to-many class="Route" column="id"/>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>
