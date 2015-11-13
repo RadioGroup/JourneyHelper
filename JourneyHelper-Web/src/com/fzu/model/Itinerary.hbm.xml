@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.fzu.model">
+
+	<class name="Itinerary" table="Itinerary">
+		<id name="id" type="integer" column="Itinerary_id">
+			<generator class="identity" />
+		</id>
+ 
+		<property name="beginTime" type="date" />
+		<property name="endTime" type="date" />
+		<property name="origin" type="string" />
+		<property name="destination" type="string" />
+		<property name="transport" type="string" />
+		<property name="accom" type="string" />
+		<property name="budget" type="string" />
+		<property name="remark" type="string" />
+		
+	
+
+	</class>
+</hibernate-mapping>

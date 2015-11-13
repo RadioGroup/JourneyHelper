@@ -23,7 +23,12 @@ public class Route {
 	private User createUser;
 	// 队员列表
 	private Set<User> teamrecod = new HashSet<User>();
-
+	//行程列表
+	private Set<Itinerary> itinerarys = new HashSet<Itinerary>();
+	//照片墙
+	private Set<Image> imageList = new HashSet<Image>();
+	
+	
 	public Route() {
 
 	}
@@ -151,6 +156,25 @@ public class Route {
 	public void setTeamrecod(Set<User> teamrecod) {
 		this.teamrecod = teamrecod;
 	}
+	
+	
+	public Set<Itinerary> getItinerarys() {
+		return itinerarys;
+	}
+
+	public void setItinerarys(Set<Itinerary> itinerarys) {
+		this.itinerarys = itinerarys;
+	}
+
+	
+
+	public Set<Image> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(Set<Image> imageList) {
+		this.imageList = imageList;
+	}
 
 	@Override
 	public String toString() {
@@ -160,7 +184,7 @@ public class Route {
 				+ ", strong=" + strong + ", imageurl=" + imageurl
 				+ ", summary=" + summary + ", content=" + content
 				+ ", createUser=" + createUser + ", teamrecod=" + teamrecod
-				+ "]";
+				+ ", itinerarys=" + itinerarys + "]";
 	}
 
 	@Override

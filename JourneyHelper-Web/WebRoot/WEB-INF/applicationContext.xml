@@ -5,20 +5,11 @@
 	xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-
-
-
-
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
-		<property name="url" value="jdbc:mysql://localhost:3306/journeyhelper-web"/> 
-		<property name="username" value="root"/> <property name="password" value="root"/> 
-		</bean> -->
-
-
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
+		
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/journeyhelper" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/journeyhelper-web" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 		<property name="maxPoolSize" value="40" />
@@ -30,42 +21,45 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mappingResources">
+		<property name="mappingLocations">
 			<list>
-				<value>com/fzu/modle/Route.hbm.xml</value>
-				<value>com/fzu/modle/User.hbm.xml</value>
+				<value>classpath*:com/fzu/model/User.hbm.xml</value>
+				<value>classpath*:com/fzu/model/Route.hbm.xml</value>
+				<value>classpath*:com/fzu/model/Itinerary.hbm.xml</value>
+				<value>classpath*:com/fzu/model/Image.hbm.xml</value>
 			</list>
 		</property>
 
 		<property name="hibernateProperties">
 			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
 				hibernate.hbm2ddl.auto=update
 			</value>
 		</property>
 	</bean>
 
-	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> 
-		<property name="dataSource"> <ref bean="dataSource" /> </property> <property 
-		name="hibernateProperties"> <props> <prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect 
-		</prop> </props> </property> </bean> -->
-
+<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<!-- <bean id="userHibernateDao" class="com.fzu.model.UserHibernateDao"> 
-		<property name=""></property> </bean> -->
-
-	<bean id="HibernateTest" class="com.fzu.test.HibernateTest">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	
+	
+	
+	
+	<bean id="userBean" class="com.fzu.model.User"></bean>
+	<bean id="routeBean" class="com.fzu.model.Route"></bean>
+	
+	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
+		<property name="user" ref="userBean"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
+		<property name="user" ref="userBean"/>
+	</bean>
+	
 
+	
 </beans>
-
-
-

@@ -16,7 +16,10 @@ public class User {
 
 	//用户的旅行记录
 	private Set<Route> routelist = new HashSet<Route>();
-	
+	//用户创建记录
+	private Set<Route> createlist = new HashSet<Route>();
+	//用户上传的照片
+	private Set<Image> imageList = new HashSet<Image>();
 	
 	public User(){
 		
@@ -128,6 +131,28 @@ public class User {
 
 	public void setRoutelist(Set<Route> routelist) {
 		this.routelist = routelist;
+	}
+
+	
+	
+	public Set<Route> getCreatelist() {
+		return createlist;
+	}
+
+
+	public void setCreatelist(Set<Route> createlist) {
+		this.createlist = createlist;
+	}
+
+	
+
+	public Set<Image> getImageList() {
+		return imageList;
+	}
+
+
+	public void setImageList(Set<Image> imageList) {
+		this.imageList = imageList;
 	}
 
 
