@@ -43,7 +43,6 @@ public class LoginAction implements Action {
 
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
 
 		System.out.println(getUserName());
 		System.out.println(getPassWord());

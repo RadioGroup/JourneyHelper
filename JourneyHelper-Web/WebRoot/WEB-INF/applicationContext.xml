@@ -7,9 +7,10 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		
+
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/journeyhelper-web" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/journeyhelper-web" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 		<property name="maxPoolSize" value="40" />
@@ -34,32 +35,53 @@
 			<value>
 				hibernate.dialect=org.hibernate.dialect.MySQLDialect
 				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=true
+				hibernate.format_sql=true
+				#开启二级缓存
+				hibernate.cache.use_second_level_cache=true
+				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
 			</value>
 		</property>
 	</bean>
 
-<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	
-	
-	
+
+
+
+
 	<bean id="userBean" class="com.fzu.model.User"></bean>
 	<bean id="routeBean" class="com.fzu.model.Route"></bean>
-	
-	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
-		<property name="user" ref="userBean"/>
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	
-	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
-		<property name="user" ref="userBean"/>
-	</bean>
-	
 
-	
+	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
+		<property name="user" ref="userBean" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
+		<property name="user" ref="userBean" />
+	</bean>
+
+	<bean id="daoTemplate" abstract="true" lazy-init="true"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="userDao" class="com.fzu.dao.UserDaoHibernate" parent="daoTemplate" />
+
+	<bean id="routeDao" class="com.fzu.dao.RouteDaoHibernate" parent="daoTemplate" />
+
+	<bean id="itineraryDao" class="com.fzu.dao.ItineraryDaoHibernate"
+		parent="daoTemplate" />
+
+	<bean id="imageDao" class="com.fzu.dao.ImageDaoHibernate" parent="daoTemplate" />
+
+
+
+
+
+
+
 </beans>
