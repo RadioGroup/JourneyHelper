@@ -2,15 +2,13 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-<package name="fzu" extends="json-default">
+	<package name="fzu" extends="json-default">
 
 
-		<action name="login" class="loginAtion"
-			method="login">
-			<interceptor-ref name="json" />
+		<action name="login" class="loginAtion" method="login">
 			<!-- 登录成功 -->
 			<result name="success" type="json">
-				<param name="excludeProperties">userName,passWord,user.passWord</param>
+				<param name="excludeProperties">userName,passWord,user.passWord,user.createlist,user.imageList,user.routelist</param>
 				<param name="root">user</param>
 				<!-- <param name="root">users</param> -->
 				<!-- <param name="excludeNullProperties">true</param> -->
@@ -18,14 +16,10 @@
 			</result>
 
 			<!-- 登录失败 -->
-			<result name="error" type="json">
-				<param name="root">user</param>
-			</result>
-
+			<result name="error">index.jsp</result>
 		</action>
 
-		<action name="regist" class="registAtion"
-			method="regist">
+		<action name="regist" class="registAtion" method="regist">
 			<result name="success" type="json">
 				<param name="excludeProperties">userName,passWord,user.passWord</param>
 				<param name="root">user</param>

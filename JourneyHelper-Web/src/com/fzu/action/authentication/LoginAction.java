@@ -1,13 +1,16 @@
 package com.fzu.action.authentication;
 
 import com.fzu.model.User;
+import com.fzu.service.UserManager;
 import com.opensymphony.xwork2.Action;
 
 public class LoginAction implements Action {
 
-	
 	private User user;
-	
+	private String userName;
+	private String passWord;
+	private UserManager manager;
+
 	public User getUser() {
 		return user;
 	}
@@ -15,9 +18,6 @@ public class LoginAction implements Action {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	private String userName;
-	private String passWord;
 
 	public String getUserName() {
 		return userName;
@@ -33,6 +33,14 @@ public class LoginAction implements Action {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+
+	public UserManager getManager() {
+		return manager;
+	}
+
+	public void setManager(UserManager manager) {
+		this.manager = manager;
 	}
 
 	@Override
@@ -59,14 +67,18 @@ public class LoginAction implements Action {
 
 	public String login() throws Exception {
 		System.out.println(toString());
-		
-		user = new User();
-		user.setUserName("test");
-		user.setNickName("nicheng");
-		user.setUserId("123");
-		
-		return SUCCESS;
-	}
 
+		user.setUserName(getUserName());
+		user.setPassWord(getPassWord());
+
+		User u = manager.loginAuthen(user);
+		if (u != null) {
+			setUser(u);
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+
+	}
 
 }

@@ -11,27 +11,27 @@ public class ImageDaoHibernate extends PagingHibernateDaoSupport implements
 
 	@Override
 	public Image get(Integer id) {
-		return getHibernateTemplate().get(Image.class, id);
+		return (Image) getSessionFactory().getCurrentSession().get(Image.class, id);
 	}
 
 	@Override
 	public Integer save(Image image) {
-		return (Integer) getHibernateTemplate().save(image);
+		return (Integer) getSessionFactory().getCurrentSession().save(image);
 	}
 
 	@Override
 	public void update(Image image) {
-		getHibernateTemplate().update(image);
+		getSessionFactory().getCurrentSession().update(image);
 	}
 
 	@Override
 	public void delete(Image image) {
-		getHibernateTemplate().delete(image);
+		getSessionFactory().getCurrentSession().delete(image);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		getHibernateTemplate().delete(get(id));
+		getSessionFactory().getCurrentSession().delete(get(id));
 	}
 
 	@Override

@@ -46,5 +46,12 @@ public interface UserDao{
 	 * @return
 	 */
 	public List<User> findByRoute(Route route);
+	
+	/**
+	 * 通过用户名和密码查找用户
+	 * @param user
+	 * @return
+	 */
+	public User findbyUserNameAndPass(User user);
 		
 }

@@ -44,13 +44,14 @@
 		</property>
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
 	</bean>
 
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
 
@@ -62,24 +63,22 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+
+	<bean id="managerTemplate" abstract="true" lazy-init="true"
+		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
+		p:routeDao-ref="routeDao" />
+
+
+
+
+	<bean id="userManager" class="com.fzu.service.UserManager" parent="managerTemplate" />
+
+
+
 	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
 		<property name="user" ref="userBean" />
+		<property name="manager" ref="userManager"></property>
 	</bean>
-
-	<bean id="daoTemplate" abstract="true" lazy-init="true"
-		p:sessionFactory-ref="sessionFactory" />
-
-	<bean id="userDao" class="com.fzu.dao.UserDaoHibernate" parent="daoTemplate" />
-
-	<bean id="routeDao" class="com.fzu.dao.RouteDaoHibernate" parent="daoTemplate" />
-
-	<bean id="itineraryDao" class="com.fzu.dao.ItineraryDaoHibernate"
-		parent="daoTemplate" />
-
-	<bean id="imageDao" class="com.fzu.dao.ImageDaoHibernate" parent="daoTemplate" />
-
-
-
 
 
 

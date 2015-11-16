@@ -1,5 +1,6 @@
 package com.fzu.dao;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.List;
 
 import com.fzu.model.Route;
@@ -8,29 +9,30 @@ import com.fzu.model.User;
 public class RouteDaoHibernate extends PagingHibernateDaoSupport implements
 		RouteDao {
 
+	
 	@Override
 	public Route get(Integer id) {
-		return getHibernateTemplate().get(Route.class, id);
+		return (Route) getSessionFactory().getCurrentSession().get(Route.class, id);
 	}
 
 	@Override
 	public Integer save(Route route) {
-		return (Integer) getHibernateTemplate().save(route);
+		return (Integer) getSessionFactory().getCurrentSession().save(route);
 	}
 
 	@Override
 	public void update(Route route) {
-		getHibernateTemplate().update(route);
+		getSessionFactory().getCurrentSession().update(route);
 	}
 
 	@Override
 	public void delete(Route route) {
-		getHibernateTemplate().delete(route);
+		getSessionFactory().getCurrentSession().delete(route);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		getHibernateTemplate().delete(get(id));
+		getSessionFactory().getCurrentSession().delete(get(id));
 	}
 
 	@Override
@@ -41,8 +43,7 @@ public class RouteDaoHibernate extends PagingHibernateDaoSupport implements
 
 	@Override
 	public List<Route> findCreatelistByUser(User user) {
-		return (List<Route>) getHibernateTemplate().find(
-				"from Route as r where r.createUser=?", user);
+		return null;
 	}
 
 }

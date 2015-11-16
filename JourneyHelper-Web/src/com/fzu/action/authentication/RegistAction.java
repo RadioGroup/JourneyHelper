@@ -121,7 +121,7 @@ public class RegistAction implements Action {
 		Transaction transaction = session.beginTransaction();
 		session.save(user);
 		transaction.commit();
-		session.close();
+		//session.close();
 		return SUCCESS;
 	}
 

@@ -5,7 +5,7 @@
 	xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-	<bean id="daoTemplate" abstract="true" lazy-init="true"
+	<bean id="daoTemplate" abstract="true" lazy-init="false"
 		p:sessionFactory-ref="sessionFactory" />
 
 	<bean id="userDao" class="com.fzu.dao.UserDaoHibernate" parent="daoTemplate" />
