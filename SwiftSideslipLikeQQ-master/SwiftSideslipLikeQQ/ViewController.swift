@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // 给根容器设置背景
-        let imageView = UIImageView(image: UIImage(named: "back"))
+        let imageView = UIImageView(image: UIImage(named: "bg"))
         imageView.frame = UIScreen.mainScreen().bounds
         self.view.addSubview(imageView)
         
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         tabBarView.addSubview(homeViewController.view)
         
         // 在 TabBar Controller 的视图中，将 TabBar 视图提到最表层
-        tabBarView.bringSubviewToFront(mainTabBarController.tabBar)
+        tabBarView.sendSubviewToBack(mainTabBarController.tabBar)
         
         // 将主视图加入容器
         self.view.addSubview(mainView)

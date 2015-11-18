@@ -47,7 +47,7 @@
                     <toolbarItems/>
                 </viewController>
             </viewControllers>
-            <point key="canvasLocation" x="236" y="269"/>
+            <point key="canvasLocation" x="279" y="162"/>
         </tabBarController>
     </objects>
     <resources>
