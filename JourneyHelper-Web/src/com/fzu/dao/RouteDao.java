@@ -1,6 +1,6 @@
 package com.fzu.dao;
 
-import java.util.List;
+import java.util.Set;
 
 import com.fzu.model.Route;
 import com.fzu.model.User;
@@ -45,12 +45,12 @@ public interface RouteDao {
 	 * @param user
 	 * @return
 	 */
-	public List<Route> findUserlistByUser(User user);
+	public Set<Route> findRoutelistByUser(User user);
 	
 	/**
 	 * 查询用户的创建列表
 	 * @param user
 	 * @return
 	 */
-	public List<Route> findCreatelistByUser(User user);
+	public Set<Route> findCreatelistByUser(User user);
 }

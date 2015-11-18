@@ -58,29 +58,27 @@
 	<bean id="userBean" class="com.fzu.model.User"></bean>
 	<bean id="routeBean" class="com.fzu.model.Route"></bean>
 
-	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
-		<property name="user" ref="userBean" />
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
 
 	<bean id="managerTemplate" abstract="true" lazy-init="true"
 		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
 		p:routeDao-ref="routeDao" />
 
-
-
-
-	<bean id="userManager" class="com.fzu.service.UserManager" parent="managerTemplate" />
+	<bean id="userManager" class="com.fzu.service.UserManagerImple"
+		parent="managerTemplate" />
+	<bean id="routeManager" class="com.fzu.service.RouteManagerImple"
+		parent="managerTemplate" />
 
 
 
 	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
 		<property name="user" ref="userBean" />
-		<property name="manager" ref="userManager"></property>
+		<property name="userManager" ref="userManager"></property>
 	</bean>
 
-
+	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
+		<property name="user" ref="userBean" />
+		<property name="userManager" ref="userManager" />
+	</bean>
 
 
 </beans>

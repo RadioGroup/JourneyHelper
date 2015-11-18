@@ -1,7 +1,9 @@
 package com.fzu.dao;
 
-import java.io.ObjectInputStream.GetField;
-import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.fzu.model.Route;
 import com.fzu.model.User;
@@ -9,10 +11,10 @@ import com.fzu.model.User;
 public class RouteDaoHibernate extends PagingHibernateDaoSupport implements
 		RouteDao {
 
-	
 	@Override
 	public Route get(Integer id) {
-		return (Route) getSessionFactory().getCurrentSession().get(Route.class, id);
+		return (Route) getSessionFactory().getCurrentSession().get(Route.class,
+				id);
 	}
 
 	@Override
@@ -36,14 +38,27 @@ public class RouteDaoHibernate extends PagingHibernateDaoSupport implements
 	}
 
 	@Override
-	public List<Route> findUserlistByUser(User user) {
-
-		return null;
+	public Set<Route> findRoutelistByUser(User user) {
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		user = (User) session.get(User.class, user.getUserId());
+		Set<Route> res = user.getRoutelist();
+		System.out.println(res.size());
+		transaction.commit();
+		session.close();
+		return res;
 	}
 
 	@Override
-	public List<Route> findCreatelistByUser(User user) {
-		return null;
+	public Set<Route> findCreatelistByUser(User user) {
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		user = (User) session.get(User.class, user.getUserId());
+		Set<Route> res = user.getCreatelist();
+		System.out.println(res.size());
+		transaction.commit();
+		session.close();
+		return res;
 	}
 
 }

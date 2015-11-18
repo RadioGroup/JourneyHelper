@@ -5,156 +5,118 @@ import java.util.Set;
 
 public class User {
 
-	private Integer id;
-	private String userId;
+	private Integer userId;
 	private String userName;
 	private String passWord;
 	private String nickName;
-	private String Email;
-	private String Telephone;
+	private String email;
+	private String telephone;
 	private String headUrl;
 
-	//用户的旅行记录
+	// 用户的旅行记录
 	private Set<Route> routelist = new HashSet<Route>();
-	//用户创建记录
+	// 用户创建记录
 	private Set<Route> createlist = new HashSet<Route>();
-	//用户上传的照片
+	// 用户上传的照片
 	private Set<Image> imageList = new HashSet<Image>();
-	
-	public User(){
-		
+
+	public User() {
+
 	}
-	
-	
-	public User(Integer id, String userId, String userName, String passWord,
+
+	public User(Integer userId, String userName, String passWord,
 			String nickName, String email, String telephone, String headUrl,
 			Set<Route> routelist) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.userName = userName;
 		this.passWord = passWord;
 		this.nickName = nickName;
-		Email = email;
-		Telephone = telephone;
+		this.email = email;
+		this.telephone = telephone;
 		this.headUrl = headUrl;
 		this.routelist = routelist;
 	}
 
-
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
 
 	public String getUserName() {
 		return userName;
 	}
 
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 
 	public String getPassWord() {
 		return passWord;
 	}
 
-
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
-
 
 	public String getNickName() {
 		return nickName;
 	}
 
-
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
 
-
 	public String getEmail() {
-		return Email;
+		return email;
 	}
-
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-
 
 	public String getTelephone() {
-		return Telephone;
+		return telephone;
 	}
-
 
 	public void setTelephone(String telephone) {
-		Telephone = telephone;
+		this.telephone = telephone;
 	}
-
 
 	public String getHeadUrl() {
 		return headUrl;
 	}
 
-
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;
 	}
-
 
 	public Set<Route> getRoutelist() {
 		return routelist;
 	}
 
-
 	public void setRoutelist(Set<Route> routelist) {
 		this.routelist = routelist;
 	}
 
-	
-	
 	public Set<Route> getCreatelist() {
 		return createlist;
 	}
-
 
 	public void setCreatelist(Set<Route> createlist) {
 		this.createlist = createlist;
 	}
 
-	
-
 	public Set<Image> getImageList() {
 		return imageList;
 	}
 
-
 	public void setImageList(Set<Image> imageList) {
 		this.imageList = imageList;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -195,6 +157,4 @@ public class User {
 		return true;
 	}
 
-	
-	
 }

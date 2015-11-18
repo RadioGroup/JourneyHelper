@@ -22,7 +22,12 @@ public class UserDaoHibernate extends PagingHibernateDaoSupport implements
 
 	@Override
 	public Integer save(User user) {
-		return (Integer) getSessionFactory().getCurrentSession().save(user);
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		Integer res = (Integer) session.save(user);
+		transaction.commit();
+		session.close();
+		return res;
 	}
 
 	@Override
@@ -66,6 +71,36 @@ public class UserDaoHibernate extends PagingHibernateDaoSupport implements
 			return list.get(0);
 		} else {
 			return null;
+		}
+
+	}
+
+	@Override
+	public User findbuUserName(User user) {
+
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery(
+				"from User as u where u.userName=:username").setString(
+				"username", user.getUserName());
+		List<User> list = (List<User>) query.list();
+		session.close();
+
+		if (list.size() > 0) {
+			return list.get(0);
+		} else {
+			return null;
+		}
+
+	}
+
+	@Override
+	public boolean isExistByUserName(User user) {
+
+		if (findbuUserName(user) != null) {
+			return true;
+		} else {
+			return false;
 		}
 
 	}

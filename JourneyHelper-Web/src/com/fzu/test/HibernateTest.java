@@ -46,7 +46,6 @@ public class HibernateTest {
 
 		user.setUserName("root");
 		user.setPassWord("root");
-		user.setUserId("rootroot");
 		user.setNickName("»á·ÉµÄÖí");
 		user.setEmail("Hoatson@qq.com");
 		user.setTelephone("18859976557");

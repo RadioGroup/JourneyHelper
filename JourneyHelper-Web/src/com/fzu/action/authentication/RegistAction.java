@@ -1,31 +1,43 @@
 package com.fzu.action.authentication;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import com.fzu.model.User;
+import com.fzu.service.UserManagerImple;
+import com.fzu.service.impl.UserManager;
 import com.opensymphony.xwork2.Action;
 
 public class RegistAction implements Action {
 
-	private String userId;
+	//301注册成功
+	//302用户名存在
+	private Integer status;
+	
+	private Integer userId;
 	private String userName;
 	private String passWord;
 	private String nickName;
-	private String Email;
-	private String Telephone;
+	private String email;
+	private String telephone;
 	private String headUrl;
 	private User user;
+	
+	private UserManager userManager ;
+	
+	
 
-	private SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public UserManager getUserManager() {
+		return userManager;
+	}
+
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
 	}
 
 	public User getUser() {
@@ -52,11 +64,11 @@ public class RegistAction implements Action {
 		this.passWord = passWord;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -69,19 +81,19 @@ public class RegistAction implements Action {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getTelephone() {
-		return Telephone;
+		return telephone;
 	}
 
 	public void setTelephone(String telephone) {
-		Telephone = telephone;
+		this.telephone = telephone;
 	}
 
 	public String getHeadUrl() {
@@ -96,7 +108,7 @@ public class RegistAction implements Action {
 	public String toString() {
 		return "RegistAction [userId=" + userId + ", userName=" + userName
 				+ ", passWord=" + passWord + ", nickName=" + nickName
-				+ ", Email=" + Email + ", Telephone=" + Telephone
+				+ ", email=" + email + ", telephone=" + telephone
 				+ ", headUrl=" + headUrl + "]";
 	}
 
@@ -114,15 +126,18 @@ public class RegistAction implements Action {
 		user.setPassWord(getPassWord());
 		user.setRoutelist(null);
 		user.setTelephone(getTelephone());
-		user.setUserId("" + getEmail().hashCode() + getUserName().hashCode());
 		user.setUserName(getUserName());
 
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
-		session.save(user);
-		transaction.commit();
-		//session.close();
-		return SUCCESS;
+		if(userManager.registAvaliable(user)){			
+			userManager.registNewUser(user);
+			setStatus(301);
+			return SUCCESS;
+		}else{
+			setStatus(302);
+			return ERROR;
+		}
+		
+		
 	}
 
 }

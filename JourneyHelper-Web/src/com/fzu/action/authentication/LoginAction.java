@@ -1,15 +1,31 @@
 package com.fzu.action.authentication;
 
 import com.fzu.model.User;
-import com.fzu.service.UserManager;
+import com.fzu.service.UserManagerImple;
+import com.fzu.service.impl.UserManager;
 import com.opensymphony.xwork2.Action;
 
 public class LoginAction implements Action {
 
+	// private static final int LOGIN_SUCCESS = 201;
+	// private static final int LOGIN_ERROT= 202;
+
+	// µÇÂ¼×´Ì¬±ê¼Ç
+	// 201µÇÂ¼³É¹¦
+	// 202ÕËºÅ»òÕßÃÜÂë´íÎó
+	private int status;
 	private User user;
 	private String userName;
 	private String passWord;
-	private UserManager manager;
+	private UserManager userManager;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public User getUser() {
 		return user;
@@ -35,12 +51,14 @@ public class LoginAction implements Action {
 		this.passWord = passWord;
 	}
 
-	public UserManager getManager() {
-		return manager;
+	
+	
+	public UserManager getUserManager() {
+		return userManager;
 	}
 
-	public void setManager(UserManager manager) {
-		this.manager = manager;
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
 	}
 
 	@Override
@@ -71,11 +89,13 @@ public class LoginAction implements Action {
 		user.setUserName(getUserName());
 		user.setPassWord(getPassWord());
 
-		User u = manager.loginAuthen(user);
+		User u = userManager.loginAuthen(user);
 		if (u != null) {
 			setUser(u);
+			setStatus(201);
 			return SUCCESS;
 		} else {
+			setStatus(202);
 			return ERROR;
 		}
 

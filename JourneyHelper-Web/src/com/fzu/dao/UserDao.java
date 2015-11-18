@@ -53,5 +53,19 @@ public interface UserDao{
 	 * @return
 	 */
 	public User findbyUserNameAndPass(User user);
+	
+	/**
+	 * 通过用户名查询用户
+	 * @param user
+	 * @return
+	 */
+	public User findbuUserName(User user);
+	
+	/**
+	 * 查询用户是否存在
+	 * @param user
+	 * @return
+	 */
+	public boolean isExistByUserName(User user);
 		
 }

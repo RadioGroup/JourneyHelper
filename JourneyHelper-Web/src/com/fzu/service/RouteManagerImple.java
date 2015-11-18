@@ -1,12 +1,17 @@
 package com.fzu.service;
 
+import java.util.List;
+import java.util.Set;
+
 import com.fzu.dao.ImageDao;
 import com.fzu.dao.ItineraryDao;
 import com.fzu.dao.RouteDao;
 import com.fzu.dao.UserDao;
+import com.fzu.model.Route;
 import com.fzu.model.User;
+import com.fzu.service.impl.RouteManager;
 
-public class UserManager implements Authentication {
+public class RouteManagerImple implements RouteManager {
 
 	private ImageDao imageDao;
 	private UserDao userDao;
@@ -46,8 +51,25 @@ public class UserManager implements Authentication {
 	}
 
 	@Override
-	public User loginAuthen(User user) {
-		// TODO Auto-generated method stub
-		return userDao.findbyUserNameAndPass(user);
+	public Set<Route> findUserCreateRouteList(User user) {
+		Set<Route> ans = null;
+		ans = routeDao.findCreatelistByUser(user);
+
+		return ans;
 	}
+
+	@Override
+	public Set<Route> findUserParticipatorRouteList(User user) {
+		Set<Route> ans = null;
+		ans = routeDao.findCreatelistByUser(user);
+
+		return ans;
+	}
+
+	@Override
+	public Integer createARoute(Route route) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

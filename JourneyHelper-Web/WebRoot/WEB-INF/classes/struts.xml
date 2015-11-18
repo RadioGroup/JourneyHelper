@@ -8,21 +8,43 @@
 		<action name="login" class="loginAtion" method="login">
 			<!-- 登录成功 -->
 			<result name="success" type="json">
-				<param name="excludeProperties">userName,passWord,user.passWord,user.createlist,user.imageList,user.routelist</param>
-				<param name="root">user</param>
+				<param name="excludeProperties">userName,passWord,userManager,user.routelist,user.createlist,user.imageList</param>
 				<!-- <param name="root">users</param> -->
 				<!-- <param name="excludeNullProperties">true</param> -->
 				<!-- <param name="includeProperties">users.*</param> -->
 			</result>
 
 			<!-- 登录失败 -->
-			<result name="error">index.jsp</result>
+			<result name="error" type="json">
+				<param name="excludeProperties">userName,passWord,userManager,user</param>
+				<!-- <param name="root">users</param> -->
+				<!-- <param name="excludeNullProperties">true</param> -->
+				<!-- <param name="includeProperties">users.*</param> -->
+			</result>
+
 		</action>
 
 		<action name="regist" class="registAtion" method="regist">
 			<result name="success" type="json">
-				<param name="excludeProperties">userName,passWord,user.passWord</param>
-				<param name="root">user</param>
+				<param name="excludeProperties">userId,userName,passWord,nickName,email,telephone,headUrl,userManager,user.routelist,user.createlist,user.imageList</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
+
+		<action name="findCreatedRouteList" class="com.fzu.action.routeaction.FindRouteAction"
+			method="findCreateRouteList">
+			<result name="success" type="json">
+				<param name="excludeProperties">userManager,routeManager,joindeList,createList.createList,createList.teamrecod,createList.itinerarys,createList.imageList</param>
+			</result>
+		</action>
+
+		<action name="findJoinedRouteList" class="com.fzu.action.routeaction.FindRouteAction"
+			method="findJoingRouteList">
+			<result name="success" type="json">
+				<param name="excludeProperties">userManager,routeManager,createList,createList.createList,createList.teamrecod,createList.itinerarys,createList.imageList</param>
 			</result>
 		</action>
 
