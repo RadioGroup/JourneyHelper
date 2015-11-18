@@ -4,14 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.mysql.fabric.xmlrpc.base.Data;
+import java.util.Date;
 
 public class Route {
 
 	private Integer id;
 	private String title;
-	private Data createTime;
-	private Data beginTime;
-	private Data endTime;
+	private Date createTime;
+	private Date beginTime;
+	private Date endTime;
 	private String property;
 	private String type;
 	private String strong;
@@ -23,18 +24,17 @@ public class Route {
 	private User createUser;
 	// 队员列表
 	private Set<User> teamrecod = new HashSet<User>();
-	//行程列表
+	// 行程列表
 	private Set<Itinerary> itinerarys = new HashSet<Itinerary>();
-	//照片墙
+	// 照片墙
 	private Set<Image> imageList = new HashSet<Image>();
-	
-	
+
 	public Route() {
 
 	}
 
-	public Route(Integer id, String title, Data createTime, Data beginTime,
-			Data endTime, String property, String type, String strong,
+	public Route(Integer id, String title, Date createTime, Date beginTime,
+			Date endTime, String property, String type, String strong,
 			String imageurl, String summary, String content, User createUser,
 			Set<User> teamrecod) {
 		super();
@@ -69,27 +69,27 @@ public class Route {
 		this.title = title;
 	}
 
-	public Data getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Data createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
-	public Data getBeginTime() {
+	public Date getBeginTime() {
 		return beginTime;
 	}
 
-	public void setBeginTime(Data beginTime) {
+	public void setBeginTime(Date beginTime) {
 		this.beginTime = beginTime;
 	}
 
-	public Data getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Data endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
@@ -156,8 +156,7 @@ public class Route {
 	public void setTeamrecod(Set<User> teamrecod) {
 		this.teamrecod = teamrecod;
 	}
-	
-	
+
 	public Set<Itinerary> getItinerarys() {
 		return itinerarys;
 	}
@@ -165,8 +164,6 @@ public class Route {
 	public void setItinerarys(Set<Itinerary> itinerarys) {
 		this.itinerarys = itinerarys;
 	}
-
-	
 
 	public Set<Image> getImageList() {
 		return imageList;

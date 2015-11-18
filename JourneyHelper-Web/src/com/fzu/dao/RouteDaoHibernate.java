@@ -19,7 +19,13 @@ public class RouteDaoHibernate extends PagingHibernateDaoSupport implements
 
 	@Override
 	public Integer save(Route route) {
-		return (Integer) getSessionFactory().getCurrentSession().save(route);
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		Integer integer = (Integer) session.save(route);
+		transaction.commit();
+		session.close();
+
+		return integer;
 	}
 
 	@Override

@@ -48,6 +48,17 @@
 			</result>
 		</action>
 
+
+		<action name="createRoute" class="com.fzu.action.routeaction.CreateRouteAction"
+			method="createRoute">
+			<result name="success" type="json">
+
+				<param name="excludeProperties">userManager,routeManager,title,beginTime,endTime,property,type,strong,imageurl,summary,content,route.createUser,route.teamrecod,route.itinerarys,route.imageList</param>
+			</result>
+		</action>
+
+
+
 	</package>
 
 </struts>    

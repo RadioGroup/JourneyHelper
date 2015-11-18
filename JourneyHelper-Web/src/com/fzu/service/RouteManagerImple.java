@@ -53,6 +53,7 @@ public class RouteManagerImple implements RouteManager {
 	@Override
 	public Set<Route> findUserCreateRouteList(User user) {
 		Set<Route> ans = null;
+
 		ans = routeDao.findCreatelistByUser(user);
 
 		return ans;
@@ -67,9 +68,16 @@ public class RouteManagerImple implements RouteManager {
 	}
 
 	@Override
-	public Integer createARoute(Route route) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer createARoute(User user,Route route) {
+		user = userDao.get(user.getUserId());
+		user.getCreatelist().add(route);
+		user.getRoutelist().add(route);
+		
+		route.getTeamrecod().add(user);
+		
+		Integer integer = routeDao.save(route);
+		userDao.update(user);
+		return integer;
 	}
 
 }

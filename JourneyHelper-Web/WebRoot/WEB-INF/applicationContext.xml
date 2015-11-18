@@ -81,4 +81,18 @@
 	</bean>
 
 
+	<bean id="findRouteAtion" class="com.fzu.action.routeaction.FindRouteAction">
+		<property name="userManager" ref="userManager" />
+		<property name="routeManager" ref="routeManager" />
+	</bean>
+
+
+	<bean id="createRouteAtion" class="com.fzu.action.routeaction.CreateRouteAction">
+		<property name="user" ref="userBean" />
+		<property name="userManager" ref="userManager" />
+		<property name="routeManager" ref="routeManager" />
+	</bean>
+
+
+
 </beans>

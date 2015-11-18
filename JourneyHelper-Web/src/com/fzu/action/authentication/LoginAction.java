@@ -1,7 +1,6 @@
 package com.fzu.action.authentication;
 
 import com.fzu.model.User;
-import com.fzu.service.UserManagerImple;
 import com.fzu.service.impl.UserManager;
 import com.opensymphony.xwork2.Action;
 

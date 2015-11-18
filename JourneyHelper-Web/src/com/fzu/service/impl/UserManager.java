@@ -14,4 +14,6 @@ public interface UserManager {
 	 * @return
 	 */
 	public boolean registAvaliable(User user);
+	
+
 }

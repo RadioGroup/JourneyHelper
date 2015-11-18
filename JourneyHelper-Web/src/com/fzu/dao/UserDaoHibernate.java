@@ -1,5 +1,6 @@
 package com.fzu.dao;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -16,8 +17,12 @@ public class UserDaoHibernate extends PagingHibernateDaoSupport implements
 	@Override
 	public User get(Integer id) {
 
-		return (User) getSessionFactory().getCurrentSession().get(User.class,
-				id);
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		User user = (User) session.get(User.class, id);
+		transaction.commit();
+		session.close();
+		return user;
 	}
 
 	@Override
@@ -32,7 +37,11 @@ public class UserDaoHibernate extends PagingHibernateDaoSupport implements
 
 	@Override
 	public void update(User user) {
-		getSessionFactory().getCurrentSession().update(user);
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		session.update(user);
+		transaction.commit();
+		session.close();
 	}
 
 	@Override

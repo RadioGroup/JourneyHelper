@@ -11,7 +11,7 @@ public interface RouteManager {
 	
 	public Set<Route> findUserParticipatorRouteList(User user);
 	
-	public Integer createARoute(Route route);
+	public Integer createARoute(User user,Route route);
 	
 	
 }
