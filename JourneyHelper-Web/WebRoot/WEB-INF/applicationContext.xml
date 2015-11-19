@@ -1,93 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
-	xmlns:tx="http://www.springframework.org/schema/tx">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/journeyhelper-web" />
-		<property name="user" value="root" />
-		<property name="password" value="root" />
-		<property name="maxPoolSize" value="40" />
-		<property name="minPoolSize" value="1" />
-		<property name="initialPoolSize" value="1" />
-		<property name="maxIdleTime" value="40" />
-	</bean>
-
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mappingLocations">
-			<list>
-				<value>classpath*:com/fzu/model/User.hbm.xml</value>
-				<value>classpath*:com/fzu/model/Route.hbm.xml</value>
-				<value>classpath*:com/fzu/model/Itinerary.hbm.xml</value>
-				<value>classpath*:com/fzu/model/Image.hbm.xml</value>
-			</list>
-		</property>
-
-		<property name="hibernateProperties">
-			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQLDialect
-				hibernate.hbm2ddl.auto=update
-				hibernate.show_sql=true
-				hibernate.format_sql=true
-				#开启二级缓存
-				hibernate.cache.use_second_level_cache=true
-				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
-			</value>
-		</property>
-	</bean>
-
+	<!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 并注入SessionFactory的引用 -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory">
-			<ref local="sessionFactory" />
-		</property>
-	</bean>
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+	<!-- 配置事务增强处理Bean,指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 用于配置详细的事务语义 -->
+		<tx:attributes>
+			<!-- 所有以'get'开头的方法是read-only的 -->
+			<tx:method name="get*" read-only="true" />
+			<!-- 其他方法使用默认的事务设置 -->
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<!-- 配置一个切入点，匹配empManager和mgrManager 两个Bean的所有方法的执行 -->
+		<aop:pointcut id="hoatPointcut" expression="bean(userManager) or bean(routeManager)" />
+		<!-- 指定在leePointcut切入点应用txAdvice事务增强处理 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="hoatPointcut" />
+	</aop:config>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
 
-	<bean id="userBean" class="com.fzu.model.User"></bean>
-	<bean id="routeBean" class="com.fzu.model.Route"></bean>
+
+
+	
+
+
+	<bean id="userBean" class="com.fzu.journeyhelper.domain.User"></bean>
+	<bean id="routeBean" class="com.fzu.journeyhelper.domain.Route"></bean>
 
 
 	<bean id="managerTemplate" abstract="true" lazy-init="true"
 		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
 		p:routeDao-ref="routeDao" />
 
-	<bean id="userManager" class="com.fzu.service.UserManagerImple"
+	<bean id="userManager" class="com.fzu.journeyhelper.service.UserManagerImple"
 		parent="managerTemplate" />
-	<bean id="routeManager" class="com.fzu.service.RouteManagerImple"
+	<bean id="routeManager" class="com.fzu.journeyhelper.service.RouteManagerImple"
 		parent="managerTemplate" />
 
 
 
-	<bean id="loginAtion" class="com.fzu.action.authentication.LoginAction">
+	<bean id="loginAtion" class="com.fzu.journeyhelper.action.authentication.LoginAction">
 		<property name="user" ref="userBean" />
 		<property name="userManager" ref="userManager"></property>
 	</bean>
 
-	<bean id="registAtion" class="com.fzu.action.authentication.RegistAction">
+	<bean id="registAtion" class="com.fzu.journeyhelper.action.authentication.RegistAction">
 		<property name="user" ref="userBean" />
 		<property name="userManager" ref="userManager" />
 	</bean>
 
 
-	<bean id="findRouteAtion" class="com.fzu.action.routeaction.FindRouteAction">
+	<bean id="findRouteAtion" class="com.fzu.journeyhelper.action.routeaction.FindRouteAction">
 		<property name="userManager" ref="userManager" />
 		<property name="routeManager" ref="routeManager" />
 	</bean>
 
 
-	<bean id="createRouteAtion" class="com.fzu.action.routeaction.CreateRouteAction">
+	<bean id="createRouteAtion" class="com.fzu.journeyhelper.action.routeaction.CreateRouteAction">
 		<property name="user" ref="userBean" />
 		<property name="userManager" ref="userManager" />
 		<property name="routeManager" ref="routeManager" />
