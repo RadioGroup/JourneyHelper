@@ -10,6 +10,20 @@ import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 import com.fzu.journeyhelper.service.UserManager;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.service.impl.UserManagerImple       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:06:33     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:06:33     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 public class UserManagerImple implements UserManager {
 
 	private ImageDao imageDao;

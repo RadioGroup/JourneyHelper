@@ -15,6 +15,20 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.domain.Image       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:05:19     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:05:19     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 @Entity
 @Table(name = "images")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -31,7 +45,7 @@ public class Image implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer imageId;
 
-	// 图片url
+	// 图片Url
 	@Column(name = "imageUrl")
 	private String imageURL;
 

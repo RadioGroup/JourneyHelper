@@ -2,6 +2,20 @@ package com.fzu.journeyhelper.action;
 
 import com.fzu.journeyhelper.domain.User;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.action.LoginAction       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:03:43     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:03:43     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 public class LoginAction extends BaseAction {
 
 	/**

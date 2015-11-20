@@ -22,6 +22,20 @@ import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.domain.Route       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:05:55     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:05:55     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 @Entity
 @Table(name = "routes")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

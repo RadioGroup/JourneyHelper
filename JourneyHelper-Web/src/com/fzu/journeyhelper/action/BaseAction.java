@@ -6,6 +6,20 @@ import com.fzu.journeyhelper.service.RouteManager;
 import com.fzu.journeyhelper.service.UserManager;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.action.BaseAction       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:02:49     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:02:49     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 public class BaseAction extends ActionSupport{
 
 	/**

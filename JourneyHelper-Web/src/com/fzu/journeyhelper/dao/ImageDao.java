@@ -7,6 +7,20 @@ import com.fzu.journeyhelper.domain.Image;
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.dao.ImageDao       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:03:56     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:03:56     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 public interface ImageDao extends BaseDao<Image> {
 
 	

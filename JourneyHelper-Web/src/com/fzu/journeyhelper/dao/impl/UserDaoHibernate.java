@@ -4,18 +4,27 @@ import java.util.List;
 
 import com.fzu.common.dao.impl.BaseDaoHibernate4;
 import com.fzu.journeyhelper.dao.UserDao;
-import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 
+/**
+ * 
+ * Copyright (C): 2015-Hoatshon  
+ * Project Name: JourneyHelper-Web     
+ *  
+ * Description:   
+ * ClassName: com.fzu.journeyhelper.dao.impl.UserDaoHibernate       
+ * Author: Hoatson
+ * Create Time: 2015年11月20日 下午6:05:11     
+ * Modified By:   
+ * Modified Time: 2015年11月20日 下午6:05:11     
+ * Modified Remark:     
+ * @version   V1.0
+ */
 public class UserDaoHibernate extends BaseDaoHibernate4<User> implements
 		UserDao {
 
-	@Override
-	public List<User> findByRoute(Route route) {
-		// TODO N-N连接查询，待解决
-		return null;
-	}
 
+	
 	@Override
 	public User findbyUserNameAndPass(User user) {
 
