@@ -1,16 +1,18 @@
-package com.fzu.journeyhelper.action.authentication;
+package com.fzu.journeyhelper.action;
 
 import com.fzu.journeyhelper.domain.User;
-import com.fzu.journeyhelper.service.UserManagerImple;
-import com.fzu.journeyhelper.service.impl.UserManager;
-import com.opensymphony.xwork2.Action;
 
-public class RegistAction implements Action {
+public class RegistAction extends BaseAction {
 
-	//301注册成功
-	//302用户名存在
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// 301注册成功
+	// 302用户名存在
 	private Integer status;
-	
+
 	private Integer userId;
 	private String userName;
 	private String passWord;
@@ -19,10 +21,7 @@ public class RegistAction implements Action {
 	private String telephone;
 	private String headUrl;
 	private User user;
-	
-	private UserManager userManager ;
-	
-	
+
 
 	public Integer getStatus() {
 		return status;
@@ -30,14 +29,6 @@ public class RegistAction implements Action {
 
 	public void setStatus(Integer status) {
 		this.status = status;
-	}
-
-	public UserManager getUserManager() {
-		return userManager;
-	}
-
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
 	}
 
 	public User getUser() {
@@ -114,30 +105,29 @@ public class RegistAction implements Action {
 
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String regist() throws Exception {
+	public String userRegist() throws Exception {
 		System.out.println(toString());
+		user = new User();
 		user.setEmail(getEmail());
 		user.setHeadUrl(getHeadUrl());
 		user.setNickName(getNickName());
 		user.setPassWord(getPassWord());
-		user.setRoutelist(null);
 		user.setTelephone(getTelephone());
 		user.setUserName(getUserName());
 
-		if(userManager.registAvaliable(user)){			
+		// 先查询改用户名是否可用
+		if (userManager.registAvaliable(user)) {
 			userManager.registNewUser(user);
 			setStatus(301);
 			return SUCCESS;
-		}else{
+		} else {
 			setStatus(302);
 			return ERROR;
 		}
-		
-		
+
 	}
 
 }

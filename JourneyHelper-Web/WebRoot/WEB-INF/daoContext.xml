@@ -50,16 +50,16 @@
 	<bean id="daoTemplate" abstract="true" lazy-init="true"
 		p:sessionFactory-ref="sessionFactory" />
 
-	<bean id="userDao" class="com.fzu.journeyhelper.dao.UserDaoHibernate"
+	<bean id="userDao" class="com.fzu.journeyhelper.dao.impl.UserDaoHibernate"
 		parent="daoTemplate" />
 
-	<bean id="routeDao" class="com.fzu.journeyhelper.dao.RouteDaoHibernate"
+	<bean id="routeDao" class="com.fzu.journeyhelper.dao.impl.RouteDaoHibernate"
 		parent="daoTemplate" />
 
-	<bean id="itineraryDao" class="com.fzu.journeyhelper.dao.ItineraryDaoHibernate"
+	<bean id="itineraryDao" class="com.fzu.journeyhelper.dao.impl.ItineraryDaoHibernate"
 		parent="daoTemplate" />
 
-	<bean id="imageDao" class="com.fzu.journeyhelper.dao.ImageDaoHibernate"
+	<bean id="imageDao" class="com.fzu.journeyhelper.dao.impl.ImageDaoHibernate"
 		parent="daoTemplate" />
 
 

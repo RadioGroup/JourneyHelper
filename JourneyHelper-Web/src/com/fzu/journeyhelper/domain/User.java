@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -57,7 +58,7 @@ public class User implements Serializable {
 	private String headUrl;
 
 	// 用户上传的照片
-	@OneToMany(targetEntity = Image.class,mappedBy="user")
+	@OneToMany(targetEntity = Image.class, mappedBy = "user")
 	private Set<Image> imageList = new HashSet<Image>();
 
 	// 用户的旅行记录
@@ -103,6 +104,7 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 
+	@JSON(serialize = false)
 	public String getPassWord() {
 		return passWord;
 	}
@@ -143,6 +145,7 @@ public class User implements Serializable {
 		this.headUrl = headUrl;
 	}
 
+	@JSON(serialize = false)
 	public Set<Image> getImageList() {
 		return imageList;
 	}
@@ -151,6 +154,7 @@ public class User implements Serializable {
 		this.imageList = imageList;
 	}
 
+	@JSON(serialize = false)
 	public Set<Route> getRoutelist() {
 		return routelist;
 	}
@@ -159,6 +163,7 @@ public class User implements Serializable {
 		this.routelist = routelist;
 	}
 
+	@JSON(serialize = false)
 	public Set<Route> getCreatelist() {
 		return createlist;
 	}

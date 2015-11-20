@@ -1,5 +1,8 @@
-package com.fzu.journeyhelper.service.impl;
+package com.fzu.journeyhelper.service;
 
+import java.util.Set;
+
+import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 
 public interface UserManager {
@@ -15,5 +18,5 @@ public interface UserManager {
 	 */
 	public boolean registAvaliable(User user);
 	
-
+	public Set<User> findUsersList(Route route);
 }

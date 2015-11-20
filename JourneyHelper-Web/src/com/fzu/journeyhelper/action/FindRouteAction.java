@@ -1,26 +1,22 @@
-package com.fzu.journeyhelper.action.routeaction;
+package com.fzu.journeyhelper.action;
 
 import java.util.Set;
 
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
-import com.fzu.journeyhelper.service.impl.RouteManager;
-import com.fzu.journeyhelper.service.impl.UserManager;
-import com.opensymphony.xwork2.Action;
 
-public class FindRouteAction implements Action {
+public class FindRouteAction extends BaseAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// 根据用户的id查询
 	private Integer userId;
 
 	// 根据用户名查询
 	private String userName;
-
-	private UserManager userManager;
-	private RouteManager routeManager;
-
-	private Set<Route> createList;
-	private Set<Route> joindeList;
 
 	public Integer getUserId() {
 		return userId;
@@ -38,21 +34,8 @@ public class FindRouteAction implements Action {
 		this.userName = userName;
 	}
 
-	public UserManager getUserManager() {
-		return userManager;
-	}
-
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
-	}
-
-	public RouteManager getRouteManager() {
-		return routeManager;
-	}
-
-	public void setRouteManager(RouteManager routeManager) {
-		this.routeManager = routeManager;
-	}
+	private Set<Route> createList;
+	private Set<Route> joindeList;
 
 	public Set<Route> getCreateList() {
 		return createList;
@@ -72,12 +55,10 @@ public class FindRouteAction implements Action {
 
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String findCreateRouteList() throws Exception {
-
 		User user = new User();
 		user.setUserId(getUserId());
 		user.setUserName(userName);
@@ -89,7 +70,7 @@ public class FindRouteAction implements Action {
 		User user = new User();
 		user.setUserId(getUserId());
 		user.setUserName(userName);
-		joindeList = routeManager.findUserParticipatorRouteList(user);
+		joindeList = routeManager.findUserJoinedRouteList(user);
 		return SUCCESS;
 	}
 

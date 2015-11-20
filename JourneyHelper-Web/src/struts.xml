@@ -5,26 +5,19 @@
 	<package name="fzu" extends="json-default">
 
 
-		<action name="login" class="loginAtion" method="login">
-			<!-- 登录成功 -->
+		<action name="userLogin" class="com.fzu.journeyhelper.action.LoginAction"
+			method="userLogin">
 			<result name="success" type="json">
 				<param name="excludeProperties">userName,passWord,userManager,user.routelist,user.createlist,user.imageList</param>
-				<!-- <param name="root">users</param> -->
-				<!-- <param name="excludeNullProperties">true</param> -->
-				<!-- <param name="includeProperties">users.*</param> -->
 			</result>
-
-			<!-- 登录失败 -->
 			<result name="error" type="json">
 				<param name="excludeProperties">userName,passWord,userManager,user</param>
-				<!-- <param name="root">users</param> -->
-				<!-- <param name="excludeNullProperties">true</param> -->
-				<!-- <param name="includeProperties">users.*</param> -->
 			</result>
 
 		</action>
 
-		<action name="regist" class="registAtion" method="regist">
+		<action name="userRegist" class="com.fzu.journeyhelper.action.RegistAction"
+			method="userRegist">
 			<result name="success" type="json">
 				<param name="excludeProperties">userId,userName,passWord,nickName,email,telephone,headUrl,userManager,user.routelist,user.createlist,user.imageList</param>
 			</result>
@@ -33,30 +26,35 @@
 			</result>
 		</action>
 
-
-		<action name="findCreatedRouteList" class="com.fzu.action.routeaction.FindRouteAction"
+		<action name="findCreatedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
 			method="findCreateRouteList">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,joindeList,createList.createList,createList.teamrecod,createList.itinerarys,createList.imageList</param>
+				<param name="excludeProperties">userManager,routeManager,joindeList</param>
 			</result>
 		</action>
 
-		<action name="findJoinedRouteList" class="com.fzu.action.routeaction.FindRouteAction"
+		<action name="findJoinedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
 			method="findJoingRouteList">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,createList,createList.createList,createList.teamrecod,createList.itinerarys,createList.imageList</param>
+				<param name="excludeProperties">userManager,routeManager,createList</param>
 			</result>
 		</action>
 
-
-		<action name="createRoute" class="com.fzu.action.routeaction.CreateRouteAction"
+		<action name="createRoute" class="com.fzu.journeyhelper.action.CreateRouteAction"
 			method="createRoute">
 			<result name="success" type="json">
+				<param name="excludeProperties">route.user,route.createUser,route.teamrecod,route.itinerarys,route.imageList</param>
 
-				<param name="excludeProperties">userManager,routeManager,title,beginTime,endTime,property,type,strong,imageurl,summary,content,route.createUser,route.teamrecod,route.itinerarys,route.imageList</param>
+
 			</result>
 		</action>
 
+
+		<action name="findUsersListofRoute" class="com.fzu.journeyhelper.action.FindUsersAction"
+			method="findUsersList">
+			<result name="success" type="json">
+			</result>
+		</action>
 
 
 	</package>

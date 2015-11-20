@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -63,7 +64,7 @@ public class Route {
 	private String content;
 
 	// 行程列表
-	@OneToMany(targetEntity = Itinerary.class,mappedBy="route")
+	@OneToMany(targetEntity = Itinerary.class, mappedBy = "route")
 	private Set<Itinerary> itinerarys = new HashSet<Itinerary>();
 
 	// 创建者
@@ -77,7 +78,8 @@ public class Route {
 	private Set<User> users = new HashSet<User>();
 
 	// 照片墙
-	@OneToMany(targetEntity = Image.class,mappedBy="route")
+
+	@OneToMany(targetEntity = Image.class, mappedBy = "route")
 	private Set<Image> imageList = new HashSet<Image>();
 
 	public Route() {
@@ -192,6 +194,7 @@ public class Route {
 		this.content = content;
 	}
 
+	@JSON(serialize = false)
 	public User getCreateUser() {
 		return createUser;
 	}
@@ -200,6 +203,7 @@ public class Route {
 		this.createUser = createUser;
 	}
 
+	@JSON(serialize = false)
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -208,6 +212,7 @@ public class Route {
 		this.users = users;
 	}
 
+	@JSON(serialize = false)
 	public Set<Itinerary> getItinerarys() {
 		return itinerarys;
 	}
@@ -216,6 +221,7 @@ public class Route {
 		this.itinerarys = itinerarys;
 	}
 
+	@JSON(serialize = false)
 	public Set<Image> getImageList() {
 		return imageList;
 	}

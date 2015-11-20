@@ -10,7 +10,19 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-	<!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 并注入SessionFactory的引用 -->
+	<bean id="managerTemplate" abstract="true" lazy-init="true"
+		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
+		p:routeDao-ref="routeDao" />
+
+	<bean id="userManager" class="com.fzu.journeyhelper.service.impl.UserManagerImple"
+		parent="managerTemplate" />
+	<bean id="routeManager" class="com.fzu.journeyhelper.service.impl.RouteManagerImple"
+		parent="managerTemplate" />
+
+
+
+
+	<!-- 配置局部事务管理器，使用HibernateTransactionManager类 并注入SessionFactory的引用 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory" />
@@ -26,53 +38,13 @@
 	</tx:advice>
 	<aop:config>
 		<!-- 配置一个切入点，匹配empManager和mgrManager 两个Bean的所有方法的执行 -->
-		<aop:pointcut id="hoatPointcut" expression="bean(userManager) or bean(routeManager)" />
+		<aop:pointcut id="hoatPointcut"
+			expression="bean(userManager) or bean(routeManager)" />
 		<!-- 指定在leePointcut切入点应用txAdvice事务增强处理 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="hoatPointcut" />
 	</aop:config>
 
-
-
-
-
-
-	
-
-
-	<bean id="userBean" class="com.fzu.journeyhelper.domain.User"></bean>
-	<bean id="routeBean" class="com.fzu.journeyhelper.domain.Route"></bean>
-
-
-	<bean id="managerTemplate" abstract="true" lazy-init="true"
-		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
-		p:routeDao-ref="routeDao" />
-
-	<bean id="userManager" class="com.fzu.journeyhelper.service.UserManagerImple"
-		parent="managerTemplate" />
-	<bean id="routeManager" class="com.fzu.journeyhelper.service.RouteManagerImple"
-		parent="managerTemplate" />
-
-
-
-	<bean id="loginAtion" class="com.fzu.journeyhelper.action.authentication.LoginAction">
-		<property name="user" ref="userBean" />
-		<property name="userManager" ref="userManager"></property>
-	</bean>
-
-	<bean id="registAtion" class="com.fzu.journeyhelper.action.authentication.RegistAction">
-		<property name="user" ref="userBean" />
-		<property name="userManager" ref="userManager" />
-	</bean>
-
-
-	<bean id="findRouteAtion" class="com.fzu.journeyhelper.action.routeaction.FindRouteAction">
-		<property name="userManager" ref="userManager" />
-		<property name="routeManager" ref="routeManager" />
-	</bean>
-
-
-	<bean id="createRouteAtion" class="com.fzu.journeyhelper.action.routeaction.CreateRouteAction">
-		<property name="user" ref="userBean" />
+	<bean id="baseAction" class="com.fzu.journeyhelper.action.BaseAction">
 		<property name="userManager" ref="userManager" />
 		<property name="routeManager" ref="routeManager" />
 	</bean>

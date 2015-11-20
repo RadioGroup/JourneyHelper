@@ -1,4 +1,4 @@
-package com.fzu.journeyhelper.service.impl;
+package com.fzu.journeyhelper.service;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ public interface RouteManager {
 
 	public Set<Route> findUserCreateRouteList(User user);
 	
-	public Set<Route> findUserParticipatorRouteList(User user);
+	public Set<Route> findUserJoinedRouteList(User user);
 	
 	public Integer createARoute(User user,Route route);
 	

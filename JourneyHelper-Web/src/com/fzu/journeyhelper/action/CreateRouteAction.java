@@ -1,16 +1,21 @@
-package com.fzu.journeyhelper.action.routeaction;
-
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
-import com.fzu.journeyhelper.service.impl.RouteManager;
-import com.fzu.journeyhelper.service.impl.UserManager;
-import com.opensymphony.xwork2.Action;
+package com.fzu.journeyhelper.action;
 
 import java.util.Date;
 
-public class CreateRouteAction implements Action {
+import org.apache.struts2.json.annotations.JSON;
+
+import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.User;
+
+public class CreateRouteAction extends BaseAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// 201创建成功
+	// 202创建失败
 	private Integer status;
 
 	public Integer getStatus() {
@@ -33,13 +38,12 @@ public class CreateRouteAction implements Action {
 	private String property;
 	private String type;
 	private String strong;
-	private String imageurl;
+	private String imageUrl;
 	private String summary;
 	private String content;
 
 	private Route route;
-	private User user;
-	
+
 	public Route getRoute() {
 		return route;
 	}
@@ -48,16 +52,7 @@ public class CreateRouteAction implements Action {
 		this.route = route;
 	}
 
-	
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+	@JSON(serialize = false)
 	public Integer getRouteId() {
 		return routeId;
 	}
@@ -66,6 +61,7 @@ public class CreateRouteAction implements Action {
 		this.routeId = routeId;
 	}
 
+	@JSON(serialize = false)
 	public Integer getUserId() {
 		return userId;
 	}
@@ -74,6 +70,7 @@ public class CreateRouteAction implements Action {
 		this.userId = userId;
 	}
 
+	@JSON(serialize = false)
 	public String getTitle() {
 		return title;
 	}
@@ -82,6 +79,7 @@ public class CreateRouteAction implements Action {
 		this.title = title;
 	}
 
+	@JSON(serialize = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -90,6 +88,7 @@ public class CreateRouteAction implements Action {
 		this.createTime = createTime;
 	}
 
+	@JSON(serialize = false)
 	public Date getBeginTime() {
 		return beginTime;
 	}
@@ -98,6 +97,7 @@ public class CreateRouteAction implements Action {
 		this.beginTime = beginTime;
 	}
 
+	@JSON(serialize = false)
 	public Date getEndTime() {
 		return endTime;
 	}
@@ -106,6 +106,7 @@ public class CreateRouteAction implements Action {
 		this.endTime = endTime;
 	}
 
+	@JSON(serialize = false)
 	public String getProperty() {
 		return property;
 	}
@@ -114,6 +115,7 @@ public class CreateRouteAction implements Action {
 		this.property = property;
 	}
 
+	@JSON(serialize = false)
 	public String getType() {
 		return type;
 	}
@@ -122,6 +124,7 @@ public class CreateRouteAction implements Action {
 		this.type = type;
 	}
 
+	@JSON(serialize = false)
 	public String getStrong() {
 		return strong;
 	}
@@ -130,14 +133,16 @@ public class CreateRouteAction implements Action {
 		this.strong = strong;
 	}
 
-	public String getImageurl() {
-		return imageurl;
+	@JSON(serialize = false)
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageurl(String imageurl) {
-		this.imageurl = imageurl;
+	public void setImageUrl(String imageurl) {
+		this.imageUrl = imageurl;
 	}
 
+	@JSON(serialize = false)
 	public String getSummary() {
 		return summary;
 	}
@@ -146,6 +151,7 @@ public class CreateRouteAction implements Action {
 		this.summary = summary;
 	}
 
+	@JSON(serialize = false)
 	public String getContent() {
 		return content;
 	}
@@ -160,28 +166,9 @@ public class CreateRouteAction implements Action {
 		return null;
 	}
 
-	private UserManager userManager;
-	private RouteManager routeManager;
-
-	public UserManager getUserManager() {
-		return userManager;
-	}
-
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
-	}
-
-	public RouteManager getRouteManager() {
-		return routeManager;
-	}
-
-	public void setRouteManager(RouteManager routeManager) {
-		this.routeManager = routeManager;
-	}
-
 	public String createRoute() throws Exception {
 
-		user=new User();
+		User user = new User();
 		user.setUserId(getUserId());
 
 		route = new Route();
@@ -192,20 +179,17 @@ public class CreateRouteAction implements Action {
 		route.setBeginTime(getBeginTime());
 		route.setEndTime(getEndTime());
 		route.setProperty(getProperty());
-		route.setCreateUser(user);
 		route.setType(getType());
 		route.setStrong(getStrong());
-		route.setImageUrl(getImageurl());
+		route.setImageUrl(getImageUrl());
 		route.setSummary(getSummary());
 		route.setContent(content);
 
-		
-		
-		Integer id = routeManager.createARoute(user,route);
+		Integer id = routeManager.createARoute(user, route);
 		route.setRouteId(id);
-		setRouteId(id);
 		System.out.println(id);
 
+		setStatus(201);
 		return SUCCESS;
 	}
 
