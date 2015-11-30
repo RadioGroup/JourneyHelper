@@ -21,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * Project Name: JourneyHelper-Web     
  *  
  * Description:   
- * ClassName: com.fzu.journeyhelper.domain.Image       
+ * ClassName: com.fzu.journeyhelper.domain.MyImage       
  * Author: Hoatson
  * Create Time: 2015年11月20日 下午6:05:19     
  * Modified By:   
@@ -32,7 +32,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "images")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Image implements Serializable {
+public class MyImage implements Serializable {
 
 	/**
 	 * 
@@ -52,28 +52,28 @@ public class Image implements Serializable {
 	@Column(name = "createTime")
 	private Date createTime;
 
-	@ManyToOne(targetEntity = User.class)
+	@ManyToOne(targetEntity = MyUser.class)
 	@JoinColumn(name = "userId")
-	private User user;
+	private MyUser myUser;
 
-	@ManyToOne(targetEntity = Route.class)
+	@ManyToOne(targetEntity = MyRoute.class)
 	@JoinColumn(name = "routeId")
-	private Route route;
+	private MyRoute myRoute;
 
-	public User getUser() {
-		return user;
+	public MyUser getUser() {
+		return myUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(MyUser myUser) {
+		this.myUser = myUser;
 	}
 
-	public Route getRoute() {
-		return route;
+	public MyRoute getRoute() {
+		return myRoute;
 	}
 
-	public void setRoute(Route route) {
-		this.route = route;
+	public void setRoute(MyRoute myRoute) {
+		this.myRoute = myRoute;
 	}
 
 	public Integer getImageId() {
@@ -102,7 +102,7 @@ public class Image implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Image [imageId=" + imageId + ", imageURL=" + imageURL
+		return "MyImage [imageId=" + imageId + ", imageURL=" + imageURL
 				+ ", createTime=" + createTime + "]";
 	}
 
@@ -125,7 +125,7 @@ public class Image implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Image other = (Image) obj;
+		MyImage other = (MyImage) obj;
 		if (createTime == null) {
 			if (other.createTime != null)
 				return false;

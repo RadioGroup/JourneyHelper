@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.fzu.common.dao.impl.BaseDaoHibernate4;
 import com.fzu.journeyhelper.dao.ItineraryDao;
-import com.fzu.journeyhelper.domain.Itinerary;
-import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.MyItinerary;
+import com.fzu.journeyhelper.domain.MyRoute;
 
 /**
  * 
@@ -21,11 +21,11 @@ import com.fzu.journeyhelper.domain.Route;
  * Modified Remark:     
  * @version   V1.0
  */
-public class ItineraryDaoHibernate extends BaseDaoHibernate4<Itinerary>
+public class ItineraryDaoHibernate extends BaseDaoHibernate4<MyItinerary>
 		implements ItineraryDao {
 
 	@Override
-	public List<Itinerary> findByRoute(Route route) {
+	public List<MyItinerary> findByRoute(MyRoute myRoute) {
 		// TODO 增加查询行程的规划
 		return null;
 	}

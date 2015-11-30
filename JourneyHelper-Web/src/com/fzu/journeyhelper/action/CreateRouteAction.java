@@ -4,8 +4,8 @@ import java.util.Date;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -56,14 +56,14 @@ public class CreateRouteAction extends BaseAction {
 	private String summary;
 	private String content;
 
-	private Route route;
+	private MyRoute myRoute;
 
-	public Route getRoute() {
-		return route;
+	public MyRoute getRoute() {
+		return myRoute;
 	}
 
-	public void setRoute(Route route) {
-		this.route = route;
+	public void setRoute(MyRoute myRoute) {
+		this.myRoute = myRoute;
 	}
 
 	@JSON(serialize = false)
@@ -181,25 +181,25 @@ public class CreateRouteAction extends BaseAction {
 
 	public String createRoute() throws Exception {
 
-		User user = new User();
-		user.setUserId(getUserId());
+		MyUser myUser = new MyUser();
+		myUser.setUserId(getUserId());
 
-		route = new Route();
+		myRoute = new MyRoute();
 		Date date = new Date();
 		setCreateTime(date);
-		route.setCreateTime(date);
-		route.setTitle(getTitle());
-		route.setBeginTime(getBeginTime());
-		route.setEndTime(getEndTime());
-		route.setProperty(getProperty());
-		route.setType(getType());
-		route.setStrong(getStrong());
-		route.setImageUrl(getImageUrl());
-		route.setSummary(getSummary());
-		route.setContent(content);
+		myRoute.setCreateTime(date);
+		myRoute.setTitle(getTitle());
+		myRoute.setBeginTime(getBeginTime());
+		myRoute.setEndTime(getEndTime());
+		myRoute.setProperty(getProperty());
+		myRoute.setType(getType());
+		myRoute.setStrong(getStrong());
+		myRoute.setImageUrl(getImageUrl());
+		myRoute.setSummary(getSummary());
+		myRoute.setContent(content);
 
-		Integer id = routeManager.createARoute(user, route);
-		route.setRouteId(id);
+		Integer id = routeManager.createARoute(myUser, myRoute);
+		myRoute.setRouteId(id);
 		System.out.println(id);
 
 		setStatus(201);

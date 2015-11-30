@@ -3,8 +3,8 @@ package com.fzu.journeyhelper.dao;
 import java.util.Set;
 
 import com.fzu.common.dao.BaseDao;
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -20,21 +20,21 @@ import com.fzu.journeyhelper.domain.User;
  * Modified Remark:     
  * @version   V1.0
  */
-public interface RouteDao extends BaseDao<Route> {
+public interface RouteDao extends BaseDao<MyRoute> {
 
 	/**
 	 * 查询用户的行程列表
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public Set<Route> findRoutelistByUser(User user);
+	public Set<MyRoute> findRoutelistByUser(MyUser myUser);
 
 	/**
 	 * 查询用户的创建列表
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public Set<Route> findCreatelistByUser(User user);
+	public Set<MyRoute> findCreatelistByUser(MyUser myUser);
 }

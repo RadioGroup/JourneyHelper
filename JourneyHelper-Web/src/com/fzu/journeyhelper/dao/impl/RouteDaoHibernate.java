@@ -4,8 +4,8 @@ import java.util.Set;
 
 import com.fzu.common.dao.impl.BaseDaoHibernate4;
 import com.fzu.journeyhelper.dao.RouteDao;
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -21,16 +21,16 @@ import com.fzu.journeyhelper.domain.User;
  * Modified Remark:     
  * @version   V1.0
  */
-public class RouteDaoHibernate extends BaseDaoHibernate4<Route> implements
+public class RouteDaoHibernate extends BaseDaoHibernate4<MyRoute> implements
 		RouteDao {
 
 	@Override
-	public Set<Route> findRoutelistByUser(User user) {
+	public Set<MyRoute> findRoutelistByUser(MyUser myUser) {
 		return null;
 	}
 
 	@Override
-	public Set<Route> findCreatelistByUser(User user) {
+	public Set<MyRoute> findCreatelistByUser(MyUser myUser) {
 		return null;
 	}
 

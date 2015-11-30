@@ -1,6 +1,6 @@
 package com.fzu.journeyhelper.action;
 
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -27,7 +27,7 @@ public class LoginAction extends BaseAction {
 	// 201µ«¬º≥…π¶
 	// 202’À∫≈ªÚ’ﬂ√‹¬Î¥ÌŒÛ
 	private int status;
-	private User user;
+	private MyUser myUser;
 	private String userName;
 	private String passWord;
 
@@ -39,12 +39,12 @@ public class LoginAction extends BaseAction {
 		this.status = status;
 	}
 
-	public User getUser() {
-		return user;
+	public MyUser getUser() {
+		return myUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(MyUser myUser) {
+		this.myUser = myUser;
 	}
 
 	public String getUserName() {
@@ -79,11 +79,11 @@ public class LoginAction extends BaseAction {
 	public String userLogin() throws Exception {
 		System.out.println(toString());
 
-		user = new User();
-		user.setUserName(getUserName());
-		user.setPassWord(getPassWord());
+		myUser = new MyUser();
+		myUser.setUserName(getUserName());
+		myUser.setPassWord(getPassWord());
 
-		User u = userManager.loginAuthen(user);
+		MyUser u = userManager.loginAuthen(myUser);
 		if (u != null) {
 			setUser(u);
 			setStatus(201);

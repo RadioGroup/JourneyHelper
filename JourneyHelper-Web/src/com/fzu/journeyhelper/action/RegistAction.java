@@ -1,6 +1,6 @@
 package com.fzu.journeyhelper.action;
 
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -34,7 +34,7 @@ public class RegistAction extends BaseAction {
 	private String email;
 	private String telephone;
 	private String headUrl;
-	private User user;
+	private MyUser myUser;
 
 
 	public Integer getStatus() {
@@ -45,12 +45,12 @@ public class RegistAction extends BaseAction {
 		this.status = status;
 	}
 
-	public User getUser() {
-		return user;
+	public MyUser getUser() {
+		return myUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(MyUser myUser) {
+		this.myUser = myUser;
 	}
 
 	public String getUserName() {
@@ -124,17 +124,17 @@ public class RegistAction extends BaseAction {
 
 	public String userRegist() throws Exception {
 		System.out.println(toString());
-		user = new User();
-		user.setEmail(getEmail());
-		user.setHeadUrl(getHeadUrl());
-		user.setNickName(getNickName());
-		user.setPassWord(getPassWord());
-		user.setTelephone(getTelephone());
-		user.setUserName(getUserName());
+		myUser = new MyUser();
+		myUser.setEmail(getEmail());
+		myUser.setHeadUrl(getHeadUrl());
+		myUser.setNickName(getNickName());
+		myUser.setPassWord(getPassWord());
+		myUser.setTelephone(getTelephone());
+		myUser.setUserName(getUserName());
 
 		// 先查询改用户名是否可用
-		if (userManager.registAvaliable(user)) {
-			userManager.registNewUser(user);
+		if (userManager.registAvaliable(myUser)) {
+			userManager.registNewUser(myUser);
 			setStatus(301);
 			return SUCCESS;
 		} else {

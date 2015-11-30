@@ -2,8 +2,8 @@ package com.fzu.journeyhelper.action;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -48,22 +48,22 @@ public class FindRouteAction extends BaseAction {
 		this.userName = userName;
 	}
 
-	private Set<Route> createList;
-	private Set<Route> joindeList;
+	private Set<MyRoute> createList;
+	private Set<MyRoute> joindeList;
 
-	public Set<Route> getCreateList() {
+	public Set<MyRoute> getCreateList() {
 		return createList;
 	}
 
-	public void setCreateList(Set<Route> createList) {
+	public void setCreateList(Set<MyRoute> createList) {
 		this.createList = createList;
 	}
 
-	public Set<Route> getJoindeList() {
+	public Set<MyRoute> getJoindeList() {
 		return joindeList;
 	}
 
-	public void setJoindeList(Set<Route> joindeList) {
+	public void setJoindeList(Set<MyRoute> joindeList) {
 		this.joindeList = joindeList;
 	}
 
@@ -73,18 +73,18 @@ public class FindRouteAction extends BaseAction {
 	}
 
 	public String findCreateRouteList() throws Exception {
-		User user = new User();
-		user.setUserId(getUserId());
-		user.setUserName(userName);
-		createList = routeManager.findUserCreateRouteList(user);
+		MyUser myUser = new MyUser();
+		myUser.setUserId(getUserId());
+		myUser.setUserName(userName);
+		createList = routeManager.findUserCreateRouteList(myUser);
 		return SUCCESS;
 	}
 
 	public String findJoingRouteList() throws Exception {
-		User user = new User();
-		user.setUserId(getUserId());
-		user.setUserName(userName);
-		joindeList = routeManager.findUserJoinedRouteList(user);
+		MyUser myUser = new MyUser();
+		myUser.setUserId(getUserId());
+		myUser.setUserName(userName);
+		joindeList = routeManager.findUserJoinedRouteList(myUser);
 		return SUCCESS;
 	}
 

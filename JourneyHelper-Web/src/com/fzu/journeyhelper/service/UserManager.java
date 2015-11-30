@@ -2,8 +2,8 @@ package com.fzu.journeyhelper.service;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -21,16 +21,16 @@ import com.fzu.journeyhelper.domain.User;
  */
 public interface UserManager {
 
-	public User loginAuthen(User user);
+	public MyUser loginAuthen(MyUser myUser);
 
-	public Integer registNewUser(User user);
+	public Integer registNewUser(MyUser myUser);
 
 	/**
 	 * 判读该用户是否可以注册
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public boolean registAvaliable(User user);
+	public boolean registAvaliable(MyUser myUser);
 	
-	public Set<User> findUsersList(Route route);
+	public Set<MyUser> findUsersList(MyRoute myRoute);
 }

@@ -2,8 +2,8 @@ package com.fzu.journeyhelper.action;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 
 /**
@@ -28,7 +28,7 @@ public class FindUsersAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	private Integer routeId;
-	private Set<User> users;
+	private Set<MyUser> myUsers;
 
 	public Integer getRouteId() {
 		return routeId;
@@ -38,19 +38,19 @@ public class FindUsersAction extends BaseAction {
 		this.routeId = routeId;
 	}
 
-	public Set<User> getUsers() {
-		return users;
+	public Set<MyUser> getUsers() {
+		return myUsers;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setUsers(Set<MyUser> myUsers) {
+		this.myUsers = myUsers;
 	}
 
 	public String findUsersList() throws Exception {
-		Route route = new Route();
-		route.setRouteId(getRouteId());
+		MyRoute myRoute = new MyRoute();
+		myRoute.setRouteId(getRouteId());
 
-		users = userManager.findUsersList(route);
+		myUsers = userManager.findUsersList(myRoute);
 		return SUCCESS;
 	}
 

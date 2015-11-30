@@ -1,7 +1,7 @@
 package com.fzu.journeyhelper.dao;
 
 import com.fzu.common.dao.BaseDao;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -17,31 +17,31 @@ import com.fzu.journeyhelper.domain.User;
  * Modified Remark:     
  * @version   V1.0
  */
-public interface UserDao extends BaseDao<User> {
+public interface UserDao extends BaseDao<MyUser> {
 
 
 	/**
 	 * 通过用户名和密码查找用户
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public User findbyUserNameAndPass(User user);
+	public MyUser findbyUserNameAndPass(MyUser myUser);
 
 	/**
 	 * 通过用户名查询用户
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public User findbyUserName(User user);
+	public MyUser findbyUserName(MyUser myUser);
 
 	/**
 	 * 查询用户是否存在
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public boolean isExistByUserName(User user);
+	public boolean isExistByUserName(MyUser myUser);
 
 }

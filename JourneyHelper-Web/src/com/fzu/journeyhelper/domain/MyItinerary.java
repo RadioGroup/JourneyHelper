@@ -21,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * Project Name: JourneyHelper-Web     
  *  
  * Description:   
- * ClassName: com.fzu.journeyhelper.domain.Itinerary       
+ * ClassName: com.fzu.journeyhelper.domain.MyItinerary       
  * Author: Hoatson
  * Create Time: 2015年11月20日 下午6:05:48     
  * Modified By:   
@@ -32,7 +32,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "itinerarys")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Itinerary implements Serializable {
+public class MyItinerary implements Serializable {
 
 	/**
 	 * 
@@ -68,18 +68,18 @@ public class Itinerary implements Serializable {
 	@Column(name = "remark")
 	private String remark;// 备注
 
-	@ManyToOne(targetEntity=Route.class)
+	@ManyToOne(targetEntity=MyRoute.class)
 	@JoinColumn(name="routeId")
-	private Route route;
+	private MyRoute myRoute;
 	
 	
 	
-	public Route getRoute() {
-		return route;
+	public MyRoute getRoute() {
+		return myRoute;
 	}
 
-	public void setRoute(Route route) {
-		this.route = route;
+	public void setRoute(MyRoute myRoute) {
+		this.myRoute = myRoute;
 	}
 
 	public Integer getItineraryId() {
@@ -156,7 +156,7 @@ public class Itinerary implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Itinerary [id=" + itineraryId + ", beginTime=" + beginTime
+		return "MyItinerary [id=" + itineraryId + ", beginTime=" + beginTime
 				+ ", endTime=" + endTime + ", origin=" + origin
 				+ ", destination=" + destination + ", transport=" + transport
 				+ ", accom=" + accom + ", budget=" + budget + ", remark="
@@ -184,7 +184,7 @@ public class Itinerary implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Itinerary other = (Itinerary) obj;
+		MyItinerary other = (MyItinerary) obj;
 		if (beginTime == null) {
 			if (other.beginTime != null)
 				return false;

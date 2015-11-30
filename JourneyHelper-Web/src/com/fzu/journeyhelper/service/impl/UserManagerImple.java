@@ -6,8 +6,8 @@ import com.fzu.journeyhelper.dao.ImageDao;
 import com.fzu.journeyhelper.dao.ItineraryDao;
 import com.fzu.journeyhelper.dao.RouteDao;
 import com.fzu.journeyhelper.dao.UserDao;
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 import com.fzu.journeyhelper.service.UserManager;
 
 /**
@@ -64,24 +64,24 @@ public class UserManagerImple implements UserManager {
 	}
 
 	@Override
-	public User loginAuthen(User user) {
-		return userDao.findbyUserNameAndPass(user);
+	public MyUser loginAuthen(MyUser myUser) {
+		return userDao.findbyUserNameAndPass(myUser);
 	}
 
 	@Override
-	public Integer registNewUser(User user) {
-		return (Integer) userDao.save(user);
+	public Integer registNewUser(MyUser myUser) {
+		return (Integer) userDao.save(myUser);
 	}
 
 	@Override
-	public boolean registAvaliable(User user) {
-		return !userDao.isExistByUserName(user);
+	public boolean registAvaliable(MyUser myUser) {
+		return !userDao.isExistByUserName(myUser);
 	}
 
 	@Override
-	public Set<User> findUsersList(Route route) {
-		route = routeDao.get(Route.class, route.getRouteId());
-		Set<User> res = route.getUsers();
+	public Set<MyUser> findUsersList(MyRoute myRoute) {
+		myRoute = routeDao.get(MyRoute.class, myRoute.getRouteId());
+		Set<MyUser> res = myRoute.getUsers();
 		res.size();
 		return res;
 	}

@@ -21,10 +21,10 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- 以下用来列出Hibernate的持久化类 -->
-				<value>com.fzu.journeyhelper.domain.Image</value>
-				<value>com.fzu.journeyhelper.domain.User</value>
-				<value>com.fzu.journeyhelper.domain.Route</value>
-				<value>com.fzu.journeyhelper.domain.Itinerary</value>
+				<value>com.fzu.journeyhelper.domain.MyImage</value>
+				<value>com.fzu.journeyhelper.domain.MyUser</value>
+				<value>com.fzu.journeyhelper.domain.MyRoute</value>
+				<value>com.fzu.journeyhelper.domain.MyItinerary</value>
 			</list>
 		</property>
 		<!-- <property name="mappingLocations"> <list> <value>classpath*:com/fzu/model/User.hbm.xml</value> 

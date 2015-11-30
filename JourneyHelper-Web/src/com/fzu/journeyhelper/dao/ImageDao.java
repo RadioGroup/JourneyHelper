@@ -3,9 +3,9 @@ package com.fzu.journeyhelper.dao;
 import java.util.List;
 
 import com.fzu.common.dao.BaseDao;
-import com.fzu.journeyhelper.domain.Image;
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyImage;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 
 /**
  * 
@@ -21,22 +21,22 @@ import com.fzu.journeyhelper.domain.User;
  * Modified Remark:     
  * @version   V1.0
  */
-public interface ImageDao extends BaseDao<Image> {
+public interface ImageDao extends BaseDao<MyImage> {
 
 	
 	/**
 	 * 查询行程中的照片墙
 	 * 
-	 * @param route
+	 * @param myRoute
 	 * @return
 	 */
-	public List<Image> findByRoute(Route route);
+	public List<MyImage> findByRoute(MyRoute myRoute);
 
 	/**
 	 * 查询用户发过的照片
 	 * 
-	 * @param user
+	 * @param myUser
 	 * @return
 	 */
-	public List<Image> findByUser(User user);
+	public List<MyImage> findByUser(MyUser myUser);
 }

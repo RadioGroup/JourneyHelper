@@ -6,8 +6,8 @@ import com.fzu.journeyhelper.dao.ImageDao;
 import com.fzu.journeyhelper.dao.ItineraryDao;
 import com.fzu.journeyhelper.dao.RouteDao;
 import com.fzu.journeyhelper.dao.UserDao;
-import com.fzu.journeyhelper.domain.Route;
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyRoute;
+import com.fzu.journeyhelper.domain.MyUser;
 import com.fzu.journeyhelper.service.RouteManager;
 
 /**
@@ -64,19 +64,19 @@ public class RouteManagerImple implements RouteManager {
 	}
 
 	@Override
-	public Set<Route> findUserCreateRouteList(User user) {
-		Set<Route> ans = null;
-		user = userDao.get(User.class, user.getUserId());
-		ans = user.getCreatelist();
+	public Set<MyRoute> findUserCreateRouteList(MyUser myUser) {
+		Set<MyRoute> ans = null;
+		myUser = userDao.get(MyUser.class, myUser.getUserId());
+		ans = myUser.getCreatelist();
 		ans.size();
 		return ans;
 	}
 
 	@Override
-	public Set<Route> findUserJoinedRouteList(User user) {
+	public Set<MyRoute> findUserJoinedRouteList(MyUser myUser) {
 
-		user = userDao.get(User.class, user.getUserId());
-		Set<Route> ans = user.getRoutelist();
+		myUser = userDao.get(MyUser.class, myUser.getUserId());
+		Set<MyRoute> ans = myUser.getRoutelist();
 		ans.size();
 		return ans;
 		
@@ -84,12 +84,12 @@ public class RouteManagerImple implements RouteManager {
 	}
 
 	@Override
-	public Integer createARoute(User user, Route route) {
-		user = userDao.get(User.class, user.getUserId());
-		route.setCreateUser(user);
-		Integer rid = (Integer) routeDao.save(route);
+	public Integer createARoute(MyUser myUser, MyRoute myRoute) {
+		myUser = userDao.get(MyUser.class, myUser.getUserId());
+		myRoute.setCreateUser(myUser);
+		Integer rid = (Integer) routeDao.save(myRoute);
 
-		user.getRoutelist().add(route);
+		myUser.getRoutelist().add(myRoute);
 
 		return rid;
 	}

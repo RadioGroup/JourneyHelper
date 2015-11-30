@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.domain.MyUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:applicationContext.xml")
@@ -20,7 +20,7 @@ public class HibernateTest {
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Autowired
-	private User user;
+	private MyUser myUser;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -30,12 +30,12 @@ public class HibernateTest {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public User getUser() {
-		return user;
+	public MyUser getUser() {
+		return myUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(MyUser myUser) {
+		this.myUser = myUser;
 	}
 
 	@Test
@@ -44,14 +44,14 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		user.setUserName("root");
-		user.setPassWord("root");
-		user.setNickName("会飞的猪");
-		user.setEmail("Hoatson@qq.com");
-		user.setTelephone("18859976557");
-		user.setHeadUrl("www.baidu.com");
+		myUser.setUserName("root");
+		myUser.setPassWord("root");
+		myUser.setNickName("会飞的猪");
+		myUser.setEmail("Hoatson@qq.com");
+		myUser.setTelephone("18859976557");
+		myUser.setHeadUrl("www.baidu.com");
 
-		session.save(user);
+		session.save(myUser);
 		transaction.commit();
 		session.close();
 	}
