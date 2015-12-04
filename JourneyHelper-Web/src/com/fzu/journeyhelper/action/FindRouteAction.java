@@ -2,22 +2,18 @@ package com.fzu.journeyhelper.action;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.domain.MyRoute;
-import com.fzu.journeyhelper.domain.MyUser;
+import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.action.FindRouteAction       
- * Author: Hoatson
- * Create Time: 2015年11月20日 下午6:03:18     
- * Modified By:   
- * Modified Time: 2015年11月20日 下午6:03:18     
- * Modified Remark:     
- * @version   V1.0
+ * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * 
+ * Description: ClassName: com.fzu.journeyhelper.action.FindRouteAction Author:
+ * Hoatson Create Time: 2015年11月20日 下午6:03:18 Modified By: Modified Time:
+ * 2015年11月20日 下午6:03:18 Modified Remark:
+ * 
+ * @version V1.0
  */
 public class FindRouteAction extends BaseAction {
 
@@ -48,22 +44,22 @@ public class FindRouteAction extends BaseAction {
 		this.userName = userName;
 	}
 
-	private Set<MyRoute> createList;
-	private Set<MyRoute> joindeList;
+	private Set<Route> createList;
+	private Set<Route> joindeList;
 
-	public Set<MyRoute> getCreateList() {
+	public Set<Route> getCreateList() {
 		return createList;
 	}
 
-	public void setCreateList(Set<MyRoute> createList) {
+	public void setCreateList(Set<Route> createList) {
 		this.createList = createList;
 	}
 
-	public Set<MyRoute> getJoindeList() {
+	public Set<Route> getJoindeList() {
 		return joindeList;
 	}
 
-	public void setJoindeList(Set<MyRoute> joindeList) {
+	public void setJoindeList(Set<Route> joindeList) {
 		this.joindeList = joindeList;
 	}
 
@@ -73,18 +69,18 @@ public class FindRouteAction extends BaseAction {
 	}
 
 	public String findCreateRouteList() throws Exception {
-		MyUser myUser = new MyUser();
-		myUser.setUserId(getUserId());
-		myUser.setUserName(userName);
-		createList = routeManager.findUserCreateRouteList(myUser);
+		User user = new User();
+		user.setUserId(getUserId());
+		user.setUserName(userName);
+		createList = routeManager.findUserCreateRouteList(user);
 		return SUCCESS;
 	}
 
 	public String findJoingRouteList() throws Exception {
-		MyUser myUser = new MyUser();
-		myUser.setUserId(getUserId());
-		myUser.setUserName(userName);
-		joindeList = routeManager.findUserJoinedRouteList(myUser);
+		User user = new User();
+		user.setUserId(getUserId());
+		user.setUserName(userName);
+		joindeList = routeManager.findUserJoinedRouteList(user);
 		return SUCCESS;
 	}
 

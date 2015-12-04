@@ -18,6 +18,10 @@ import javax.persistence.Table;
 @Table(name = "notification", catalog = "journey")
 public class Notification implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
 
 	private Integer notificationId;

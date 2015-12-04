@@ -3,18 +3,23 @@ package com.fzu.journeyhelper.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * Route entity. @author MyEclipse Persistence Tools
@@ -23,8 +28,11 @@ import javax.persistence.Table;
 @Table(name = "route", catalog = "journey")
 public class Route implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
-
 	private Integer routeId;
 	private User user;
 	private String title;
@@ -139,6 +147,7 @@ public class Route implements java.io.Serializable {
 		this.endTime = endTime;
 	}
 
+
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
@@ -148,6 +157,7 @@ public class Route implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Notification> getNotifications() {
 		return this.notifications;
@@ -157,6 +167,7 @@ public class Route implements java.io.Serializable {
 		this.notifications = notifications;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<RouteComment> getRouteComments() {
 		return this.routeComments;
@@ -166,6 +177,7 @@ public class Route implements java.io.Serializable {
 		this.routeComments = routeComments;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<ImageUrl> getImageUrls() {
 		return this.imageUrls;
@@ -175,6 +187,7 @@ public class Route implements java.io.Serializable {
 		this.imageUrls = imageUrls;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Schedule> getSchedules() {
 		return this.schedules;
@@ -184,6 +197,7 @@ public class Route implements java.io.Serializable {
 		this.schedules = schedules;
 	}
 
+	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "routes")
 	public Set<User> getUsers() {
 		return this.users;
@@ -193,6 +207,7 @@ public class Route implements java.io.Serializable {
 		this.users = users;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<ImageIssue> getImageIssues() {
 		return this.imageIssues;

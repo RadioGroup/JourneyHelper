@@ -1,13 +1,15 @@
 package com.fzu.journeyhelper.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.apache.struts2.json.annotations.JSON;
+
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
@@ -23,8 +27,12 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "user", catalog = "journey", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
 public class User implements java.io.Serializable {
 
-	// Fields
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+	// Fields
 	private Integer userId;
 	private String userName;
 	private String passWord;
@@ -36,6 +44,7 @@ public class User implements java.io.Serializable {
 	private String email;
 	private String telephoneNumber;
 	private String location;
+	private String headUrl;
 	private Set<Notification> notificationsForReceiveUserId = new HashSet<Notification>(
 			0);
 	private Set<RouteComment> routeComments = new HashSet<RouteComment>(0);
@@ -64,7 +73,7 @@ public class User implements java.io.Serializable {
 	/** full constructor */
 	public User(String userName, String passWord, String nickName,
 			String realName, String sex, short age, String job, String email,
-			String telephoneNumber, String location,
+			String telephoneNumber, String location, String headUrl,
 			Set<Notification> notificationsForReceiveUserId,
 			Set<RouteComment> routeComments, Set<Route> routes,
 			Set<Notification> notificationsForSendUserId,
@@ -81,6 +90,7 @@ public class User implements java.io.Serializable {
 		this.email = email;
 		this.telephoneNumber = telephoneNumber;
 		this.location = location;
+		this.headUrl = headUrl;
 		this.notificationsForReceiveUserId = notificationsForReceiveUserId;
 		this.routeComments = routeComments;
 		this.routes = routes;
@@ -193,6 +203,16 @@ public class User implements java.io.Serializable {
 		this.location = location;
 	}
 
+	@Column(name = "headUrl")
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
+
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByReceiveUserId")
 	public Set<Notification> getNotificationsForReceiveUserId() {
 		return this.notificationsForReceiveUserId;
@@ -203,6 +223,7 @@ public class User implements java.io.Serializable {
 		this.notificationsForReceiveUserId = notificationsForReceiveUserId;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<RouteComment> getRouteComments() {
 		return this.routeComments;
@@ -212,6 +233,7 @@ public class User implements java.io.Serializable {
 		this.routeComments = routeComments;
 	}
 
+	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "route_user_relevance", catalog = "journey", joinColumns = { @JoinColumn(name = "userId", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "routeId", nullable = false, updatable = false) })
 	public Set<Route> getRoutes() {
@@ -222,6 +244,7 @@ public class User implements java.io.Serializable {
 		this.routes = routes;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userBySendUserId")
 	public Set<Notification> getNotificationsForSendUserId() {
 		return this.notificationsForSendUserId;
@@ -232,6 +255,7 @@ public class User implements java.io.Serializable {
 		this.notificationsForSendUserId = notificationsForSendUserId;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<ImageIssue> getImageIssues() {
 		return this.imageIssues;
@@ -241,6 +265,7 @@ public class User implements java.io.Serializable {
 		this.imageIssues = imageIssues;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Route> getRoutes_1() {
 		return this.routes_1;
@@ -250,6 +275,7 @@ public class User implements java.io.Serializable {
 		this.routes_1 = routes_1;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<RouteCommentReplay> getRouteCommentReplaies() {
 		return this.routeCommentReplaies;
@@ -260,6 +286,7 @@ public class User implements java.io.Serializable {
 		this.routeCommentReplaies = routeCommentReplaies;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<ImageUrl> getImageUrls() {
 		return this.imageUrls;

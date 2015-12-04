@@ -3,17 +3,22 @@ package com.fzu.journeyhelper.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * RouteComment entity. @author MyEclipse Persistence Tools
@@ -22,6 +27,10 @@ import javax.persistence.Table;
 @Table(name = "route_comment", catalog = "journey")
 public class RouteComment implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
 
 	private Integer commentId;
@@ -105,6 +114,7 @@ public class RouteComment implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "routeComment")
 	public Set<RouteCommentReplay> getRouteCommentReplaies() {
 		return this.routeCommentReplaies;

@@ -18,8 +18,11 @@ import javax.persistence.Table;
 @Table(name = "schedule", catalog = "journey")
 public class Schedule implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
-
 	private Integer schedulingId;
 	private Route route;
 	private String destination;

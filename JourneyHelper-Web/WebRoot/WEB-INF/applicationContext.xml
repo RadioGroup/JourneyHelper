@@ -11,8 +11,8 @@
 
 
 	<bean id="managerTemplate" abstract="true" lazy-init="true"
-		p:userDao-ref="userDao" p:imageDao-ref="imageDao" p:itineraryDao-ref="itineraryDao"
-		p:routeDao-ref="routeDao" />
+		p:userDao-ref="UserDAO" p:imageDao-ref="ImageIssueDAO" p:scheduleDao-ref="ScheduleDAO"
+		p:routeDao-ref="RouteDAO" />
 
 	<bean id="userManager" class="com.fzu.journeyhelper.service.impl.UserManagerImple"
 		parent="managerTemplate" />
@@ -51,49 +51,5 @@
 
 
 
-	<bean id="ScheduleDAO"
-		class="com.fzu.journeyhelper.domain.ScheduleDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="ImageUrlDAO"
-		class="com.fzu.journeyhelper.domain.ImageUrlDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="RouteDAO" class="com.fzu.journeyhelper.domain.RouteDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="RouteCommentDAO"
-		class="com.fzu.journeyhelper.domain.RouteCommentDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="RouteCommentReplayDAO"
-		class="com.fzu.journeyhelper.domain.RouteCommentReplayDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="ImageIssueDAO"
-		class="com.fzu.journeyhelper.domain.ImageIssueDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="NotificationDAO"
-		class="com.fzu.journeyhelper.domain.NotificationDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
-	<bean id="UserDAO" class="com.fzu.journeyhelper.domain.UserDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean></beans>
+
+</beans>

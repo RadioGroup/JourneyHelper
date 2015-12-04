@@ -50,16 +50,22 @@
 	<bean id="daoTemplate" abstract="true" lazy-init="true"
 		p:sessionFactory-ref="sessionFactory" />
 
-	<bean id="userDao" class="com.fzu.journeyhelper.dao.impl.UserDaoHibernate"
-		parent="daoTemplate" />
 
-	<bean id="routeDao" class="com.fzu.journeyhelper.dao.impl.RouteDaoHibernate"
+	<bean id="ScheduleDAO" class="com.fzu.journeyhelper.dao.impl.ScheduleDaoImple"
 		parent="daoTemplate" />
-
-	<bean id="itineraryDao" class="com.fzu.journeyhelper.dao.impl.ItineraryDaoHibernate"
+	<bean id="ImageUrlDAO" class="com.fzu.journeyhelper.dao.impl.ImageUrlDaoImple"
 		parent="daoTemplate" />
-
-	<bean id="imageDao" class="com.fzu.journeyhelper.dao.impl.ImageDaoHibernate"
+	<bean id="RouteDAO" class="com.fzu.journeyhelper.dao.impl.RouteDaoImple"
+		parent="daoTemplate" />
+	<bean id="RouteCommentDAO" class="com.fzu.journeyhelper.dao.impl.RouteCommentDaoImple"
+		parent="daoTemplate" />
+	<bean id="RouteCommentReplayDAO" class="com.fzu.journeyhelper.dao.impl.RouteCommentReplayDaoImple"
+		parent="daoTemplate" />
+	<bean id="ImageIssueDAO" class="com.fzu.journeyhelper.dao.impl.ImageIssueDaoImple"
+		parent="daoTemplate" />
+	<bean id="NotificationDAO" class="com.fzu.journeyhelper.dao.impl.NotificationDaoImple"
+		parent="daoTemplate" />
+	<bean id="UserDAO" class="com.fzu.journeyhelper.dao.impl.UserDaoImple"
 		parent="daoTemplate" />
 
 

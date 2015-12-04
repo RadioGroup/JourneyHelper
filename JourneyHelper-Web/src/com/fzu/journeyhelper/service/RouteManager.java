@@ -2,8 +2,8 @@ package com.fzu.journeyhelper.service;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.domain.MyRoute;
-import com.fzu.journeyhelper.domain.MyUser;
+import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
@@ -21,11 +21,11 @@ import com.fzu.journeyhelper.domain.MyUser;
  */
 public interface RouteManager {
 
-	public Set<MyRoute> findUserCreateRouteList(MyUser myUser);
+	public Set<Route> findUserCreateRouteList(User myUser);
 	
-	public Set<MyRoute> findUserJoinedRouteList(MyUser myUser);
+	public Set<Route> findUserJoinedRouteList(User myUser);
 	
-	public Integer createARoute(MyUser myUser,MyRoute myRoute);
+	public Integer createARoute(User myUser,Route myRoute);
 	
 	
 }

@@ -18,6 +18,10 @@ import javax.persistence.Table;
 @Table(name = "image_url", catalog = "journey")
 public class ImageUrl implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
 
 	private Integer imageId;

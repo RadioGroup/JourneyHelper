@@ -3,11 +3,11 @@ package com.fzu.journeyhelper.service.impl;
 import java.util.Set;
 
 import com.fzu.journeyhelper.dao.ImageDao;
-import com.fzu.journeyhelper.dao.ItineraryDao;
 import com.fzu.journeyhelper.dao.RouteDao;
+import com.fzu.journeyhelper.dao.ScheduleDao;
 import com.fzu.journeyhelper.dao.UserDao;
-import com.fzu.journeyhelper.domain.MyRoute;
-import com.fzu.journeyhelper.domain.MyUser;
+import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.User;
 import com.fzu.journeyhelper.service.RouteManager;
 
 /**
@@ -28,7 +28,7 @@ public class RouteManagerImple implements RouteManager {
 
 	private ImageDao imageDao;
 	private UserDao userDao;
-	private ItineraryDao itineraryDao;
+	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
 	public ImageDao getImageDao() {
@@ -47,12 +47,12 @@ public class RouteManagerImple implements RouteManager {
 		this.userDao = userDao;
 	}
 
-	public ItineraryDao getItineraryDao() {
-		return itineraryDao;
+	public ScheduleDao getItineraryDao() {
+		return scheduleDao;
 	}
 
-	public void setItineraryDao(ItineraryDao itineraryDao) {
-		this.itineraryDao = itineraryDao;
+	public void setItineraryDao(ScheduleDao scheduleDao) {
+		this.scheduleDao = scheduleDao;
 	}
 
 	public RouteDao getRouteDao() {
@@ -64,32 +64,32 @@ public class RouteManagerImple implements RouteManager {
 	}
 
 	@Override
-	public Set<MyRoute> findUserCreateRouteList(MyUser myUser) {
-		Set<MyRoute> ans = null;
-		myUser = userDao.get(MyUser.class, myUser.getUserId());
-		ans = myUser.getCreatelist();
-		ans.size();
-		return ans;
+	public Set<Route> findUserCreateRouteList(User user) {
+		Set<Route> ans = null;
+		user = userDao.get(User.class, user.getUserId());
+//		ans = user.getCreatelist();
+//		ans.size();
+		return null;
 	}
 
 	@Override
-	public Set<MyRoute> findUserJoinedRouteList(MyUser myUser) {
+	public Set<Route> findUserJoinedRouteList(User user) {
 
-		myUser = userDao.get(MyUser.class, myUser.getUserId());
-		Set<MyRoute> ans = myUser.getRoutelist();
-		ans.size();
-		return ans;
+		user = userDao.get(User.class, user.getUserId());
+//		Set<Route> ans = user.getRoutelist();
+//		ans.size();
+		return null;
 		
 		
 	}
 
 	@Override
-	public Integer createARoute(MyUser myUser, MyRoute myRoute) {
-		myUser = userDao.get(MyUser.class, myUser.getUserId());
-		myRoute.setCreateUser(myUser);
-		Integer rid = (Integer) routeDao.save(myRoute);
+	public Integer createARoute(User user, Route route) {
+		user = userDao.get(User.class, user.getUserId());
+		route.setUser(user);
+		Integer rid = (Integer) routeDao.save(route);
 
-		myUser.getRoutelist().add(myRoute);
+//		user.getRoutelist().add(route);
 
 		return rid;
 	}

@@ -3,17 +3,22 @@ package com.fzu.journeyhelper.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * ImageIssue entity. @author MyEclipse Persistence Tools
@@ -22,8 +27,11 @@ import javax.persistence.Table;
 @Table(name = "image_issue", catalog = "journey")
 public class ImageIssue implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Fields
-
 	private Integer imageIssueId;
 	private Route route;
 	private User user;
@@ -86,6 +94,7 @@ public class ImageIssue implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
+	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "imageIssue")
 	public Set<ImageUrl> getImageUrls() {
 		return this.imageUrls;

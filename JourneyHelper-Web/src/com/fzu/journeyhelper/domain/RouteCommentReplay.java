@@ -18,8 +18,12 @@ import javax.persistence.Table;
 @Table(name = "route_comment_replay", catalog = "journey")
 public class RouteCommentReplay implements java.io.Serializable {
 
-	// Fields
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+	// Fields
 	private Integer replayId;
 	private RouteComment routeComment;
 	private User user;
