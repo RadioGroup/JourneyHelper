@@ -33,4 +33,5 @@ public interface UserManager {
 	public boolean registAvaliable(User user);
 	
 	public Set<User> findUsersList(Route route);
+	
 }
