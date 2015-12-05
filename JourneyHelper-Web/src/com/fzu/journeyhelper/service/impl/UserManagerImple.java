@@ -27,11 +27,13 @@ public class UserManagerImple implements UserManager {
 	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
-	public ImageIssueDao getImageDao() {
+	
+	
+	public ImageIssueDao getImageIssueDao() {
 		return imageIssueDao;
 	}
 
-	public void setImageDao(ImageIssueDao imageIssueDao) {
+	public void setImageIssueDao(ImageIssueDao imageIssueDao) {
 		this.imageIssueDao = imageIssueDao;
 	}
 
@@ -43,11 +45,11 @@ public class UserManagerImple implements UserManager {
 		this.userDao = userDao;
 	}
 
-	public ScheduleDao getItineraryDao() {
+	public ScheduleDao getScheduleDao() {
 		return scheduleDao;
 	}
 
-	public void setItineraryDao(ScheduleDao scheduleDao) {
+	public void setScheduleDao(ScheduleDao scheduleDao) {
 		this.scheduleDao = scheduleDao;
 	}
 

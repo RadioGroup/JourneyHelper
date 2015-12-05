@@ -24,7 +24,7 @@ import org.apache.struts2.json.annotations.JSON;
  * User entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "user", catalog = "journey", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
+@Table(name = "user", catalog = "journeyhelperweb", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
 public class User implements java.io.Serializable {
 
 	/**

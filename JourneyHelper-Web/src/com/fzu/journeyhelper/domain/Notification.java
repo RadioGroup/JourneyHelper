@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * Notification entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "notification", catalog = "journey")
+@Table(name = "notification", catalog = "journeyhelperweb")
 public class Notification implements java.io.Serializable {
 
 	/**

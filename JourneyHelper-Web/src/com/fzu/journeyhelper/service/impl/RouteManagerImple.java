@@ -27,6 +27,8 @@ public class RouteManagerImple implements RouteManager {
 	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
+
+
 	public ImageIssueDao getImageIssueDao() {
 		return imageIssueDao;
 	}
@@ -43,11 +45,11 @@ public class RouteManagerImple implements RouteManager {
 		this.userDao = userDao;
 	}
 
-	public ScheduleDao getItineraryDao() {
+	public ScheduleDao getScheduleDao() {
 		return scheduleDao;
 	}
 
-	public void setItineraryDao(ScheduleDao scheduleDao) {
+	public void setScheduleDao(ScheduleDao scheduleDao) {
 		this.scheduleDao = scheduleDao;
 	}
 

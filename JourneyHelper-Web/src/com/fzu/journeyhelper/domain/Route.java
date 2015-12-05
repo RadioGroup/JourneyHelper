@@ -1,5 +1,7 @@
 package com.fzu.journeyhelper.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,9 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -20,12 +19,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.struts2.json.annotations.JSON;
+import org.hibernate.annotations.Type;
 
 /**
  * Route entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "route", catalog = "journey")
+@Table(name = "route", catalog = "journeyhelperweb")
 public class Route implements java.io.Serializable {
 
 	/**
@@ -119,8 +119,9 @@ public class Route implements java.io.Serializable {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-
-	@Column(name = "article", length = 65535)
+	
+	@Type(type="text") 
+	@Column(name = "article", length = 65535 )
 	public String getArticle() {
 		return this.article;
 	}
