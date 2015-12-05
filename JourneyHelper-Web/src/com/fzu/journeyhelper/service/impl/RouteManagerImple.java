@@ -59,7 +59,7 @@ public class RouteManagerImple implements RouteManager {
 		Set<Route> ans = null;
 		user = userDao.get(User.class, user.getUserId());
 		ans = user.getCreateRoutes();
-		// ans.size();
+		ans.size();
 		return ans;
 	}
 
@@ -67,20 +67,15 @@ public class RouteManagerImple implements RouteManager {
 	public Set<Route> findUserJoinedRouteList(User user) {
 
 		user = userDao.get(User.class, user.getUserId());
-		// Set<Route> ans = user.getRoutelist();
-		// ans.size();
-		return null;
+		Set<Route> ans = user.getJoinRoutes();
+		ans.size();
+		return ans;
 
 	}
 
 	@Override
 	public Set<Route> findUserAllRouteList(User user) {
-
-		user = userDao.get(User.class, user.getUserId());
-		// Set<Route> ans = user.getRoutelist();
-		// ans.size();
-		return null;
-
+		return findUserJoinedRouteList(user);
 	}
 	
 	@Override

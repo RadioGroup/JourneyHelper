@@ -172,7 +172,7 @@ public class RegistAction extends BaseAction {
 		
 		// 先查询是否存在
 		if (userManager.registAvaliable(user)) {
-			userManager.registNewUser(user);
+			user.setUserId(userManager.registNewUser(user));
 			setUser(user);
 			setStatus(301);
 			return SUCCESS;

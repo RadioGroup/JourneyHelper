@@ -86,6 +86,7 @@ public class FindRouteAction extends BaseAction {
 		user.setUserId(getUserId());
 		user.setUserName(userName);
 		createList = routeManager.findUserCreateRouteList(user);
+		System.out.println(createList.size());
 		setStatus(301);
 		return SUCCESS;
 	}
@@ -95,6 +96,7 @@ public class FindRouteAction extends BaseAction {
 		user.setUserId(getUserId());
 		user.setUserName(userName);
 		joindeList = routeManager.findUserJoinedRouteList(user);
+		setStatus(301);
 		return SUCCESS;
 	}
 

@@ -18,7 +18,7 @@
 		<action name="userRegist" class="com.fzu.journeyhelper.action.RegistAction"
 			method="userRegist">
 			<result name="success" type="json">
-				<param name="includeProperties">status,user</param>
+				<param name="includeProperties">status,user.*</param>
 			</result>
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
@@ -29,14 +29,14 @@
 		<action name="findCreatedRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
 			method="findCreateRoutes">
 			<result name="success" type="json">
-				<param name="includeProperties">status,createList</param>
+				<param name="includeProperties">status,createList.*</param>
 			</result>
 		</action>
 
 		<action name="findJoingRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
 			method="findJoingRoutes">
 			<result name="success" type="json">
-				<param name="includeProperties">status,joindeList</param>
+				<param name="includeProperties">status,joindeList.*</param>
 			</result>
 		</action>
 
