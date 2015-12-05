@@ -122,6 +122,7 @@ public class User implements java.io.Serializable {
 		this.userName = userName;
 	}
 
+	@JSON(serialize = false)
 	@Column(name = "passWord", nullable = false, length = 128)
 	public String getPassWord() {
 		return this.passWord;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+	<constant name="struts.i18n.encoding" value="UTF-8"/> 
 	<package name="fzu" extends="json-default">
 
 
@@ -18,12 +18,13 @@
 		<action name="userRegist" class="com.fzu.journeyhelper.action.RegistAction"
 			method="userRegist">
 			<result name="success" type="json">
-				<param name="excludeProperties">userId,userName,passWord,nickName,email,telephone,headUrl,userManager,user.routelist,user.createlist,user.imageList</param>
+				<param name="includeProperties">status,user</param>
 			</result>
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
 			</result>
 		</action>
+
 
 		<action name="findCreatedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
 			method="findCreateRouteList">
