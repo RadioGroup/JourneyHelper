@@ -48,5 +48,9 @@ public class BaseAction extends ActionSupport{
 		this.routeManager = routeManager;
 	}
 	
-	
+	@Override
+	public String execute() throws Exception {
+		return SUCCESS;
+
+	}
 }

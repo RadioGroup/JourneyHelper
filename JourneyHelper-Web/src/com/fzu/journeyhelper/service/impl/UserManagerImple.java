@@ -2,7 +2,7 @@ package com.fzu.journeyhelper.service.impl;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.dao.ImageDao;
+import com.fzu.journeyhelper.dao.ImageIssueDao;
 import com.fzu.journeyhelper.dao.RouteDao;
 import com.fzu.journeyhelper.dao.ScheduleDao;
 import com.fzu.journeyhelper.dao.UserDao;
@@ -22,17 +22,17 @@ import com.fzu.journeyhelper.service.UserManager;
  */
 public class UserManagerImple implements UserManager {
 
-	private ImageDao imageDao;
+	private ImageIssueDao imageIssueDao;
 	private UserDao userDao;
 	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
-	public ImageDao getImageDao() {
-		return imageDao;
+	public ImageIssueDao getImageDao() {
+		return imageIssueDao;
 	}
 
-	public void setImageDao(ImageDao imageDao) {
-		this.imageDao = imageDao;
+	public void setImageDao(ImageIssueDao imageIssueDao) {
+		this.imageIssueDao = imageIssueDao;
 	}
 
 	public UserDao getUserDao() {

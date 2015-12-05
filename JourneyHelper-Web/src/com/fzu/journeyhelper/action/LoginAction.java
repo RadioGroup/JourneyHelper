@@ -70,12 +70,7 @@ public class LoginAction extends BaseAction {
 				+ "]";
 	}
 
-	@Override
-	public String execute() throws Exception {
 
-		return SUCCESS;
-
-	}
 
 	public String userLogin() throws Exception {
 		System.out.println(toString());

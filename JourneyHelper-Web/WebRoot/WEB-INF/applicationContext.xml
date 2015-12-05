@@ -11,7 +11,7 @@
 
 
 	<bean id="managerTemplate" abstract="true" lazy-init="true"
-		p:userDao-ref="UserDAO" p:imageDao-ref="ImageIssueDAO" p:scheduleDao-ref="ScheduleDAO"
+		p:userDao-ref="UserDAO" p:scheduleDao-ref="ScheduleDAO"
 		p:routeDao-ref="RouteDAO" />
 
 	<bean id="userManager" class="com.fzu.journeyhelper.service.impl.UserManagerImple"
