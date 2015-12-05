@@ -41,6 +41,7 @@ public class Route implements java.io.Serializable {
 	private Date beginTime;
 	private Date endTime;
 	private Date createTime;
+	private String routeImageUrl;
 	private Set<Notification> notifications = new HashSet<Notification>(0);
 	private Set<RouteComment> routeComments = new HashSet<RouteComment>(0);
 	private Set<ImageUrl> imageUrls = new HashSet<ImageUrl>(0);
@@ -158,6 +159,16 @@ public class Route implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
+	
+	@Column(name = "routeImageUrl", length = 255)
+	public String getRouteImageUrl() {
+		return routeImageUrl;
+	}
+
+	public void setRouteImageUrl(String routeImageUrl) {
+		this.routeImageUrl = routeImageUrl;
+	}
+
 	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Notification> getNotifications() {
@@ -198,8 +209,9 @@ public class Route implements java.io.Serializable {
 		this.schedules = schedules;
 	}
 
+	
 	@JSON(serialize = false)
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "routes")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "joinRoutes")
 	public Set<User> getUsers() {
 		return this.users;
 	}

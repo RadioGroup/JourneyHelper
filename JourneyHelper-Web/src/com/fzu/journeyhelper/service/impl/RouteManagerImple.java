@@ -12,13 +12,8 @@ import com.fzu.journeyhelper.service.RouteManager;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * @author Volcano
  * 
- * Description: ClassName: com.fzu.journeyhelper.service.impl.RouteManagerImple
- * Author: Hoatson Create Time: 2015年11月20日 下午6:06:26 Modified By: Modified
- * Time: 2015年11月20日 下午6:06:26 Modified Remark:
- * 
- * @version V1.0
  */
 public class RouteManagerImple implements RouteManager {
 
@@ -26,8 +21,6 @@ public class RouteManagerImple implements RouteManager {
 	private UserDao userDao;
 	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
-
-
 
 	public ImageIssueDao getImageIssueDao() {
 		return imageIssueDao;
@@ -65,9 +58,9 @@ public class RouteManagerImple implements RouteManager {
 	public Set<Route> findUserCreateRouteList(User user) {
 		Set<Route> ans = null;
 		user = userDao.get(User.class, user.getUserId());
-		// ans = user.getCreatelist();
+		ans = user.getCreateRoutes();
 		// ans.size();
-		return null;
+		return ans;
 	}
 
 	@Override
@@ -80,6 +73,16 @@ public class RouteManagerImple implements RouteManager {
 
 	}
 
+	@Override
+	public Set<Route> findUserAllRouteList(User user) {
+
+		user = userDao.get(User.class, user.getUserId());
+		// Set<Route> ans = user.getRoutelist();
+		// ans.size();
+		return null;
+
+	}
+	
 	@Override
 	public Integer createARoute(User user, Route route) {
 		user = userDao.get(User.class, user.getUserId());

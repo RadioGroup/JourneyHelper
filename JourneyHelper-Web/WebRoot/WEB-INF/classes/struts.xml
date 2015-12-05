@@ -26,17 +26,17 @@
 		</action>
 
 
-		<action name="findCreatedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
-			method="findCreateRouteList">
+		<action name="findCreatedRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
+			method="findCreateRoutes">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,joindeList</param>
+				<param name="includeProperties">status,createList</param>
 			</result>
 		</action>
 
-		<action name="findJoinedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
-			method="findJoingRouteList">
+		<action name="findJoingRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
+			method="findJoingRoutes">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,createList</param>
+				<param name="includeProperties">status,joindeList</param>
 			</result>
 		</action>
 

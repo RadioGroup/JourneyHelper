@@ -13,9 +13,9 @@ import com.fzu.journeyhelper.domain.User;
  * Description:   
  * ClassName: com.fzu.journeyhelper.service.RouteManager       
  * Author: Hoatson
- * Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:06:10     
+ * Create Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:06:10     
  * Modified By:   
- * Modified Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:06:10     
+ * Modified Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:06:10     
  * Modified Remark:     
  * @version   V1.0
  */
@@ -24,6 +24,8 @@ public interface RouteManager {
 	public Set<Route> findUserCreateRouteList(User myUser);
 	
 	public Set<Route> findUserJoinedRouteList(User myUser);
+	
+	public Set<Route> findUserAllRouteList(User user);
 	
 	public Integer createARoute(User myUser,Route myRoute);
 	
