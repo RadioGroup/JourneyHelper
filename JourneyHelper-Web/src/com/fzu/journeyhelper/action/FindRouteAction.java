@@ -6,7 +6,7 @@ import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 
 /**
- * 
+ * 行程查找action
  * @author Volcano
  *
  */
@@ -101,11 +101,11 @@ public class FindRouteAction extends BaseAction {
 	}
 
 	public String findallRoutes() throws Exception{
-		
 		User user = new User();
 		user.setUserId(getUserId());
 		user.setUserName(userName);
-		createList = routeManager.findUserCreateRouteList(user);
+		createList = routeManager.findUserAllRouteList(user);
+		setStatus(status);
 		return SUCCESS;
 	}
 	

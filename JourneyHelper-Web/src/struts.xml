@@ -43,8 +43,10 @@
 		<action name="createRoute" class="com.fzu.journeyhelper.action.CreateRouteAction"
 			method="createRoute">
 			<result name="success" type="json">
-				<param name="excludeProperties">route.user,route.createUser,route.teamrecod,route.itinerarys,route.imageList</param>
-
+				<param name="includeProperties">status,route.*</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
 			</result>
 		</action>
 

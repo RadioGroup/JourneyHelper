@@ -177,6 +177,7 @@ public class RegistAction extends BaseAction {
 			setStatus(301);
 			return SUCCESS;
 		} else {
+			//用户名已经被占用
 			setStatus(302);
 			return ERROR;
 		}

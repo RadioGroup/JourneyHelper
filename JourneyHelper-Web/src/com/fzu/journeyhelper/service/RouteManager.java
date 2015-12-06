@@ -7,17 +7,8 @@ import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.service.RouteManager       
- * Author: Hoatson
- * Create Time: 2015��11��20�� ����6:06:10     
- * Modified By:   
- * Modified Time: 2015��11��20�� ����6:06:10     
- * Modified Remark:     
- * @version   V1.0
+ * @author Volcano
+ *
  */
 public interface RouteManager {
 

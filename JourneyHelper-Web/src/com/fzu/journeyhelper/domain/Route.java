@@ -38,10 +38,16 @@ public class Route implements java.io.Serializable {
 	private String title;
 	private String summary;
 	private String article;
-	private Date beginTime;
+	private Date beginTime;// 集合时间
 	private Date endTime;
 	private Date createTime;
 	private String routeImageUrl;
+
+	private Integer type;// 行程类型101个人,102AA,103跟团
+	private String secnics;// 景点，各个景点已分号隔开，如吉林雾凇岛;东北雪乡;东升雪谷;
+	private String assemblingPlace;// 集合地点
+	private String strengthGrade;// 强度等级，如滑雪;休闲;登山;徒步;摄影;骑马;露营;自驾
+
 	private Set<Notification> notifications = new HashSet<Notification>(0);
 	private Set<RouteComment> routeComments = new HashSet<RouteComment>(0);
 	private Set<ImageUrl> imageUrls = new HashSet<ImageUrl>(0);
@@ -61,11 +67,15 @@ public class Route implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Route(User user, String title, String summary, String article,
-			Date beginTime, Date endTime, Date createTime,
+	public Route(Integer routeId, User user, String title, String summary,
+			String article, Date beginTime, Date endTime, Date createTime,
+			String routeImageUrl, Integer type, String secnics,
+			String assemblingPlace, String strengthGrade,
 			Set<Notification> notifications, Set<RouteComment> routeComments,
 			Set<ImageUrl> imageUrls, Set<Schedule> schedules, Set<User> users,
 			Set<ImageIssue> imageIssues) {
+		super();
+		this.routeId = routeId;
 		this.user = user;
 		this.title = title;
 		this.summary = summary;
@@ -73,6 +83,11 @@ public class Route implements java.io.Serializable {
 		this.beginTime = beginTime;
 		this.endTime = endTime;
 		this.createTime = createTime;
+		this.routeImageUrl = routeImageUrl;
+		this.type = type;
+		this.secnics = secnics;
+		this.assemblingPlace = assemblingPlace;
+		this.strengthGrade = strengthGrade;
 		this.notifications = notifications;
 		this.routeComments = routeComments;
 		this.imageUrls = imageUrls;
@@ -82,6 +97,9 @@ public class Route implements java.io.Serializable {
 	}
 
 	// Property accessors
+	/**
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "routeId", unique = true, nullable = false)
@@ -120,9 +138,9 @@ public class Route implements java.io.Serializable {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	
-	@Type(type="text") 
-	@Column(name = "article", length = 65535 )
+
+	@Type(type = "text")
+	@Column(name = "article", length = 65535)
 	public String getArticle() {
 		return this.article;
 	}
@@ -149,7 +167,6 @@ public class Route implements java.io.Serializable {
 		this.endTime = endTime;
 	}
 
-
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
@@ -159,7 +176,6 @@ public class Route implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	
 	@Column(name = "routeImageUrl", length = 255)
 	public String getRouteImageUrl() {
 		return routeImageUrl;
@@ -167,6 +183,42 @@ public class Route implements java.io.Serializable {
 
 	public void setRouteImageUrl(String routeImageUrl) {
 		this.routeImageUrl = routeImageUrl;
+	}
+	
+	@Column(name = "type")
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	@Column(name = "secnics", length = 255)
+	public String getSecnics() {
+		return secnics;
+	}
+
+	public void setSecnics(String secnics) {
+		this.secnics = secnics;
+	}
+
+	@Column(name = "assemblingPlace", length = 255)
+	public String getAssemblingPlace() {
+		return assemblingPlace;
+	}
+
+	public void setAssemblingPlace(String assemblingPlace) {
+		this.assemblingPlace = assemblingPlace;
+	}
+
+	@Column(name = "strengthGrade", length = 64)
+	public String getStrengthGrade() {
+		return strengthGrade;
+	}
+
+	public void setStrengthGrade(String strengthGrade) {
+		this.strengthGrade = strengthGrade;
 	}
 
 	@JSON(serialize = false)
@@ -209,7 +261,6 @@ public class Route implements java.io.Serializable {
 		this.schedules = schedules;
 	}
 
-	
 	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "joinRoutes")
 	public Set<User> getUsers() {
