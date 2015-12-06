@@ -83,8 +83,7 @@ public class RouteManagerImple implements RouteManager {
 		user = userDao.get(User.class, user.getUserId());
 		route.setUser(user);
 		Integer rid = (Integer) routeDao.save(route);
-
-		// user.getRoutelist().add(route);
+		user.getJoinRoutes().add(route);
 
 		return rid;
 	}

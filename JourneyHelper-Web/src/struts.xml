@@ -51,8 +51,8 @@
 		</action>
 
 
-		<action name="findUsersListofRoute" class="com.fzu.journeyhelper.action.FindUsersAction"
-			method="findUsersList">
+		<action name="findRouteMenberList" class="com.fzu.journeyhelper.action.GetRouteMenberAction"
+			method="findRouteMenberList">
 			<result name="success" type="json">
 			</result>
 		</action>

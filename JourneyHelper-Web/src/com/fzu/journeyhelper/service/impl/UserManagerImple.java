@@ -72,12 +72,12 @@ public class UserManagerImple implements UserManager {
 	}
 
 	@Override
-	public Set<User> findUsersList(Route route) {
+	public Set<User> findRouteMenberList(Route route) {
 		route = routeDao.get(Route.class, route.getRouteId());
-		// Set<User> res = myRoute.getUsers();
-		// res.size();
+		Set<User> res = route.getUsers();
+		res.size();
 		// return res;
-		return null;
+		return res;
 	}
 
 }
