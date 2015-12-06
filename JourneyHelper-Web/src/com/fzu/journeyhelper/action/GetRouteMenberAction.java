@@ -7,18 +7,9 @@ import com.fzu.journeyhelper.domain.User;
 
 
 /**
- * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.action.FindUsersAction       
- * Author: Hoatson
- * Create Time: 2015年11月20日 下午6:03:36     
- * Modified By:   
- * Modified Time: 2015年11月20日 下午6:03:36     
- * Modified Remark:     
- * @version   V1.0
+ * 鑾峰彇鍥㈤槦鎴愬憳鍒楄〃
+ * @author Volcano
+ *
  */
 public class GetRouteMenberAction extends BaseAction {
 
@@ -26,6 +17,16 @@ public class GetRouteMenberAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private Integer status;
+	
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	private Integer routeId;
 	private Set<User> Users;
@@ -46,11 +47,10 @@ public class GetRouteMenberAction extends BaseAction {
 		this.Users = Users;
 	}
 
-	public String findUsersList() throws Exception {
+	public String findRouteMenberList() throws Exception {
 		Route Route = new Route();
 		Route.setRouteId(getRouteId());
-
-		Users = userManager.findUsersList(Route);
+		Users = userManager.findRouteMenberList(Route);
 		return SUCCESS;
 	}
 	

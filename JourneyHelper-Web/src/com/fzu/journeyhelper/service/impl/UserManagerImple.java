@@ -2,7 +2,7 @@ package com.fzu.journeyhelper.service.impl;
 
 import java.util.Set;
 
-import com.fzu.journeyhelper.dao.ImageDao;
+import com.fzu.journeyhelper.dao.ImageIssueDao;
 import com.fzu.journeyhelper.dao.RouteDao;
 import com.fzu.journeyhelper.dao.ScheduleDao;
 import com.fzu.journeyhelper.dao.UserDao;
@@ -12,27 +12,24 @@ import com.fzu.journeyhelper.service.UserManager;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
- * 
- * Description: ClassName: com.fzu.journeyhelper.service.impl.UserManagerImple
- * Author: Hoatson Create Time: 2015年11月20日 下午6:06:33 Modified By: Modified
- * Time: 2015年11月20日 下午6:06:33 Modified Remark:
- * 
- * @version V1.0
+ * @author Volcano
+ *
  */
 public class UserManagerImple implements UserManager {
 
-	private ImageDao imageDao;
+	private ImageIssueDao imageIssueDao;
 	private UserDao userDao;
 	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
-	public ImageDao getImageDao() {
-		return imageDao;
+	
+	
+	public ImageIssueDao getImageIssueDao() {
+		return imageIssueDao;
 	}
 
-	public void setImageDao(ImageDao imageDao) {
-		this.imageDao = imageDao;
+	public void setImageIssueDao(ImageIssueDao imageIssueDao) {
+		this.imageIssueDao = imageIssueDao;
 	}
 
 	public UserDao getUserDao() {
@@ -43,11 +40,11 @@ public class UserManagerImple implements UserManager {
 		this.userDao = userDao;
 	}
 
-	public ScheduleDao getItineraryDao() {
+	public ScheduleDao getScheduleDao() {
 		return scheduleDao;
 	}
 
-	public void setItineraryDao(ScheduleDao scheduleDao) {
+	public void setScheduleDao(ScheduleDao scheduleDao) {
 		this.scheduleDao = scheduleDao;
 	}
 
@@ -75,12 +72,12 @@ public class UserManagerImple implements UserManager {
 	}
 
 	@Override
-	public Set<User> findUsersList(Route route) {
+	public Set<User> findRouteMenberList(Route route) {
 		route = routeDao.get(Route.class, route.getRouteId());
-		// Set<User> res = myRoute.getUsers();
-		// res.size();
+		Set<User> res = route.getUsers();
+		res.size();
 		// return res;
-		return null;
+		return res;
 	}
 
 }
