@@ -24,7 +24,7 @@ import org.apache.struts2.json.annotations.JSON;
  * RouteComment entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "route_comment", catalog = "journeyhelperweb")
+@Table(name = "route_comment", catalog = "journey")
 public class RouteComment implements java.io.Serializable {
 
 	/**

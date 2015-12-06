@@ -34,7 +34,6 @@ public class ScheduleDaoImple extends BaseDaoHibernate4<Schedule> implements
 	public static final String DINER = "diner";
 	public static final String BUDGET = "budget";
 	public static final String REMARK = "remark";
-	public static final String ROUTE = "route";
 
 	protected void initDao() {
 		// do nothing
@@ -92,9 +91,8 @@ public class ScheduleDaoImple extends BaseDaoHibernate4<Schedule> implements
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<Schedule> findByRoute(Route route) {
-		List<Schedule> list = findByProperty(Schedule.class, ROUTE, route);
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

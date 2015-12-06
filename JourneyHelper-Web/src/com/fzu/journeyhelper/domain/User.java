@@ -24,7 +24,7 @@ import org.apache.struts2.json.annotations.JSON;
  * User entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "user", catalog = "journeyhelperweb", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
+@Table(name = "user", catalog = "journey", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
 public class User implements java.io.Serializable {
 
 	/**
@@ -48,11 +48,11 @@ public class User implements java.io.Serializable {
 	private Set<Notification> notificationsForReceiveUserId = new HashSet<Notification>(
 			0);
 	private Set<RouteComment> routeComments = new HashSet<RouteComment>(0);
-	private Set<Route> joinRoutes = new HashSet<Route>(0);
-	private Set<Route> createRoutes = new HashSet<Route>(0);
+	private Set<Route> routes = new HashSet<Route>(0);
 	private Set<Notification> notificationsForSendUserId = new HashSet<Notification>(
 			0);
 	private Set<ImageIssue> imageIssues = new HashSet<ImageIssue>(0);
+	private Set<Route> routes_1 = new HashSet<Route>(0);
 	private Set<RouteCommentReplay> routeCommentReplaies = new HashSet<RouteCommentReplay>(
 			0);
 	private Set<ImageUrl> imageUrls = new HashSet<ImageUrl>(0);
@@ -75,9 +75,9 @@ public class User implements java.io.Serializable {
 			String realName, String sex, short age, String job, String email,
 			String telephoneNumber, String location, String headUrl,
 			Set<Notification> notificationsForReceiveUserId,
-			Set<RouteComment> routeComments, Set<Route> joinRoutes,
+			Set<RouteComment> routeComments, Set<Route> routes,
 			Set<Notification> notificationsForSendUserId,
-			Set<ImageIssue> imageIssues, Set<Route> createRoutes,
+			Set<ImageIssue> imageIssues, Set<Route> routes_1,
 			Set<RouteCommentReplay> routeCommentReplaies,
 			Set<ImageUrl> imageUrls) {
 		this.userName = userName;
@@ -93,10 +93,10 @@ public class User implements java.io.Serializable {
 		this.headUrl = headUrl;
 		this.notificationsForReceiveUserId = notificationsForReceiveUserId;
 		this.routeComments = routeComments;
-		this.joinRoutes = joinRoutes;
+		this.routes = routes;
 		this.notificationsForSendUserId = notificationsForSendUserId;
 		this.imageIssues = imageIssues;
-		this.createRoutes = createRoutes;
+		this.routes_1 = routes_1;
 		this.routeCommentReplaies = routeCommentReplaies;
 		this.imageUrls = imageUrls;
 	}
@@ -122,7 +122,6 @@ public class User implements java.io.Serializable {
 		this.userName = userName;
 	}
 
-	@JSON(serialize = false)
 	@Column(name = "passWord", nullable = false, length = 128)
 	public String getPassWord() {
 		return this.passWord;
@@ -236,13 +235,13 @@ public class User implements java.io.Serializable {
 
 	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "route_user_relevance", catalog = "journeyhelperweb", joinColumns = { @JoinColumn(name = "userId", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "routeId", nullable = false, updatable = false) })
-	public Set<Route> getJoinRoutes() {
-		return this.joinRoutes;
+	@JoinTable(name = "route_user_relevance", catalog = "journey", joinColumns = { @JoinColumn(name = "userId", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "routeId", nullable = false, updatable = false) })
+	public Set<Route> getRoutes() {
+		return this.routes;
 	}
 
-	public void setJoinRoutes(Set<Route> joinRoutes) {
-		this.joinRoutes = joinRoutes;
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
 	}
 
 	@JSON(serialize = false)
@@ -268,12 +267,12 @@ public class User implements java.io.Serializable {
 
 	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Route> getCreateRoutes() {
-		return this.createRoutes;
+	public Set<Route> getRoutes_1() {
+		return this.routes_1;
 	}
 
-	public void setCreateRoutes(Set<Route> createRoutes) {
-		this.createRoutes = createRoutes;
+	public void setRoutes_1(Set<Route> routes_1) {
+		this.routes_1 = routes_1;
 	}
 
 	@JSON(serialize = false)
