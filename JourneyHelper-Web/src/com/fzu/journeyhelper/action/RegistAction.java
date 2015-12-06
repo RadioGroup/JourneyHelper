@@ -4,8 +4,13 @@ import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
- * @author Volcano
- *
+ * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * 
+ * Description: ClassName: com.fzu.journeyhelper.action.RegistAction Author:
+ * Hoatson Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:03:50 Modified By: Modified Time:
+ * 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:03:50 Modified Remark:
+ * 
+ * @version V1.0
  */
 public class RegistAction extends BaseAction {
 
@@ -14,8 +19,8 @@ public class RegistAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//301è¡¨ç¤ºæˆåŠŸ
-	//302è¡¨ç¤ºå¤±è´¥
+	// 301×¢²á³É¹¦
+	// 302ÓÃ»§Ãû´æÔÚ
 	private Integer status;
 	private String userName;
 	private String passWord;
@@ -126,26 +131,6 @@ public class RegistAction extends BaseAction {
 		this.headUrl = headUrl;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	
-	
-	@Override
-	public String toString() {
-		return "RegistAction [userName=" + userName + ", passWord=" + passWord
-				+ ", nickName=" + nickName + ", realName=" + realName
-				+ ", sex=" + sex + ", age=" + age + ", job=" + job + ", email="
-				+ email + ", telephone=" + telephone + ", location=" + location
-				+ ", headUrl=" + headUrl + "]";
-	}
-
-	
 	@Override
 	public String execute() throws Exception {
 		return null;
@@ -158,10 +143,10 @@ public class RegistAction extends BaseAction {
 		user.setPassWord(getPassWord());
 		user.setNickName(getNickName());
 		user.setRealName(getRealName());
-		if(getSex().equals("å¥³")){			
-			user.setSex("å¥³");
+		if(getSex().equals("Å®")){			
+			user.setSex("Å®");
 		}else{
-			user.setSex("ç”·");
+			user.setSex("ÄĞ");
 		}
 		user.setAge(getAge());	
 		user.setJob(getJob());
@@ -169,15 +154,13 @@ public class RegistAction extends BaseAction {
 		user.setTelephoneNumber(getTelephone());
 		user.setLocation(getLocation());
 		user.setHeadUrl(getHeadUrl());
-		
-		// å…ˆæŸ¥è¯¢æ˜¯å¦å­˜åœ¨
+	
+		// ÏÈ²éÑ¯¸ÄÓÃ»§ÃûÊÇ·ñ¿ÉÓÃ
 		if (userManager.registAvaliable(user)) {
-			user.setUserId(userManager.registNewUser(user));
-			setUser(user);
+			userManager.registNewUser(user);
 			setStatus(301);
 			return SUCCESS;
 		} else {
-			//ç”¨æˆ·åå·²ç»è¢«å ç”¨
 			setStatus(302);
 			return ERROR;
 		}

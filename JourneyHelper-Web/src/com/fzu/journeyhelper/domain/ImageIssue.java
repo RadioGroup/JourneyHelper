@@ -24,7 +24,7 @@ import org.apache.struts2.json.annotations.JSON;
  * ImageIssue entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "image_issue", catalog = "journeyhelperweb")
+@Table(name = "image_issue", catalog = "journey")
 public class ImageIssue implements java.io.Serializable {
 
 	/**

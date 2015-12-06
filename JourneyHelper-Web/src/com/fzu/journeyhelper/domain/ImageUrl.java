@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * ImageUrl entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "image_url", catalog = "journeyhelperweb")
+@Table(name = "image_url", catalog = "journey")
 public class ImageUrl implements java.io.Serializable {
 
 	/**
