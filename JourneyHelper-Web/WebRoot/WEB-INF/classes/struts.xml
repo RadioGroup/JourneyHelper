@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.i18n.encoding" value="UTF-8"/> 
+	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<package name="fzu" extends="json-default">
 
 
@@ -51,12 +51,21 @@
 		</action>
 
 
-		<action name="findRouteMenberList" class="com.fzu.journeyhelper.action.GetRouteMenberAction"
-			method="findRouteMenberList">
-			<result name="success" type="json">
-			</result>
+		<action name="findRouteMenberList"
+			class="com.fzu.journeyhelper.action.GetRouteMenberAction" method="findRouteMenberList">
+			<result name="success" type="json" />
 		</action>
 
+
+		<action name="getUserNotHandleNotification"
+			class="com.fzu.journeyhelper.action.GetNotificationAction" method="getUserNotHandleNotification">
+			<result name="success" type="json">
+				<param name="includeProperties">status,notifications.*</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
 
 	</package>
 

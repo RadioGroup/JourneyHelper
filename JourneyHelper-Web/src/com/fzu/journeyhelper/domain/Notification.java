@@ -1,15 +1,20 @@
 package com.fzu.journeyhelper.domain;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * Notification entity. @author MyEclipse Persistence Tools
@@ -17,6 +22,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "notification", catalog = "journeyhelperweb")
 public class Notification implements java.io.Serializable {
+
+	public static final short NOTIFICATION_STATUS_NOT_HANDLE = 1;
+	public static final short NOTIFICATION_STATUS_HAS_HANDLE = 0;
 
 	/**
 	 * 
@@ -70,6 +78,7 @@ public class Notification implements java.io.Serializable {
 		this.notificationId = notificationId;
 	}
 
+	@JSON(serialize = false)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "routeId")
 	public Route getRoute() {
@@ -80,7 +89,7 @@ public class Notification implements java.io.Serializable {
 		this.route = route;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sendUserId")
 	public User getUserBySendUserId() {
 		return this.userBySendUserId;
@@ -90,7 +99,8 @@ public class Notification implements java.io.Serializable {
 		this.userBySendUserId = userBySendUserId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "receiveUserId", nullable = false)
 	public User getUserByReceiveUserId() {
 		return this.userByReceiveUserId;

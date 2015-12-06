@@ -31,7 +31,7 @@
 	<aop:config>
 		<!-- 配置一个切入点，匹配empManager和mgrManager 两个Bean的所有方法的执行 -->
 		<aop:pointcut id="hoatPointcut"
-			expression="bean(userManager) or bean(routeManager)" />
+			expression="bean(baseManager) or bean(userManager) or bean(routeManager) or bean(notificationManager)" />
 		<!-- 指定在leePointcut切入点应用txAdvice事务增强处理 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="hoatPointcut" />
 	</aop:config>
@@ -39,16 +39,24 @@
 
 	<bean id="managerTemplate" abstract="true" lazy-init="true"
 		p:userDao-ref="UserDAO" p:scheduleDao-ref="ScheduleDAO"
-		p:routeDao-ref="RouteDAO" />
+		p:routeDao-ref="RouteDAO" p:notificationDao-ref="NotificationDAO" />
+
+	<bean id="baseManager" class="com.fzu.journeyhelper.service.impl.BaseManager"
+		parent="managerTemplate" />
+
 
 	<bean id="userManager" class="com.fzu.journeyhelper.service.impl.UserManagerImple"
-		parent="managerTemplate" />
+		parent="baseManager" />
 	<bean id="routeManager" class="com.fzu.journeyhelper.service.impl.RouteManagerImple"
-		parent="managerTemplate" />
+		parent="baseManager" />
+	<bean id="notificationManager"
+		class="com.fzu.journeyhelper.service.impl.NotificationManagerImple"
+		parent="baseManager" />
 
 	<bean id="baseAction" class="com.fzu.journeyhelper.action.BaseAction">
 		<property name="userManager" ref="userManager" />
 		<property name="routeManager" ref="routeManager" />
+		<property name="notificationManager" ref="notificationManager" />
 	</bean>
 
 
