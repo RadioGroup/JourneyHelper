@@ -2,6 +2,7 @@ package com.fzu.journeyhelper.action;
 
 import com.fzu.journeyhelper.domain.User;
 
+
 /**
  * 
  * Copyright (C): 2015-Hoatshon  
@@ -82,7 +83,6 @@ public class LoginAction extends BaseAction {
 		user = new User();
 		user.setUserName(getUserName());
 		user.setPassWord(getPassWord());
-
 		User u = userManager.loginAuthen(user);
 		if (u != null) {
 			setUser(u);

@@ -1,6 +1,7 @@
 package com.fzu.journeyhelper.domain;
 
-import java.io.Serializable;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,138 +19,191 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.struts2.json.annotations.JSON;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.domain.User       
- * Author: Hoatson
- * Create Time: 2015年11月20日 下午6:06:02     
- * Modified By:   
- * Modified Time: 2015年11月20日 下午6:06:02     
- * Modified Remark:     
- * @version   V1.0
+ * User entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "userName" }))
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class User implements Serializable {
+@Table(name = "user", catalog = "journey", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
+public class User implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// 添加用户表示属性 自增
-	@Id
-	@Column(name = "userId")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// Fields
 	private Integer userId;
-
-	// 上诉增加了唯一约束
-	@Column(name = "userName")
 	private String userName;
-
-	@Column(name = "passWord")
 	private String passWord;
-
-	@Column(name = "nickName")
 	private String nickName;
-
-	@Column(name = "email")
+	private String realName;
+	private String sex;
+	private short age;
+	private String job;
 	private String email;
-
-	@Column(name = "telephone")
-	private String telephone;
-
-	@Column(name = "headUrl")
+	private String telephoneNumber;
+	private String location;
 	private String headUrl;
+	private Set<Notification> notificationsForReceiveUserId = new HashSet<Notification>(
+			0);
+	private Set<RouteComment> routeComments = new HashSet<RouteComment>(0);
+	private Set<Route> routes = new HashSet<Route>(0);
+	private Set<Notification> notificationsForSendUserId = new HashSet<Notification>(
+			0);
+	private Set<ImageIssue> imageIssues = new HashSet<ImageIssue>(0);
+	private Set<Route> routes_1 = new HashSet<Route>(0);
+	private Set<RouteCommentReplay> routeCommentReplaies = new HashSet<RouteCommentReplay>(
+			0);
+	private Set<ImageUrl> imageUrls = new HashSet<ImageUrl>(0);
 
-	// 用户上传的照片
-	@OneToMany(targetEntity = Image.class, mappedBy = "user")
-	private Set<Image> imageList = new HashSet<Image>();
+	// Constructors
 
-	// 用户的旅行记录
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinTable(name = "user_route", joinColumns = { @JoinColumn(name = "userId", referencedColumnName = "userId") }, inverseJoinColumns = { @JoinColumn(name = "routeId", referencedColumnName = "routeId") })
-	private Set<Route> routelist = new HashSet<Route>();
-
-	// 用户创建记录
-	@OneToMany(targetEntity = Route.class, mappedBy = "createUser")
-	private Set<Route> createlist = new HashSet<Route>();
-
+	/** default constructor */
 	public User() {
-
 	}
 
-	public User(Integer userId, String userName, String passWord,
-			String nickName, String email, String telephone, String headUrl,
-			Set<Route> routelist) {
-		super();
-		this.userId = userId;
+	/** minimal constructor */
+	public User(String userName, String passWord, String sex) {
+		this.userName = userName;
+		this.passWord = passWord;
+		this.sex = sex;
+	}
+
+	/** full constructor */
+	public User(String userName, String passWord, String nickName,
+			String realName, String sex, short age, String job, String email,
+			String telephoneNumber, String location, String headUrl,
+			Set<Notification> notificationsForReceiveUserId,
+			Set<RouteComment> routeComments, Set<Route> routes,
+			Set<Notification> notificationsForSendUserId,
+			Set<ImageIssue> imageIssues, Set<Route> routes_1,
+			Set<RouteCommentReplay> routeCommentReplaies,
+			Set<ImageUrl> imageUrls) {
 		this.userName = userName;
 		this.passWord = passWord;
 		this.nickName = nickName;
+		this.realName = realName;
+		this.sex = sex;
+		this.age = age;
+		this.job = job;
 		this.email = email;
-		this.telephone = telephone;
+		this.telephoneNumber = telephoneNumber;
+		this.location = location;
 		this.headUrl = headUrl;
-		this.routelist = routelist;
+		this.notificationsForReceiveUserId = notificationsForReceiveUserId;
+		this.routeComments = routeComments;
+		this.routes = routes;
+		this.notificationsForSendUserId = notificationsForSendUserId;
+		this.imageIssues = imageIssues;
+		this.routes_1 = routes_1;
+		this.routeCommentReplaies = routeCommentReplaies;
+		this.imageUrls = imageUrls;
 	}
 
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "userId", unique = true, nullable = false)
 	public Integer getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
+	@Column(name = "userName", unique = true, nullable = false, length = 128)
 	public String getUserName() {
-		return userName;
+		return this.userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	@JSON(serialize = false)
+	@Column(name = "passWord", nullable = false, length = 128)
 	public String getPassWord() {
-		return passWord;
+		return this.passWord;
 	}
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
 
+	@Column(name = "nickName")
 	public String getNickName() {
-		return nickName;
+		return this.nickName;
 	}
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
 
+	@Column(name = "realName")
+	public String getRealName() {
+		return this.realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	@Column(name = "sex", nullable = false, length = 8)
+	public String getSex() {
+		return this.sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	@Column(name = "age")
+	public short getAge() {
+		return this.age;
+	}
+
+	public void setAge(short age) {
+		this.age = age;
+	}
+
+	@Column(name = "job", length = 64)
+	public String getJob() {
+		return this.job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	@Column(name = "email")
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	@Column(name = "telephoneNumber", length = 32)
+	public String getTelephoneNumber() {
+		return this.telephoneNumber;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 
+	@Column(name = "location")
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@Column(name = "headUrl")
 	public String getHeadUrl() {
 		return headUrl;
 	}
@@ -160,69 +213,87 @@ public class User implements Serializable {
 	}
 
 	@JSON(serialize = false)
-	public Set<Image> getImageList() {
-		return imageList;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByReceiveUserId")
+	public Set<Notification> getNotificationsForReceiveUserId() {
+		return this.notificationsForReceiveUserId;
 	}
 
-	public void setImageList(Set<Image> imageList) {
-		this.imageList = imageList;
-	}
-
-	@JSON(serialize = false)
-	public Set<Route> getRoutelist() {
-		return routelist;
-	}
-
-	public void setRoutelist(Set<Route> routelist) {
-		this.routelist = routelist;
+	public void setNotificationsForReceiveUserId(
+			Set<Notification> notificationsForReceiveUserId) {
+		this.notificationsForReceiveUserId = notificationsForReceiveUserId;
 	}
 
 	@JSON(serialize = false)
-	public Set<Route> getCreatelist() {
-		return createlist;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<RouteComment> getRouteComments() {
+		return this.routeComments;
 	}
 
-	public void setCreatelist(Set<Route> createlist) {
-		this.createlist = createlist;
+	public void setRouteComments(Set<RouteComment> routeComments) {
+		this.routeComments = routeComments;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((passWord == null) ? 0 : passWord.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result
-				+ ((userName == null) ? 0 : userName.hashCode());
-		return result;
+	@JSON(serialize = false)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "route_user_relevance", catalog = "journey", joinColumns = { @JoinColumn(name = "userId", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "routeId", nullable = false, updatable = false) })
+	public Set<Route> getRoutes() {
+		return this.routes;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (passWord == null) {
-			if (other.passWord != null)
-				return false;
-		} else if (!passWord.equals(other.passWord))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
-		return true;
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
+
+	@JSON(serialize = false)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userBySendUserId")
+	public Set<Notification> getNotificationsForSendUserId() {
+		return this.notificationsForSendUserId;
+	}
+
+	public void setNotificationsForSendUserId(
+			Set<Notification> notificationsForSendUserId) {
+		this.notificationsForSendUserId = notificationsForSendUserId;
+	}
+
+	@JSON(serialize = false)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ImageIssue> getImageIssues() {
+		return this.imageIssues;
+	}
+
+	public void setImageIssues(Set<ImageIssue> imageIssues) {
+		this.imageIssues = imageIssues;
+	}
+
+	@JSON(serialize = false)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Route> getRoutes_1() {
+		return this.routes_1;
+	}
+
+	public void setRoutes_1(Set<Route> routes_1) {
+		this.routes_1 = routes_1;
+	}
+
+	@JSON(serialize = false)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<RouteCommentReplay> getRouteCommentReplaies() {
+		return this.routeCommentReplaies;
+	}
+
+	public void setRouteCommentReplaies(
+			Set<RouteCommentReplay> routeCommentReplaies) {
+		this.routeCommentReplaies = routeCommentReplaies;
+	}
+
+	@JSON(serialize = false)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ImageUrl> getImageUrls() {
+		return this.imageUrls;
+	}
+
+	public void setImageUrls(Set<ImageUrl> imageUrls) {
+		this.imageUrls = imageUrls;
 	}
 
 }

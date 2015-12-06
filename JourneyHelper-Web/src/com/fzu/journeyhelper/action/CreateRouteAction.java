@@ -9,17 +9,13 @@ import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.action.CreateRouteAction       
- * Author: Hoatson
- * Create Time: 2015年11月20日 下午6:03:12     
- * Modified By:   
- * Modified Time: 2015年11月20日 下午6:03:12     
- * Modified Remark:     
- * @version   V1.0
+ * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * 
+ * Description: ClassName: com.fzu.journeyhelper.action.CreateRouteAction
+ * Author: Hoatson Create Time: 2015年11月20日 下午6:03:12 Modified By: Modified
+ * Time: 2015年11月20日 下午6:03:12 Modified Remark:
+ * 
+ * @version V1.0
  */
 public class CreateRouteAction extends BaseAction {
 
@@ -44,17 +40,16 @@ public class CreateRouteAction extends BaseAction {
 	private Integer userId;
 
 	// 创建行程所需要的参数
-	private Integer routeId;
 	private String title;
-	private Date createTime;
+	private String summary;
+	private String article;
 	private Date beginTime;
 	private Date endTime;
-	private String property;
-	private String type;
-	private String strong;
-	private String imageUrl;
-	private String summary;
-	private String content;
+//	private String property;
+//	private String type;
+//	private String strong;
+//	private String imageUrl;
+//	private String content;
 
 	private Route route;
 
@@ -64,15 +59,6 @@ public class CreateRouteAction extends BaseAction {
 
 	public void setRoute(Route route) {
 		this.route = route;
-	}
-
-	@JSON(serialize = false)
-	public Integer getRouteId() {
-		return routeId;
-	}
-
-	public void setRouteId(Integer routeId) {
-		this.routeId = routeId;
 	}
 
 	@JSON(serialize = false)
@@ -94,15 +80,6 @@ public class CreateRouteAction extends BaseAction {
 	}
 
 	@JSON(serialize = false)
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	@JSON(serialize = false)
 	public Date getBeginTime() {
 		return beginTime;
 	}
@@ -121,42 +98,6 @@ public class CreateRouteAction extends BaseAction {
 	}
 
 	@JSON(serialize = false)
-	public String getProperty() {
-		return property;
-	}
-
-	public void setProperty(String property) {
-		this.property = property;
-	}
-
-	@JSON(serialize = false)
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	@JSON(serialize = false)
-	public String getStrong() {
-		return strong;
-	}
-
-	public void setStrong(String strong) {
-		this.strong = strong;
-	}
-
-	@JSON(serialize = false)
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageurl) {
-		this.imageUrl = imageurl;
-	}
-
-	@JSON(serialize = false)
 	public String getSummary() {
 		return summary;
 	}
@@ -165,13 +106,12 @@ public class CreateRouteAction extends BaseAction {
 		this.summary = summary;
 	}
 
-	@JSON(serialize = false)
-	public String getContent() {
-		return content;
+	public String getArticle() {
+		return article;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setArticle(String article) {
+		this.article = article;
 	}
 
 	@Override
@@ -185,23 +125,16 @@ public class CreateRouteAction extends BaseAction {
 		user.setUserId(getUserId());
 
 		route = new Route();
-		Date date = new Date();
-		setCreateTime(date);
-		route.setCreateTime(date);
 		route.setTitle(getTitle());
 		route.setBeginTime(getBeginTime());
 		route.setEndTime(getEndTime());
-		route.setProperty(getProperty());
-		route.setType(getType());
-		route.setStrong(getStrong());
-		route.setImageUrl(getImageUrl());
 		route.setSummary(getSummary());
-		route.setContent(content);
+		route.setArticle(getArticle());;
 
 		Integer id = routeManager.createARoute(user, route);
 		route.setRouteId(id);
 		System.out.println(id);
-
+		
 		setStatus(201);
 		return SUCCESS;
 	}

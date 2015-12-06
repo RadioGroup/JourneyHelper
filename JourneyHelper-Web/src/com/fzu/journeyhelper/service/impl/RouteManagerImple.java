@@ -3,8 +3,8 @@ package com.fzu.journeyhelper.service.impl;
 import java.util.Set;
 
 import com.fzu.journeyhelper.dao.ImageDao;
-import com.fzu.journeyhelper.dao.ItineraryDao;
 import com.fzu.journeyhelper.dao.RouteDao;
+import com.fzu.journeyhelper.dao.ScheduleDao;
 import com.fzu.journeyhelper.dao.UserDao;
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
@@ -28,7 +28,7 @@ public class RouteManagerImple implements RouteManager {
 
 	private ImageDao imageDao;
 	private UserDao userDao;
-	private ItineraryDao itineraryDao;
+	private ScheduleDao scheduleDao;
 	private RouteDao routeDao;
 
 	public ImageDao getImageDao() {
@@ -47,12 +47,12 @@ public class RouteManagerImple implements RouteManager {
 		this.userDao = userDao;
 	}
 
-	public ItineraryDao getItineraryDao() {
-		return itineraryDao;
+	public ScheduleDao getItineraryDao() {
+		return scheduleDao;
 	}
 
-	public void setItineraryDao(ItineraryDao itineraryDao) {
-		this.itineraryDao = itineraryDao;
+	public void setItineraryDao(ScheduleDao scheduleDao) {
+		this.scheduleDao = scheduleDao;
 	}
 
 	public RouteDao getRouteDao() {
@@ -67,18 +67,18 @@ public class RouteManagerImple implements RouteManager {
 	public Set<Route> findUserCreateRouteList(User user) {
 		Set<Route> ans = null;
 		user = userDao.get(User.class, user.getUserId());
-		ans = user.getCreatelist();
-		ans.size();
-		return ans;
+//		ans = user.getCreatelist();
+//		ans.size();
+		return null;
 	}
 
 	@Override
 	public Set<Route> findUserJoinedRouteList(User user) {
 
 		user = userDao.get(User.class, user.getUserId());
-		Set<Route> ans = user.getRoutelist();
-		ans.size();
-		return ans;
+//		Set<Route> ans = user.getRoutelist();
+//		ans.size();
+		return null;
 		
 		
 	}
@@ -86,10 +86,10 @@ public class RouteManagerImple implements RouteManager {
 	@Override
 	public Integer createARoute(User user, Route route) {
 		user = userDao.get(User.class, user.getUserId());
-		route.setCreateUser(user);
+		route.setUser(user);
 		Integer rid = (Integer) routeDao.save(route);
 
-		user.getRoutelist().add(route);
+//		user.getRoutelist().add(route);
 
 		return rid;
 	}

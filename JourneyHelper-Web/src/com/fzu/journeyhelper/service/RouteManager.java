@@ -21,11 +21,11 @@ import com.fzu.journeyhelper.domain.User;
  */
 public interface RouteManager {
 
-	public Set<Route> findUserCreateRouteList(User user);
+	public Set<Route> findUserCreateRouteList(User myUser);
 	
-	public Set<Route> findUserJoinedRouteList(User user);
+	public Set<Route> findUserJoinedRouteList(User myUser);
 	
-	public Integer createARoute(User user,Route route);
+	public Integer createARoute(User myUser,Route myRoute);
 	
 	
 }
