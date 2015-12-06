@@ -1,22 +1,36 @@
-localhost:8080/JourneyHelper-Web/regist?userName=test&passWord=root&nickName=root&Email=756154017@qq.com&Telephone=18859976557&headUrl=www.baidu.com
 
 
 host=http://172.50.180.239
 
-注册接口：
-http://172.50.180.239/userRegist?userName=test&passWord=root&nickName=root&Email=756154017@qq.com&Telephone=18859976557&headUrl=www.baidu.com
-
 登入接口：
-http://172.50.180.239/userLogin?userName=root&passWord=root
+http://172.50.180.239/userLogin?userName=hoatson&passWord=root
+localhost:8080/JourneyHelper-Web/userLogin?userName=hoatson&passWord=root
+
+注册接口：
+http://172.50.180.239/userRegist?userName=hoatson&passWord=root&nickName=牛逼哄哄&realName=陈灿&sex=男&age=20&job=学生&Email=756154017@qq.com&Telephone=18859976557&location=福州&headUrl=www.baidu.com
+
+localhost:8080/JourneyHelper-Web/userRegist?userName=hoatson&passWord=root&nickName=牛逼哄哄&realName=陈灿&sex=男&age=20&job=学生&Email=756154017@qq.com&Telephone=18859976557&location=福州&headUrl=www.baidu.com
+
+http://localhost:8080/JourneyHelper-Web/userRegist?userName=hoatson&passWord=root&nickName=霍森&realName=陈灿&sex=男&age=20&job=学生&Email=756154017@qq.com&Telephone=18859976557&location=福州&headUrl=www.baidu.com
+
 
 行程创建接口
 http://172.50.180.239/createRoute?userId=1&title=永泰斗湖天池露营&beginTime=2344&endTime=123324&property=&type=徒步穿越&strong=中等&imageurl=www.baidu.com&summary=changhcanghdhlk&content=dafeaett;
 
-行程查询接口
-http://172.50.180.239/findCreatedRouteList?userId=1
+http://localhost:8080/JourneyHelper-Web/createRoute?userId=1&title=行程标题&beginTime=2015-12-24 08:00:00&endTime=2015-12-27 12:00:00&summary=行程摘要&article=行程详情描述&routeImageUrl=http://img.517huwai.com/Public/Uploads/2015/10/27/562f2af0d6762.jpg@560w_1000h&type=100&secnics=途径景点用分号隔开&assemblingPlace=集合地点&strengthGrade=活动强度
 
-http://172.50.180.239/findJoinedRouteList?userId=1
+
+行程查询接口
+http://172.50.180.239/findCreatedRoutes?userId=1
+localhost:8080/JourneyHelper-Web/findCreatedRoutes?userId=1
+
+http://172.50.180.239/findJoingRoutes?userId=1
+localhost:8080/JourneyHelper-Web/findJoingRoutes?userId=1
+
 
 用户列表查询接口
-http://172.50.180.239/findUsersListofRoute?routeId=16
+http://172.50.180.239/findRouteMenberList?routeId=1
+localhost:8080/JourneyHelper-Web/findRouteMenberList?routeId=1
 
+
+	
