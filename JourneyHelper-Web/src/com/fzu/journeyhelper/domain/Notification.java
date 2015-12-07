@@ -25,6 +25,14 @@ public class Notification implements java.io.Serializable {
 	public static final short NOTIFICATION_STATUS_NOT_HANDLE = 1;
 	public static final short NOTIFICATION_STATUS_HAS_HANDLE = 0;
 
+	
+	public static final short NOTIFICATION_TYPE_APPLY_JOIN=0;//申请加入某行程的通知类型
+	public static final short NOTIFICATION_TYPE_AGREE_JOIN=1;//同意加入某行程的类型
+	public static final short NOTIFICATION_TYPE_ROUTE_CHANGE=2;//行程发生变动的通知类型
+	public static final short NOTIFICATION_TYPE_NEW_MENBER=3;//新队员加入的通知类型
+	public static final short NOTIFICATION_TYPE_004=4;//....通知类型之后补充
+	
+	
 	/**
 	 * 
 	 */

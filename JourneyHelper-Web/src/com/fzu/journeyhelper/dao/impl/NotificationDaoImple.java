@@ -94,7 +94,7 @@ public class NotificationDaoImple extends BaseDaoHibernate4<Notification>
 
 	@Override
 	public Set<Notification> findUserNotificationByType(User uesr, Short type) {
-		// TODO Auto-generated method stub
+		// TODO 查询不同类型的通知，如申请，或者行程更新
 		return null;
 	}
 }
