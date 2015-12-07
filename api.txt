@@ -33,4 +33,6 @@ http://172.50.180.239/findRouteMenberList?routeId=1
 localhost:8080/JourneyHelper-Web/findRouteMenberList?routeId=1
 
 
-	
+查询用户的通知：
+未读通知：
+localhost:8080/JourneyHelper-Web/findUserNotHandleNotification?userId=1

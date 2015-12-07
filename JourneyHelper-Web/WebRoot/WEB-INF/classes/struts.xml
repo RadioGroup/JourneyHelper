@@ -57,10 +57,10 @@
 		</action>
 
 
-		<action name="getUserNotHandleNotification"
-			class="com.fzu.journeyhelper.action.GetNotificationAction" method="getUserNotHandleNotification">
+		<action name="findUserNotHandleNotification"
+			class="com.fzu.journeyhelper.action.GetNotificationAction" method="findUserNotHandleNotification">
 			<result name="success" type="json">
-				<param name="includeProperties">status,notifications.*</param>
+				<param name="excludeProperties">notifications.*.user</param>
 			</result>
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>

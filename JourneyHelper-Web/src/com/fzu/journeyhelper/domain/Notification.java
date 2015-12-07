@@ -1,14 +1,13 @@
 package com.fzu.journeyhelper.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -78,7 +77,7 @@ public class Notification implements java.io.Serializable {
 		this.notificationId = notificationId;
 	}
 
-	@JSON(serialize = false)
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "routeId")
 	public Route getRoute() {
@@ -89,7 +88,7 @@ public class Notification implements java.io.Serializable {
 		this.route = route;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sendUserId")
 	public User getUserBySendUserId() {
 		return this.userBySendUserId;
@@ -99,8 +98,8 @@ public class Notification implements java.io.Serializable {
 		this.userBySendUserId = userBySendUserId;
 	}
 
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JSON(serialize = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "receiveUserId", nullable = false)
 	public User getUserByReceiveUserId() {
 		return this.userByReceiveUserId;
