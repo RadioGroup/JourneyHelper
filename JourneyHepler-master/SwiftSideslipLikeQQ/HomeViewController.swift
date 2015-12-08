@@ -93,19 +93,15 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.typeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("type") as? String
         cell.routeIdLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? String
         
-        var url:NSURL?
-        var data:NSData?
-        var image:UIImage?
-
-        
-        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("imageUrl") as? String)!)!
-        data = NSData(contentsOfURL:url!)!
-        image = UIImage(data:data!)
-        cell.imgae.image = image
-//        cell.titleLabel.text = self.string1[indexPath.row]
-//        cell.typeLabel.text = data!["joindeList"]!!["type"] as? String
-//        cell.createTimeLabel.text = data!["joindeList"]!!["createTime"] as? String
-//        cell.routeIdLabel.text = data!["joindeList"]!!["routeId"] as? String
+//        var url:NSURL?
+//        var data:NSData?
+//        var image:UIImage?
+//
+//        
+//        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("imageUrl") as? String)!)!
+//        data = NSData(contentsOfURL:url!)!
+//        image = UIImage(data:data!)
+//        cell.imgae.image = image
         return cell
     }
     
