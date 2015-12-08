@@ -1,8 +1,13 @@
 package com.fzu.journeyhelper.service.impl;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.json.JSONObject;
+
+import com.fzu.journeyhelper.domain.Notification;
 import com.fzu.journeyhelper.domain.Route;
+import com.fzu.journeyhelper.domain.Schedule;
 import com.fzu.journeyhelper.domain.User;
 import com.fzu.journeyhelper.service.RouteManager;
 
@@ -47,6 +52,19 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 		return rid;
 	}
 
+	@Override
+	public boolean addScheduleForRoute(String shecduleJson, Route route) {
 
+		JSONObject shecduleObject = new JSONObject();
+
+		return false;
+	}
+
+	@Override
+	public Set<Schedule> findRoutesSchedules(Route route) {
+		Set<Schedule> schedules = new HashSet<Schedule>();
+		schedules.addAll(scheduleDao.findByRoute(route));
+		return schedules;
+	}
 
 }

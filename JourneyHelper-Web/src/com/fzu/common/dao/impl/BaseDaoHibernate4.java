@@ -125,28 +125,21 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * ʹ��hql �����з�ҳ��ѯ����
+	 * hql 分页查询
 	 * 
 	 * @param hql
-	 *            ��Ҫ��ѯ��hql���
 	 * @param params
-	 *            ���hql��ռλ�����params���ڴ���ռλ�����
 	 * @param pageNo
-	 *            ��ѯ��pageNoҳ�ļ�¼
 	 * @param pageSize
-	 *            ÿҳ��Ҫ��ʾ�ļ�¼��
-	 * @return ��ǰҳ�����м�¼
+	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(String hql, int pageNo, int pageSize,
 			Object... params) {
-		// ������ѯ
 		Query query = getCurrentSession().createQuery(hql);
-		// Ϊ��ռλ���HQL������ò���
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);
 		}
-		// ִ�з�ҳ�������ز�ѯ���
 		return query.setFirstResult((pageNo - 1) * pageSize)
 				.setMaxResults(pageSize).list();
 	}
@@ -156,7 +149,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 			Object value) {
 		try {
 			String queryString = "from " + entityClazz.getSimpleName()
-					+ " as model where model." + propertyName + "= ?";
+					+ " as model where model." + propertyName + "= ?0";
 			return find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
