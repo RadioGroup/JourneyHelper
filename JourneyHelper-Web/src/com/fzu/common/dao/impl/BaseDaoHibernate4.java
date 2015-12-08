@@ -17,10 +17,10 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	protected static final Logger log = LoggerFactory
 			.getLogger(BaseDaoHibernate4.class);
 
-	// DAO×é¼ş½øĞĞ³Ö¾Ã»¯²Ù×÷µ×²ãÒÀÀµµÄSessionFactory×é¼ş
+	// DAOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SessionFactoryï¿½ï¿½ï¿½
 	private SessionFactory sessionFactory;
 
-	// ÒÀÀµ×¢ÈëSessionFactoryËùĞèµÄsetter·½·¨
+	// ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½SessionFactoryï¿½ï¿½ï¿½ï¿½ï¿½setterï¿½ï¿½ï¿½ï¿½
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -33,13 +33,13 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	// ¸ù¾İID¼ÓÔØÊµÌå
+	// ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> entityClazz, Serializable id) {
 		return (T) getCurrentSession().get(entityClazz, id);
 	}
 
-	// ±£´æÊµÌå
+	// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public Serializable save(T entity) {
 		log.debug("saving User instance");
 		try {
@@ -53,17 +53,17 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return getCurrentSession().save(entity);
 	}
 
-	// ¸üĞÂÊµÌå
+	// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public void update(T entity) {
 		getCurrentSession().saveOrUpdate(entity);
 	}
 
-	// É¾³ıÊµÌå
+	// É¾ï¿½ï¿½Êµï¿½ï¿½
 	public void delete(T entity) {
 		getCurrentSession().delete(entity);
 	}
 
-	// ¸ù¾İIDÉ¾³ıÊµÌå
+	// ï¿½ï¿½ï¿½IDÉ¾ï¿½ï¿½Êµï¿½ï¿½
 	public void delete(Class<T> entityClazz, Serializable id) {
 		getCurrentSession()
 				.createQuery(
@@ -72,83 +72,81 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 				.executeUpdate();
 	}
 
-	// »ñÈ¡ÊµÌå×ÜÊı
+	// ï¿½ï¿½È¡Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public long findCount(Class<T> entityClazz) {
 		List<?> l = find("select count(*) from " + entityClazz.getSimpleName());
-		// ·µ»Ø²éÑ¯µÃµ½µÄÊµÌå×ÜÊı
+		// ï¿½ï¿½ï¿½Ø²ï¿½Ñ¯ï¿½Ãµï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (l != null && l.size() == 1) {
 			return (Long) l.get(0);
 		}
 		return 0;
 	}
 
-	// ¸ù¾İHQLÓï¾ä²éÑ¯ÊµÌå
+	// ï¿½ï¿½ï¿½HQLï¿½ï¿½ï¿½ï¿½Ñ¯Êµï¿½ï¿½
 	@SuppressWarnings("unchecked")
 	protected List<T> find(String hql) {
 		return (List<T>) getCurrentSession().createQuery(hql).list();
 	}
 
-	// ¸ù¾İ´øÕ¼Î»·û²ÎÊıHQLÓï¾ä²éÑ¯ÊµÌå
+	// å¸¦æœ‰å‚æ•°çš„hqlæŸ¥è¯¢
 	@SuppressWarnings("unchecked")
 	protected List<T> find(String hql, Object... params) {
-		// ´´½¨²éÑ¯
 		Query query = getCurrentSession().createQuery(hql);
-		// Îª°üº¬Õ¼Î»·ûµÄHQLÓï¾äÉèÖÃ²ÎÊı
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);
 		}
 		return (List<T>) query.list();
 	}
 
-	// »ñÈ¡ËùÓĞÊµÌå
+	// æŸ¥è¯¢æ‰€æœ‰
 	public List<T> findAll(Class<T> entityClazz) {
 
 		return find("select en from " + entityClazz.getSimpleName() + " en");
 	}
 
 	/**
-	 * Ê¹ÓÃhql Óï¾ä½øĞĞ·ÖÒ³²éÑ¯²Ù×÷
+	 * Ê¹ï¿½ï¿½hql ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param hql
-	 *            ĞèÒª²éÑ¯µÄhqlÓï¾ä
+	 *            ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½hqlï¿½ï¿½ï¿½
 	 * @param pageNo
-	 *            ²éÑ¯µÚpageNoÒ³µÄ¼ÇÂ¼
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½pageNoÒ³ï¿½Ä¼ï¿½Â¼
 	 * @param pageSize
-	 *            Ã¿Ò³ĞèÒªÏÔÊ¾µÄ¼ÇÂ¼Êı
-	 * @return µ±Ç°Ò³µÄËùÓĞ¼ÇÂ¼
+	 *            Ã¿Ò³ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * @return ï¿½ï¿½Ç°Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(String hql, int pageNo, int pageSize) {
-		// ´´½¨²éÑ¯
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
 		return getCurrentSession().createQuery(hql)
-				// Ö´ĞĞ·ÖÒ³
+				// Ö´ï¿½Ğ·ï¿½Ò³
 				.setFirstResult((pageNo - 1) * pageSize)
 				.setMaxResults(pageSize).list();
 	}
 
 	/**
-	 * Ê¹ÓÃhql Óï¾ä½øĞĞ·ÖÒ³²éÑ¯²Ù×÷
+	 * Ê¹ï¿½ï¿½hql ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param hql
-	 *            ĞèÒª²éÑ¯µÄhqlÓï¾ä
+	 *            ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½hqlï¿½ï¿½ï¿½
 	 * @param params
-	 *            Èç¹ûhql´øÕ¼Î»·û²ÎÊı£¬paramsÓÃÓÚ´«ÈëÕ¼Î»·û²ÎÊı
+	 *            ï¿½ï¿½ï¿½hqlï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½paramsï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param pageNo
-	 *            ²éÑ¯µÚpageNoÒ³µÄ¼ÇÂ¼
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½pageNoÒ³ï¿½Ä¼ï¿½Â¼
 	 * @param pageSize
-	 *            Ã¿Ò³ĞèÒªÏÔÊ¾µÄ¼ÇÂ¼Êı
-	 * @return µ±Ç°Ò³µÄËùÓĞ¼ÇÂ¼
+	 *            Ã¿Ò³ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * @return ï¿½ï¿½Ç°Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(String hql, int pageNo, int pageSize,
 			Object... params) {
-		// ´´½¨²éÑ¯
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
 		Query query = getCurrentSession().createQuery(hql);
-		// Îª°üº¬Õ¼Î»·ûµÄHQLÓï¾äÉèÖÃ²ÎÊı
+		// Îªï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½HQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);
 		}
-		// Ö´ĞĞ·ÖÒ³£¬²¢·µ»Ø²éÑ¯½á¹û
+		// Ö´ï¿½Ğ·ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½Ñ¯ï¿½ï¿½ï¿½
 		return query.setFirstResult((pageNo - 1) * pageSize)
 				.setMaxResults(pageSize).list();
 	}
