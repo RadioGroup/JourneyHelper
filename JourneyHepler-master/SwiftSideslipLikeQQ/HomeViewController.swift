@@ -101,7 +101,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("imageUrl") as? String)!)!
 //        data = NSData(contentsOfURL:url!)!
 //        image = UIImage(data:data!)
-//        cell.imgae.image = image
+//            cell.imgae.image = image
+
         return cell
     }
     
@@ -113,11 +114,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return 3
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
         return 152.0
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         
         self.index = indexPath.row
         
