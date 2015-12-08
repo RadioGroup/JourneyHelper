@@ -154,4 +154,13 @@ public class Schedule implements java.io.Serializable {
 		this.remark = remark;
 	}
 
+	@Override
+	public String toString() {
+		return "Schedule [schedulingId=" + schedulingId + ", route=" + route
+				+ ", destination=" + destination + ", beginTime=" + beginTime
+				+ ", endTime=" + endTime + ", vehicle=" + vehicle
+				+ ", accommodation=" + accommodation + ", diner=" + diner
+				+ ", budget=" + budget + ", remark=" + remark + "]";
+	}
+
 }

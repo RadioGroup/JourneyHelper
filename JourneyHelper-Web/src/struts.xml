@@ -51,14 +51,23 @@
 		</action>
 
 
+		<action name="addSchedules"
+			class="com.fzu.journeyhelper.action.CreateRouteScheduleAction"
+			method="addSchedules">
+			<result name="success" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
+
 		<action name="findRouteMenberList"
-			class="com.fzu.journeyhelper.action.GetRouteMenberAction" method="findRouteMenberList">
+			class="com.fzu.journeyhelper.action.FindRouteMenbersAction" method="findRouteMenberList">
 			<result name="success" type="json" />
 		</action>
 
 		<action name="findRouteScheduleList"
 			class="com.fzu.journeyhelper.action.FindRouteSchedulesAction" method="findRouteScheduleList">
-			<result name="success" type="json" >
+			<result name="success" type="json">
 				<param name="excludeProperties">schedules.*.route</param>
 			</result>
 			<result name="error" type="json">
@@ -67,7 +76,7 @@
 		</action>
 
 		<action name="findUserNotHandleNotification"
-			class="com.fzu.journeyhelper.action.GetNotificationAction" method="findUserNotHandleNotification">
+			class="com.fzu.journeyhelper.action.FindNotificationAction" method="findUserNotHandleNotification">
 			<result name="success" type="json">
 				<param name="excludeProperties">notifications.*.user</param>
 			</result>
