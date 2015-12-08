@@ -11,15 +11,15 @@ import com.fzu.journeyhelper.domain.Schedule;
  * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
  * 
  * Description: ClassName: com.fzu.journeyhelper.dao.ScheduleDao Author: Hoatson
- * Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:04:05 Modified By: Modified Time: 2015Äê11ÔÂ20ÈÕ
- * ÏÂÎç6:04:05 Modified Remark:
+ * Create Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:04:05 Modified By: Modified Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½6:04:05 Modified Remark:
  * 
  * @version V1.0
  */
 public interface ScheduleDao extends BaseDao<Schedule> {
 
 	/**
-	 * Í¨¹ýÐÐ³ÌµÄ¹æ»®ÁÐ±í
+	 *æŸ¥è¯¢è¡Œç¨‹çš„è®¡åˆ’å®‰æŽ’
 	 * 
 	 * @param myRoute
 	 * @return

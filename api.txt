@@ -27,6 +27,9 @@ localhost:8080/JourneyHelper-Web/findCreatedRoutes?userId=1
 http://172.50.180.239/findJoingRoutes?userId=1
 localhost:8080/JourneyHelper-Web/findJoingRoutes?userId=1
 
+行程安排查询接口
+localhost:8080/JourneyHelper-Web/findRouteScheduleList?routeId=1
+
 
 用户列表查询接口
 http://172.50.180.239/findRouteMenberList?routeId=1
@@ -36,3 +39,6 @@ localhost:8080/JourneyHelper-Web/findRouteMenberList?routeId=1
 查询用户的通知：
 未读通知：
 localhost:8080/JourneyHelper-Web/findUserNotHandleNotification?userId=1
+
+发送一条加入行程的申请
+localhost:8080/JourneyHelper-Web/applyJoinRoute?userId=1&routeId=1
