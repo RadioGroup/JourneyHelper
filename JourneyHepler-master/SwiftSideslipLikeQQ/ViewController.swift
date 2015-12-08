@@ -93,6 +93,7 @@ class ViewController: UIViewController
         let user = "root"
         let password = "root"
         
+        
         Alamofire.request(.GET, "http://192.168.43.176/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON

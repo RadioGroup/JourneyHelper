@@ -508,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5647506895B91546A1C8F8E1 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -517,6 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lvwenhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
 		};
@@ -524,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7346A3078274832DD9A06CC /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -533,6 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lvwenhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Header.h;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;
 		};
