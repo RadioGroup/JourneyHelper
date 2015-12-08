@@ -5,18 +5,13 @@ import com.fzu.journeyhelper.domain.User;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * @author Volcano
  * 
- * Description: ClassName: com.fzu.journeyhelper.dao.UserDao Author: Hoatson
- * Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:04:23 Modified By: Modified Time: 2015Äê11ÔÂ20ÈÕ
- * ÏÂÎç6:04:23 Modified Remark:
- * 
- * @version V1.0
  */
 public interface UserDao extends BaseDao<User> {
 
 	/**
-	 * Í¨¹ıÓÃ»§ÃûºÍÃÜÂë²éÕÒÓÃ»§
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @param User
 	 * @return
@@ -24,7 +19,7 @@ public interface UserDao extends BaseDao<User> {
 	public User findbyUserNameAndPass(User User);
 
 	/**
-	 * Í¨¹ıÓÃ»§Ãû²éÑ¯ÓÃ»§
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½
 	 * 
 	 * @param User
 	 * @return
@@ -32,7 +27,7 @@ public interface UserDao extends BaseDao<User> {
 	public User findbyUserName(User User);
 
 	/**
-	 * ²éÑ¯ÓÃ»§ÊÇ·ñ´æÔÚ
+	 * ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param User
 	 * @return

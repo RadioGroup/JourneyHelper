@@ -8,7 +8,7 @@ import com.fzu.journeyhelper.domain.User;
 /**
  * 
  * @author Volcano
- *
+ * 
  */
 public interface UserManager {
 
@@ -18,11 +18,12 @@ public interface UserManager {
 
 	/**
 	 * 检查账户名是否存在
+	 * 
 	 * @param User
 	 * @return
 	 */
 	public boolean registAvaliable(User user);
-	
+
 	public Set<User> findRouteMenberList(Route route);
-	
+
 }
