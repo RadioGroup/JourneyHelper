@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * RouteCommentReplay entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "route_comment_replay", catalog = "journey")
+@Table(name = "route_comment_replay", catalog = "journeyhelperweb")
 public class RouteCommentReplay implements java.io.Serializable {
 
 	/**

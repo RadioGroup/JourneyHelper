@@ -68,13 +68,11 @@ public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao{
 
 	@Override
 	public Set<Route> findRoutelistByUser(User user) {
-		// TODO 查询用户参加的行程
 		return null;
 	}
 
 	@Override
 	public Set<Route> findCreatelistByUser(User user) {
-		// TODO 查询用户创建的行程
 		return null;
 	}
 }
