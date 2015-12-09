@@ -38,7 +38,11 @@ class RouteDetailViewController: UIViewController {
         var image:UIImage?
         
         
-        url = NSURL(string: (string?.objectAtIndex(index).objectForKey("imageUrl") as? String)!)!
+
+//        var set = string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String
+//         set = set!.stringByReplacingOccurrencesOfString("/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//                url = NSURL(string: set!)!
+        url = NSURL(string: (string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String)!)!
         data = NSData(contentsOfURL:url!)!
         image = UIImage(data:data!)
         self.imageView.image = image
