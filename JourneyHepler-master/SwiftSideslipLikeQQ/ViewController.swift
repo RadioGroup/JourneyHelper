@@ -134,7 +134,12 @@ class ViewController: UIViewController
     }
     // 响应 UIPanGestureRecognizer 事件
     func pan(recongnizer: UIPanGestureRecognizer) {
-        let x = recongnizer.translationInView(self.view).x
+        
+        var x = recongnizer.translationInView(self.view).x
+        if x < 0
+        {
+            x = 0
+        }
         let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
         
@@ -226,11 +231,12 @@ class ViewController: UIViewController
         
         // 分别指定 Navigation Bar 左右两侧按钮的事件
         homeViewController.navigationItem.leftBarButtonItem?.action = Selector("showLeft")
-        homeViewController.navigationItem.rightBarButtonItem?.action = Selector("showRight")
+        //homeViewController.navigationItem.rightBarButtonItem?.action = Selector("showRight")
         
         // 给主视图绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
         panGesture.addTarget(self, action: Selector("pan:"))
+        
         mainView.addGestureRecognizer(panGesture)
         
         // 生成单击收起菜单手势

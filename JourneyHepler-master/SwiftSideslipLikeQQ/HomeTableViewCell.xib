@@ -57,7 +57,7 @@
                 <outlet property="titleLabel" destination="19c-pk-sIG" id="HCR-rm-pun"/>
                 <outlet property="typeLabel" destination="NNR-lz-V7F" id="hS8-ar-IBj"/>
             </connections>
-            <point key="canvasLocation" x="485" y="314"/>
+            <point key="canvasLocation" x="660" y="239"/>
         </tableViewCell>
     </objects>
 </document>

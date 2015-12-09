@@ -89,7 +89,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         cell.backgroundColor = UIColor.clearColor()
         cell.titleLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("title") as? String
-        cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("createTime") as? String
+        cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("beginTime") as? String
         cell.typeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("type") as? String
         cell.routeIdLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? String
         
