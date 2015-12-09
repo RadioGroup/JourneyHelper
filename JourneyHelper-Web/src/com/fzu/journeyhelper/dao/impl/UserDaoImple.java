@@ -113,11 +113,11 @@ public class UserDaoImple extends BaseDaoHibernate4<User> implements UserDao {
 	}
 
 	@Override
-	public User findbyUserNameAndPass(User User) {
-		System.out.println(User.toString());
+	public User findbyUserNameAndPass(User user) {
+		System.out.println(user.toString());
 		List<User> list = find(
 				"from User as u where u.userName=?0 and u.passWord=?1",
-				User.getUserName(), User.getPassWord());
+				user.getUserName(), user.getPassWord());
 		if (list.size() > 0) {
 			return list.get(0);
 		} else {
