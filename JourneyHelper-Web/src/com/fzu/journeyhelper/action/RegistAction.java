@@ -170,14 +170,14 @@ public class RegistAction extends BaseAction {
 		user.setLocation(getLocation());
 		user.setHeadUrl(getHeadUrl());
 		
-		// 先查询是否存在
+		// 鍏堟煡璇㈡槸鍚﹀瓨鍦�
 		if (userManager.registAvaliable(user)) {
 			user.setUserId(userManager.registNewUser(user));
 			setUser(user);
 			setStatus(301);
 			return SUCCESS;
 		} else {
-			//用户名已经被占用
+			//鐢ㄦ埛鍚嶅凡缁忚鍗犵敤
 			setStatus(302);
 			return ERROR;
 		}
