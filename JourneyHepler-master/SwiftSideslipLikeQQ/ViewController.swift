@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 var string: NSMutableArray?
-
+var host:String? = "http://172.50.180.239/JourneyHelper-Web"
 
 // 此 View Controller 为根容器，本身并不包含任何 UI 元素
 class ViewController: UIViewController
@@ -63,13 +63,13 @@ class ViewController: UIViewController
         }
         else
         {
-            Alamofire.request(.GET, "http://192.168.43.176/findJoinedRouteList?userId=3")
+            Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
                 .responseJSON { response in
                     //                    debugPrint(response)
                     if response.result.isSuccess
                     {
                         self.data = response.result.value as? NSDictionary
-                       string = self.data?.objectForKey("joindeList")as?NSMutableArray
+                       string = self.data?.objectForKey("createList")as?NSMutableArray
 //                        self.userDefaults.setObject(self.string, forKey: "homeData")
                         print("数据：\(string)")
                     }else if response.result.isFailure
@@ -90,11 +90,10 @@ class ViewController: UIViewController
     
     @IBAction func logInAction(sender: AnyObject)
     {
-        let user = "root"
+        let user = "hoatson"
         let password = "root"
         
-        
-        Alamofire.request(.GET, "http://192.168.43.176/userLogin?userName=\(user)&passWord=\(password)")
+        Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
@@ -135,7 +134,12 @@ class ViewController: UIViewController
     }
     // 响应 UIPanGestureRecognizer 事件
     func pan(recongnizer: UIPanGestureRecognizer) {
-        let x = recongnizer.translationInView(self.view).x
+        
+        var x = recongnizer.translationInView(self.view).x
+        if x < 0
+        {
+            x = 0
+        }
         let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
         
@@ -227,11 +231,12 @@ class ViewController: UIViewController
         
         // 分别指定 Navigation Bar 左右两侧按钮的事件
         homeViewController.navigationItem.leftBarButtonItem?.action = Selector("showLeft")
-        homeViewController.navigationItem.rightBarButtonItem?.action = Selector("showRight")
+        //homeViewController.navigationItem.rightBarButtonItem?.action = Selector("showRight")
         
         // 给主视图绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
         panGesture.addTarget(self, action: Selector("pan:"))
+        
         mainView.addGestureRecognizer(panGesture)
         
         // 生成单击收起菜单手势

@@ -30,15 +30,19 @@ class RouteDetailViewController: UIViewController {
         super.viewDidLoad()
         self.titleLabel.text = string?.objectAtIndex(index).objectForKey("title") as? String
         self.beginTimeLabel.text = string?.objectAtIndex(index).objectForKey("beginTime") as? String
-        self.strongLabel.text = string?.objectAtIndex(index).objectForKey("strong") as? String
-        self.propertyLabel.text = string?.objectAtIndex(index).objectForKey("property") as? String
-        self.textView.text = string?.objectAtIndex(index).objectForKey("content") as? String
+        self.strongLabel.text = string?.objectAtIndex(index).objectForKey("strengthGrade") as? String
+        self.propertyLabel.text = string?.objectAtIndex(index).objectForKey("assemblingPlace") as? String
+        self.textView.text = string?.objectAtIndex(index).objectForKey("article") as? String
         var url:NSURL?
         var data:NSData?
         var image:UIImage?
         
         
-        url = NSURL(string: (string?.objectAtIndex(index).objectForKey("imageUrl") as? String)!)!
+
+//        var set = string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String
+//         set = set!.stringByReplacingOccurrencesOfString("/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+//                url = NSURL(string: set!)!
+        url = NSURL(string: (string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String)!)!
         data = NSData(contentsOfURL:url!)!
         image = UIImage(data:data!)
         self.imageView.image = image
