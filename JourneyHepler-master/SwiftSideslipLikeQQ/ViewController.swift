@@ -21,6 +21,7 @@ class ViewController: UIViewController
     @IBOutlet weak var passWordLabel: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logUpButton: UIButton!
+    var rightView : RightViewController!
     // 该 TabBar Controller 不是传统意义上的容器，在此只负责提供 UITabBar 这个 UI 组件
     var mainTabBarController: MainTabBarController!
     var logFlag: Bool?
@@ -50,6 +51,7 @@ class ViewController: UIViewController
     var blackCover: UIView!
     var alertView : UIAlertView!
     var data: NSDictionary?
+    var userData: NSDictionary?
     
     override func viewDidLoad()
     {
@@ -57,29 +59,12 @@ class ViewController: UIViewController
         self.userDefaults = NSUserDefaults.standardUserDefaults()
         self.userDefaults.setBool(false , forKey: "log")
         self.logFlag = userDefaults.boolForKey("Log")
-        if (self.logFlag != true)
-        {
-            self.logInView()
-        }
-        else
-        {
-            Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                .responseJSON { response in
-                    //                    debugPrint(response)
-                    if response.result.isSuccess
-                    {
-                        self.data = response.result.value as? NSDictionary
-                       string = self.data?.objectForKey("createList")as?NSMutableArray
-//                        self.userDefaults.setObject(self.string, forKey: "homeData")
-                        print("数据：\(string)")
-                    }else if response.result.isFailure
-                    {
-                        self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
-                    }
-                    
-            }
-
-        }
+//        if (self.logFlag != true)
+//        {
+//            self.logInView()
+//        }
+//        else
+//        {
         
     }
     
@@ -93,6 +78,8 @@ class ViewController: UIViewController
         let user = "hoatson"
         let password = "root"
         
+        SVProgressHUD.showWithStatus("努力加载中")
+        
         Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
@@ -104,28 +91,60 @@ class ViewController: UIViewController
                 let status = data!["status"] as? Int
                 if(status == 201)
                 {
-                    self.logInView()
-                    self.nameLabel.hidden = true
-                    self.logInButton.hidden = true
-                    self.logUpButton.hidden = true
-                    self.usernameText.hidden = true
-                    self.passWordLabel.hidden = true
-                    
                     let user = data!["user"]
+                    print("数据监测user\(user)")
+                    self.userData = user as? NSDictionary
+                    let userId = (self.userData!["userId"])!
                     self.userDefaults.setObject(user, forKey:"data")
                     self.userDefaults.setBool(true, forKey: "Log")
+                    self.userDefaults.setObject(userId, forKey: "userId")
+                    print("数据监测userId\(userId)")
+                   
+//                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
+                    let URL = NSURL(string: "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=\(userId)")!
+                    print(URL)
+                    let request = NSMutableURLRequest(URL: URL)
+                         Alamofire.request(.GET,request)
+                        .responseJSON
+                        {
+                            response in
+                            if response.result.isSuccess
+                            {
+                                SVProgressHUD.dismiss()
+                                self.data = response.result.value as? NSDictionary
+                                string = self.data?.objectForKey("createList")as?NSMutableArray
+                                //                        self.userDefaults.setObject(self.string, forKey: "homeData")
+                                print("数据：\(string)")
+                        
+                                self.logInView()
+                                self.nameLabel.hidden = true
+                                self.logInButton.hidden = true
+                                self.logUpButton.hidden = true
+                                self.usernameText.hidden = true
+                                self.passWordLabel.hidden = true
+                                
+                            }else if response.result.isFailure
+                            {
+//                                self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
+                                SVProgressHUD.showErrorWithStatus("您的网络挂了")
+                            }
+                            
+                            //            }
+                            
+                    }
+
                 }
                 else if(status == 202)
                 {
+                    SVProgressHUD.dismiss()
                     self.alertView = UIAlertView.init(title: "提示", message: "密码错误！！！", delegate: nil, cancelButtonTitle: "ok")
                     self.alertView.show()
-                    
-                    
                 }
             }else if response.result.isFailure
                 {
-                    self.alertView = UIAlertView.init(title: "提示", message:"网络连接错误", delegate:nil, cancelButtonTitle: "好的")
-                    self.alertView.show()
+//                    self.alertView = UIAlertView.init(title: "提示", message:"网络连接错误", delegate:nil, cancelButtonTitle: "好的")
+//                    self.alertView.show()
+                    SVProgressHUD.showErrorWithStatus("您的网络挂了。。。")
                 }
                 
                 
@@ -135,12 +154,8 @@ class ViewController: UIViewController
     // 响应 UIPanGestureRecognizer 事件
     func pan(recongnizer: UIPanGestureRecognizer) {
         
-        var x = recongnizer.translationInView(self.view).x
-        if x < 0
-        {
-            x = 0
-        }
-        let trueDistance = distance + x // 实时距离
+        let x = recongnizer.translationInView(self.view).x
+                let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
         
         // 如果 UIPanGestureRecognizer 结束，则激活自动停靠
@@ -231,7 +246,7 @@ class ViewController: UIViewController
         
         // 分别指定 Navigation Bar 左右两侧按钮的事件
         homeViewController.navigationItem.leftBarButtonItem?.action = Selector("showLeft")
-        //homeViewController.navigationItem.rightBarButtonItem?.action = Selector("showRight")
+        homeViewController.navigationItem.rightBarButtonItem?.action = Selector("doInsert")
         
         // 给主视图绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
@@ -269,6 +284,7 @@ class ViewController: UIViewController
         // 计算距离，执行菜单自动滑动动画
         distance = self.view.center.x * -(FullDistance*2 + Proportion - 1)
         doTheAnimate(self.Proportion, showWhat: "right")
+        
     }
     // 执行三种动画：显示左侧菜单、显示主页、显示右侧菜单
     func doTheAnimate(proportion: CGFloat, showWhat: String)
@@ -290,6 +306,11 @@ class ViewController: UIViewController
             // 为了演示效果，在右侧菜单划出时隐藏漏出的左侧菜单，并无实际意义
             self.leftViewController.view.alpha = showWhat == "right" ? 0 : 1
             }, completion: nil)
+    }
+    func doInsert()
+    {
+        
+        
     }
     
 }

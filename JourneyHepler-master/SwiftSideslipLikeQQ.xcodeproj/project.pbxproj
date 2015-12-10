@@ -29,6 +29,8 @@
 		F7564B221BFEFD620025B535 /* PhotosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7564B201BFEFD620025B535 /* PhotosTableViewCell.xib */; };
 		F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */; };
 		F79864B71BFF7147005606DA /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79864B61BFF7147005606DA /* RouteDetailViewController.swift */; };
+		F7A7B96B1C19C4C000AC4349 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7B9691C19C4C000AC4349 /* RightViewController.swift */; };
+		F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A7B96A1C19C4C000AC4349 /* RightViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		F7564B201BFEFD620025B535 /* PhotosTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosTableViewCell.xib; sourceTree = "<group>"; };
 		F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		F79864B61BFF7147005606DA /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
+		F7A7B9691C19C4C000AC4349 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		F7A7B96A1C19C4C000AC4349 /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightViewController.xib; sourceTree = "<group>"; };
 		F7EDE7631C17213900B0528D /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +152,8 @@
 		465933071AD7F60700969878 /* SwiftSideslipLikeQQ */ = {
 			isa = PBXGroup;
 			children = (
+				F7A7B9691C19C4C000AC4349 /* RightViewController.swift */,
+				F7A7B96A1C19C4C000AC4349 /* RightViewController.xib */,
 				4659330A1AD7F60700969878 /* AppDelegate.swift */,
 				4659330C1AD7F60700969878 /* ViewController.swift */,
 				4659332A1AD7FB0E00969878 /* HomeViewController.swift */,
@@ -160,8 +166,8 @@
 				F74CD0381BFE21E5003B4E14 /* LoanViewController.swift */,
 				F7564B1D1BFEFCE50025B535 /* PhotosViewController.swift */,
 				F79864B61BFF7147005606DA /* RouteDetailViewController.swift */,
-				4659330E1AD7F60700969878 /* Main.storyboard */,
 				465933111AD7F60700969878 /* Images.xcassets */,
+				4659330E1AD7F60700969878 /* Main.storyboard */,
 				465933131AD7F60700969878 /* LaunchScreen.xib */,
 				465933081AD7F60700969878 /* Supporting Files */,
 				466C00871AD832D9002ED354 /* Common.swift */,
@@ -283,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				465933101AD7F60700969878 /* Main.storyboard in Resources */,
+				F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */,
 				465933151AD7F60700969878 /* LaunchScreen.xib in Resources */,
 				46617ED71AF3E4C5008F038F /* MainTabBarController.xib in Resources */,
 				F7564B161BFEF9720025B535 /* HomeTableViewCell.xib in Resources */,
@@ -355,6 +362,7 @@
 			files = (
 				4642DDB51ADA76DA00D0F32B /* SwiftColors.swift in Sources */,
 				466C00881AD832D9002ED354 /* Common.swift in Sources */,
+				F7A7B96B1C19C4C000AC4349 /* RightViewController.swift in Sources */,
 				46617ED61AF3E4C5008F038F /* MainTabBarController.swift in Sources */,
 				F79864B71BFF7147005606DA /* RouteDetailViewController.swift in Sources */,
 				4659330D1AD7F60700969878 /* ViewController.swift in Sources */,

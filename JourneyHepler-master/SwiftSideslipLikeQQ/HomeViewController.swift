@@ -48,13 +48,6 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         segmentView.hidden = true
         
-        
-//        var data = self.userDefalutsHome?.objectForKey("homedata")
-//        self.string1 = data!["joindeList"]!!["tittle"] as? String
-//        self.string2 = data!["joindeList"]!!["type"] as? String
-//        self.string3 = data!["joindeList"]!!["createTime"] as? String
-//        self.string4 = data!["joindeList"]!!["routeId"] as? String
-//        print("数据数据2:\(string1)")
 
     }
     override func viewDidAppear(animated: Bool) {
@@ -110,7 +103,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (string?.count)!
+        return  (string?.count)!
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -119,16 +113,18 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.index = indexPath.row
+        let index = indexPath.row
         
-        self.performSegueWithIdentifier("showDetail", sender: self)
+        self.performSegueWithIdentifier("showDetail", sender: index)
         Common.contactsVC.view.removeFromSuperview()
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        var theSegue = segue.destinationViewController as? RouteDetailViewController
-//        theSegue!.index = self.index
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail"{
+            let controller = segue.destinationViewController as! RouteDetailViewController
+        controller.index = (sender as? Int)!
+        }
+    }
     
     // MARK: - Navigation
 
