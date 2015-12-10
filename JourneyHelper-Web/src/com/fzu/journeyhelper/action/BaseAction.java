@@ -1,26 +1,21 @@
 package com.fzu.journeyhelper.action;
 
-import org.apache.struts2.json.annotations.JSON;
-
+import com.fzu.journeyhelper.service.NotificationManager;
 import com.fzu.journeyhelper.service.RouteManager;
 import com.fzu.journeyhelper.service.UserManager;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 
- * Copyright (C): 2015-Hoatshon  
- * Project Name: JourneyHelper-Web     
- *  
- * Description:   
- * ClassName: com.fzu.journeyhelper.action.BaseAction       
- * Author: Hoatson
- * Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:02:49     
- * Modified By:   
- * Modified Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:02:49     
- * Modified Remark:     
- * @version   V1.0
+ * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * 
+ * Description: ClassName: com.fzu.journeyhelper.action.BaseAction Author:
+ * Hoatson Create Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:02:49 Modified By: Modified Time:
+ * 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:02:49 Modified Remark:
+ * 
+ * @version V1.0
  */
-public class BaseAction extends ActionSupport{
+public class BaseAction extends ActionSupport {
 
 	/**
 	 * 
@@ -29,24 +24,23 @@ public class BaseAction extends ActionSupport{
 
 	protected UserManager userManager;
 	protected RouteManager routeManager;
-
-	@JSON(serialize = false)
-	public UserManager getUserManager() {
-		return userManager;
-	}
+	protected NotificationManager notificationManager;
 
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
 	}
 
-	@JSON(serialize = false)
-	public RouteManager getRouteManager() {
-		return routeManager;
-	}
-
 	public void setRouteManager(RouteManager routeManager) {
 		this.routeManager = routeManager;
 	}
-	
-	
+
+	public void setNotificationManager(NotificationManager notificationManager) {
+		this.notificationManager = notificationManager;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		return SUCCESS;
+
+	}
 }

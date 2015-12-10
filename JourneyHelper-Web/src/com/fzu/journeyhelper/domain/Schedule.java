@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * Schedule entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "schedule", catalog = "journey")
+@Table(name = "schedule", catalog = "journeyhelperweb")
 public class Schedule implements java.io.Serializable {
 
 	/**

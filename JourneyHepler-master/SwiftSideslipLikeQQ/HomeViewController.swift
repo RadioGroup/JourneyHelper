@@ -89,19 +89,19 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         cell.backgroundColor = UIColor.clearColor()
         cell.titleLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("title") as? String
-        cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("createTime") as? String
+        cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("beginTime") as? String
         cell.typeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("type") as? String
         cell.routeIdLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? String
         
-//        var url:NSURL?
-//        var data:NSData?
-//        var image:UIImage?
-//
-//        
-//        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("imageUrl") as? String)!)!
-//        data = NSData(contentsOfURL:url!)!
-//        image = UIImage(data:data!)
-//        cell.imgae.image = image
+        var url:NSURL?
+        var data:NSData?
+        var image:UIImage?
+
+        
+        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("routeImageUrl") as? String)!)!
+        data = NSData(contentsOfURL:url!)!
+        image = UIImage(data:data!)
+        cell.imgae.image = image
         return cell
     }
     
@@ -110,7 +110,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return (string?.count)!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

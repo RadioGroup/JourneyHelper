@@ -1,60 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<package name="fzu" extends="json-default">
 
 
 		<action name="userLogin" class="com.fzu.journeyhelper.action.LoginAction"
 			method="userLogin">
 			<result name="success" type="json">
-				<param name="excludeProperties">userName,passWord,userManager,user.routelist,user.createlist,user.imageList</param>
-			</result>
-			<result name="error" type="json">
-				<param name="excludeProperties">userName,passWord,userManager,user</param>
-			</result>
-
-		</action>
-
-		<action name="userRegist" class="com.fzu.journeyhelper.action.RegistAction"
-			method="userRegist">
-			<result name="success" type="json">
-				<param name="excludeProperties">userId,userName,passWord,nickName,email,telephone,headUrl,userManager,user.routelist,user.createlist,user.imageList</param>
+				<param name="excludeProperties">userName,passWord</param>
 			</result>
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
 			</result>
 		</action>
 
-		<action name="findCreatedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
-			method="findCreateRouteList">
+		<action name="userRegist" class="com.fzu.journeyhelper.action.RegistAction"
+			method="userRegist">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,joindeList</param>
+				<param name="includeProperties">status,user.*</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
 			</result>
 		</action>
 
-		<action name="findJoinedRouteList" class="com.fzu.journeyhelper.action.FindRouteAction"
-			method="findJoingRouteList">
+
+		<action name="findCreatedRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
+			method="findCreateRoutes">
 			<result name="success" type="json">
-				<param name="excludeProperties">userManager,routeManager,createList</param>
+				<param name="includeProperties">status,createList.*</param>
+			</result>
+		</action>
+
+		<action name="findJoingRoutes" class="com.fzu.journeyhelper.action.FindRouteAction"
+			method="findJoingRoutes">
+			<result name="success" type="json">
+				<param name="includeProperties">status,joindeList.*</param>
 			</result>
 		</action>
 
 		<action name="createRoute" class="com.fzu.journeyhelper.action.CreateRouteAction"
 			method="createRoute">
 			<result name="success" type="json">
-				<param name="excludeProperties">route.user,route.createUser,route.teamrecod,route.itinerarys,route.imageList</param>
-
-
+				<param name="includeProperties">status,route.*</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
 			</result>
 		</action>
 
 
-		<action name="findUsersListofRoute" class="com.fzu.journeyhelper.action.FindUsersAction"
-			method="findUsersList">
+		<action name="findRouteMenberList"
+			class="com.fzu.journeyhelper.action.GetRouteMenberAction" method="findRouteMenberList">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="findRouteScheduleList"
+			class="com.fzu.journeyhelper.action.FindRouteSchedulesAction" method="findRouteScheduleList">
+			<result name="success" type="json" >
+				<param name="excludeProperties">schedules.*.route</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
+		<action name="findUserNotHandleNotification"
+			class="com.fzu.journeyhelper.action.GetNotificationAction" method="findUserNotHandleNotification">
 			<result name="success" type="json">
+				<param name="excludeProperties">notifications.*.user</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
 			</result>
 		</action>
+
+		<action name="applyJoinRoute"
+			class="com.fzu.journeyhelper.action.ApplyJoinRouteAction" method="applyJoinRoute">
+			<result name="success" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
 
 
 	</package>

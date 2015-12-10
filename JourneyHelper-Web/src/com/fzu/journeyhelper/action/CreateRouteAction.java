@@ -8,14 +8,10 @@ import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
 
 /**
+ * è¡Œç¨‹åˆ›å»ºaction
  * 
- * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
+ * @author Volcano
  * 
- * Description: ClassName: com.fzu.journeyhelper.action.CreateRouteAction
- * Author: Hoatson Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:03:12 Modified By: Modified
- * Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:03:12 Modified Remark:
- * 
- * @version V1.0
  */
 public class CreateRouteAction extends BaseAction {
 
@@ -24,8 +20,8 @@ public class CreateRouteAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// 201´´½¨³É¹¦
-	// 202´´½¨Ê§°Ü
+	// 201åˆ›å»ºæˆåŠŸ
+	// 202åˆ›å»ºå¤±è´¥
 	private Integer status;
 
 	public Integer getStatus() {
@@ -36,30 +32,23 @@ public class CreateRouteAction extends BaseAction {
 		this.status = status;
 	}
 
-	// ¸ù¾İÓÃ»§µÄid²éÑ¯
+	// åˆ›å»ºè€…id
 	private Integer userId;
 
-	// ´´½¨ĞĞ³ÌËùĞèÒªµÄ²ÎÊı
+	// åˆ›å»ºè¡Œç¨‹éœ€è¦çš„å‚æ•°
 	private String title;
+	private Date beginTime;// é›†åˆæ—¶é—´
+	private Date endTime;
 	private String summary;
 	private String article;
-	private Date beginTime;
-	private Date endTime;
-//	private String property;
-//	private String type;
-//	private String strong;
-//	private String imageUrl;
-//	private String content;
+	private String routeImageUrl;// æ ‡å¿—å›¾ç‰‡
+	private Integer type;// è¡Œç¨‹ç±»å‹101ä¸ªäºº,102AA,103è·Ÿå›¢
+	private String secnics;// æ™¯ç‚¹ï¼Œå„ä¸ªæ™¯ç‚¹å·²åˆ†å·éš”å¼€ï¼Œå¦‚å‰æ—é›¾å‡‡å²›;ä¸œåŒ—é›ªä¹¡;ä¸œå‡é›ªè°·;
+	private String assemblingPlace;// é›†åˆåœ°ç‚¹
+	private String strengthGrade;// å¼ºåº¦ç­‰çº§ï¼Œå¦‚æ»‘é›ª;ä¼‘é—²;ç™»å±±;å¾’æ­¥;æ‘„å½±;éª‘é©¬;éœ²è¥;è‡ªé©¾
 
 	private Route route;
-
-	public Route getRoute() {
-		return route;
-	}
-
-	public void setRoute(Route route) {
-		this.route = route;
-	}
+	private User user;
 
 	@JSON(serialize = false)
 	public Integer getUserId() {
@@ -106,12 +95,67 @@ public class CreateRouteAction extends BaseAction {
 		this.summary = summary;
 	}
 
+	@JSON(serialize = false)
 	public String getArticle() {
 		return article;
 	}
 
 	public void setArticle(String article) {
 		this.article = article;
+	}
+
+	@JSON(serialize = false)
+	public String getRouteImageUrl() {
+		return routeImageUrl;
+	}
+
+	public void setRouteImageUrl(String routeImageUrl) {
+		this.routeImageUrl = routeImageUrl;
+	}
+
+	@JSON(serialize = false)
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	@JSON(serialize = false)
+	public String getSecnics() {
+		return secnics;
+	}
+
+	public void setSecnics(String secnics) {
+		this.secnics = secnics;
+	}
+
+	@JSON(serialize = false)
+	public String getAssemblingPlace() {
+		return assemblingPlace;
+	}
+
+	public void setAssemblingPlace(String assemblingPlace) {
+		this.assemblingPlace = assemblingPlace;
+	}
+
+	@JSON(serialize = false)
+	public String getStrengthGrade() {
+		return strengthGrade;
+	}
+
+	public void setStrengthGrade(String strengthGrade) {
+		this.strengthGrade = strengthGrade;
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	@JSON(serialize = false)
+	public User getUser() {
+		return user;
 	}
 
 	@Override
@@ -125,16 +169,22 @@ public class CreateRouteAction extends BaseAction {
 		user.setUserId(getUserId());
 
 		route = new Route();
-		route.setTitle(getTitle());
-		route.setBeginTime(getBeginTime());
-		route.setEndTime(getEndTime());
-		route.setSummary(getSummary());
-		route.setArticle(getArticle());;
-
-		Integer id = routeManager.createARoute(user, route);
-		route.setRouteId(id);
-		System.out.println(id);
+		route.setTitle(title);
+		route.setBeginTime(beginTime);
+		route.setEndTime(endTime);
+		route.setSummary(summary);
+		route.setArticle(article);
+		route.setRouteImageUrl(routeImageUrl);
+		route.setType(type);
+		route.setSecnics(secnics);
+		route.setAssemblingPlace(assemblingPlace);
+		route.setStrengthGrade(strengthGrade);
 		
+		
+		Integer id = routeManager.createARoute(user, route);
+		//route.setRouteId(id);
+		System.out.println(id);
+
 		setStatus(201);
 		return SUCCESS;
 	}
