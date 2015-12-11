@@ -22,6 +22,7 @@ class ViewController: UIViewController
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logUpButton: UIButton!
     var rightView : RightViewController!
+    var logUpView : LogUpViewController!
     // 该 TabBar Controller 不是传统意义上的容器，在此只负责提供 UITabBar 这个 UI 组件
     var mainTabBarController: MainTabBarController!
     var logFlag: Bool?
@@ -306,6 +307,15 @@ class ViewController: UIViewController
             // 为了演示效果，在右侧菜单划出时隐藏漏出的左侧菜单，并无实际意义
             self.leftViewController.view.alpha = showWhat == "right" ? 0 : 1
             }, completion: nil)
+    }
+    @IBAction func logUp(sender: AnyObject)
+    {
+        logUpView = LogUpViewController()
+        logUpView.view.layer.cornerRadius = 10
+        logUpView.setPopinTransitionStyle(.Zoom)
+        logUpView.setPopinAlignment(.Centered)
+        presentPopinController(logUpView, animated: true, completion: nil)
+        
     }
     func doInsert()
     {

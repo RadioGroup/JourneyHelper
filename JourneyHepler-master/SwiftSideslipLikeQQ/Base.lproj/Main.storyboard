@@ -50,6 +50,9 @@
                                 <state key="normal" title="LOG UP">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9pD-iL-7VM"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JourneyHelper" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBY-Ag-uFp">
                                 <rect key="frame" x="27" y="92" width="276" height="56"/>
