@@ -309,7 +309,11 @@ class ViewController: UIViewController
     }
     func doInsert()
     {
-        
+        rightView = RightViewController()
+        rightView.view.layer.cornerRadius = 10
+        rightView.setPopinTransitionStyle(.Zoom)
+        rightView.setPopinAlignment(.Centered)
+        presentPopinController(rightView, animated: true, completion: nil)
         
     }
     
