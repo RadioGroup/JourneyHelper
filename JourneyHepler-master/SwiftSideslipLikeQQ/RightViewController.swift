@@ -9,8 +9,14 @@
 import UIKit
 
 class RightViewController: UIViewController {
+    @IBOutlet weak var journeyTime: UITextField!
 
+    @IBOutlet weak var journeyTitle: UITextField!
+    @IBOutlet weak var journeyPlan: UITextView!
+    @IBOutlet weak var journeyPlace: UITextField!
+    
     override func viewDidLoad() {
+
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.

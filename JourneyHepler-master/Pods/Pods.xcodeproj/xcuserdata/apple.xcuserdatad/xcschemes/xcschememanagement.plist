@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>MaryPopin.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -32,7 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>60912040005E890E3182F21F3A700DD0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B4D3D272B3E25B85177819887A2BF047</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFD0A971A3A625575671C09105F0621D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9AC6491568D769B381D4B42C76EC209</key>
 		<dict>
 			<key>primary</key>
 			<true/>
