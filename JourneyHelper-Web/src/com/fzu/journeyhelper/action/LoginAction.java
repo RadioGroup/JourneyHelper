@@ -2,11 +2,10 @@ package com.fzu.journeyhelper.action;
 
 import com.fzu.journeyhelper.domain.User;
 
-
 /**
  * 
  * @author Volcano
- *
+ * 
  */
 public class LoginAction extends BaseAction {
 
@@ -14,7 +13,7 @@ public class LoginAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	//
 	// 201成功
 	// 202失败
@@ -60,8 +59,6 @@ public class LoginAction extends BaseAction {
 		return "LoginAction [userName=" + userName + ", passWord=" + passWord
 				+ "]";
 	}
-
-
 
 	public String userLogin() throws Exception {
 		System.out.println(toString());
