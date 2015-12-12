@@ -1,6 +1,6 @@
 package com.fzu.journeyhelper.action.find;
 
-import java.util.Set;
+import java.util.List;
 
 import com.fzu.journeyhelper.action.BaseAction;
 import com.fzu.journeyhelper.domain.Notification;
@@ -11,7 +11,7 @@ public class FindNotificationAction extends BaseAction {
 	private Integer status;
 	private Integer userId;
 	private Short isHandle;// 1表示已经解决，2表示为处理，3表示全部
-	private Set<Notification> notifications;
+	private List<Notification> notifications;
 
 	public Integer getStatus() {
 		return status;
@@ -29,7 +29,7 @@ public class FindNotificationAction extends BaseAction {
 		this.isHandle = isHandle;
 	}
 
-	public Set<Notification> getNotifications() {
+	public List<Notification> getNotifications() {
 		return notifications;
 	}
 
@@ -43,11 +43,12 @@ public class FindNotificationAction extends BaseAction {
 	 * 
 	 * @Tips
 	 */
-	public String findUserNotHandleNotification() {
+	public String findUserNotification() {
 		// TODO 加载了route，notification，user三个类产生了三条的查询语句，有待优化
 		User user = new User();
 		user.setUserId(userId);
 		notifications = notificationManager.getUserNotification(user, isHandle);
+		System.out.println(notifications.get(0).getCreateTime().toString());
 		setStatus(201);
 		return SUCCESS;
 	}

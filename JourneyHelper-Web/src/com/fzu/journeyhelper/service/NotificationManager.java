@@ -1,10 +1,10 @@
 package com.fzu.journeyhelper.service;
 
-import java.util.Set;
+import java.util.List;
 
+import com.fzu.journeyhelper.domain.Notification;
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
-import com.fzu.journeyhelper.domain.Notification;;
 
 public interface NotificationManager {
 	
@@ -13,7 +13,7 @@ public interface NotificationManager {
 	 * @param user
 	 * @return
 	 */
-	public Set<Notification> getUserNotification(User user,Short isHandle);
+	public List<Notification> getUserNotification(User user,Short isHandle);
 	
 	/**
 	 * 添加一条向某个行程申请加入的通通知

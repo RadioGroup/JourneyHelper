@@ -3,8 +3,6 @@ package com.fzu.journeyhelper.dao.impl;
 import static org.hibernate.criterion.Example.create;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,12 +76,11 @@ public class NotificationDaoImple extends BaseDaoHibernate4<Notification>
 	}
 
 	@Override
-	public Set<Notification> findUserNotifications(User user, short isHandle) {
-		Set<Notification> list = new TreeSet<Notification>();
-		// TODO list向set的转化是否多余？等待优化探究 
-		list.addAll(find(
-				"from Notification as n where n.userByReceiveUserId=?0 and n.ishandle=?1 order n.ishandle desc ,n.reateTime desc",
-				user, isHandle));
+	public List<Notification> findUserNotifications(User user, short isHandle) {
+		// TODO list向set的转化是否多余？等待优化探究
+		List<Notification> list = find(
+				"from Notification as n where n.userByReceiveUserId=?0 and n.ishandle=?1 order by n.createTime desc",
+				user, isHandle);
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -93,7 +90,7 @@ public class NotificationDaoImple extends BaseDaoHibernate4<Notification>
 	}
 
 	@Override
-	public Set<Notification> findUserNotificationByType(User uesr, Short type) {
+	public List<Notification> findUserNotificationByType(User uesr, Short type) {
 		// TODO 查询不同类型的通知，如申请，或者行程更新
 		return null;
 	}

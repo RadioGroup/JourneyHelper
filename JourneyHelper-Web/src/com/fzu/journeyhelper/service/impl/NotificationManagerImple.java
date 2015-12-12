@@ -1,6 +1,7 @@
 package com.fzu.journeyhelper.service.impl;
 
-import java.util.Set;
+
+import java.util.List;
 
 import com.fzu.journeyhelper.domain.Notification;
 import com.fzu.journeyhelper.domain.Route;
@@ -11,9 +12,13 @@ public class NotificationManagerImple extends BaseManager implements
 		NotificationManager {
 
 	@Override
-	public Set<Notification> getUserNotification(User user, Short isHandle) {
+	public List<Notification> getUserNotification(User user, Short isHandle) {
 
-		Set<Notification> notifications = notificationDao
+		if (isHandle == null) {
+			isHandle = Notification.NOTIFICATION_STATUS_NOT_HANDLE;
+		}
+
+		List<Notification> notifications = notificationDao
 				.findUserNotifications(user, isHandle);
 		return notifications;
 	}
@@ -86,6 +91,7 @@ public class NotificationManagerImple extends BaseManager implements
 		// 如果同意加入
 		if (isagree == Notification.NOTIFICATION_ANSER_AGREE) {
 
+			rec.getJoinRoutes().add(route);
 			// 将用户加入对应的行程
 			route.getUsers().add(rec);
 
