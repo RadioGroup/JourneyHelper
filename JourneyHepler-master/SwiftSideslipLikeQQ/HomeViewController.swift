@@ -102,9 +102,19 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  (string?.count)!
-        
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        var count: Int?
+        count = string?.count
+        print(count)
+        if(count == nil)
+        {
+            return 0
+            
+        }else
+        {
+            return count!
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

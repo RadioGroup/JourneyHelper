@@ -7,21 +7,63 @@
 //
 
 import UIKit
+import Alamofire
 
-class LogUpViewController: UIViewController {
+class LogUpViewController: UIViewController
+{
+    @IBOutlet weak var phoneText: UITextField!
+    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var usernameText: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+               // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @IBAction func submitAction(sender: AnyObject)
+    {
+        SVProgressHUD.showWithStatus("加载中")
+        let hostString = host!
+        let username = usernameText.text!
+        let password = passwordText.text!
+        let email = emailText.text!
+        let phone = phoneText.text!
+        var  str  = "\(hostString)/userRegist?userName=\(username)&passWord=\(password)&nickName=nichen&realName=TOM&sex=男&age=20&job=&Email=\(email)&Telephone=\(phone)&location=&headUrl="
+        str = str.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        print(str)
+        let URL = NSURL(string: str)!
+        
+        Alamofire.request(.POST, URL)
+            .responseJSON
+            {
+                response in
+                if response.result.isSuccess
+                {
+                    let data = response.result.value
+                    let status = data!["status"] as? Int
+                    if(status == 301)
+                    {
+                        SVProgressHUD.showSuccessWithStatus("注册成功！")
+                    }else if(status == 302)
+                    {
+                        SVProgressHUD.showErrorWithStatus("用户名已被占用")
+                    }
+                }else if response.result.isFailure
+                {
+                    SVProgressHUD.showErrorWithStatus("注册失败")
+                    
+                }
+        }
+    }
 
+    
     /*
     // MARK: - Navigation
 

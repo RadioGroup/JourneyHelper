@@ -57,9 +57,14 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+//        logInButton.hidden = true
+//        logUpButton.hidden = true
+//        usernameText.hidden = true
+//        passWordLabel.hidden = true
         self.userDefaults = NSUserDefaults.standardUserDefaults()
         self.userDefaults.setBool(false , forKey: "log")
         self.logFlag = userDefaults.boolForKey("Log")
+//        self.logInView()
 //        if (self.logFlag != true)
 //        {
 //            self.logInView()
@@ -76,12 +81,13 @@ class ViewController: UIViewController
     
     @IBAction func logInAction(sender: AnyObject)
     {
-        let user = "hoatson"
-        let password = "root"
+        let user = usernameText.text!
+        let password = passWordLabel.text!
         
         SVProgressHUD.showWithStatus("努力加载中")
+        let hostString = host!
         
-        Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/userLogin?userName=\(user)&passWord=\(password)")
+        Alamofire.request(.GET, "\(hostString)/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
@@ -102,7 +108,7 @@ class ViewController: UIViewController
                     print("数据监测userId\(userId)")
                    
 //                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                    let URL = NSURL(string: "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=\(userId)")!
+                    let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
                     print(URL)
                     let request = NSMutableURLRequest(URL: URL)
                          Alamofire.request(.GET,request)
@@ -126,7 +132,6 @@ class ViewController: UIViewController
                                 
                             }else if response.result.isFailure
                             {
-//                                self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
                                 SVProgressHUD.showErrorWithStatus("您的网络挂了")
                             }
                             

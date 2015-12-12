@@ -17,6 +17,8 @@ class LogInViewController: UIViewController
     var alertView : UIAlertView!
     var data: NSDictionary?
     var userData: NSDictionary?
+    var logIn: Bool?
+    var mainView: ViewController!
 
     override func viewDidLoad()
     {
@@ -49,6 +51,7 @@ class LogInViewController: UIViewController
                     let status = data!["status"] as? Int
                     if(status == 201)
                     {
+                        
                         let user = data!["user"]
                         print("数据监测user\(user)")
                         self.userData = user as? NSDictionary
@@ -73,6 +76,8 @@ class LogInViewController: UIViewController
                                     string = self.data?.objectForKey("createList")as?NSMutableArray
                                     //                        self.userDefaults.setObject(self.string, forKey: "homeData")
                                     print("数据：\(string)")
+                                    self.mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+                                    self.presentViewController(self.mainView, animated: true, completion: nil)
         
                                 }else if response.result.isFailure
                                 {

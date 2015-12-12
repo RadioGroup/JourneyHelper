@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MaryPopin.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CFD0A971A3A625575671C09105F0621D</key>
+		<key>6847254D016329D4A531D34ED2B6DF81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9AC6491568D769B381D4B42C76EC209</key>
+		<key>B38DC1126F96EA9D4FD8596746B41496</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE2BA504E62989527D34751F2459320D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
