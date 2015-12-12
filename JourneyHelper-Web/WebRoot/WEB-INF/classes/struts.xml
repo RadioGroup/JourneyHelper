@@ -98,7 +98,11 @@
 			</result>
 		</action>
 
-
+		<action name="agreeJoinRoute"
+			class="com.fzu.journeyhelper.action.HandleNotificationAction" method="agreeJoinRoute">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
 
 		<action name="updateUserInfoAction"
 			class="com.fzu.journeyhelper.action.update.UpdateUserInfoAction"
@@ -110,7 +114,6 @@
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
 			</result>
-
 
 
 		</action>

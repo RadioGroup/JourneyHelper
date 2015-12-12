@@ -10,9 +10,7 @@ public class FindNotificationAction extends BaseAction {
 
 	private Integer status;
 	private Integer userId;
-	private Integer routeId;
 	private Short isHandle;// 1表示已经解决，2表示为处理，3表示全部
-	private Short type;
 	private Set<Notification> notifications;
 
 	public Integer getStatus() {
@@ -27,16 +25,8 @@ public class FindNotificationAction extends BaseAction {
 		this.userId = userId;
 	}
 
-	public void setRouteId(Integer routeId) {
-		this.routeId = routeId;
-	}
-
 	public void setIsHandle(Short isHandle) {
 		this.isHandle = isHandle;
-	}
-
-	public void setType(Short type) {
-		this.type = type;
 	}
 
 	public Set<Notification> getNotifications() {
@@ -57,7 +47,7 @@ public class FindNotificationAction extends BaseAction {
 		// TODO 加载了route，notification，user三个类产生了三条的查询语句，有待优化
 		User user = new User();
 		user.setUserId(userId);
-		notifications = notificationManager.getUserNotHandleNotification(user);
+		notifications = notificationManager.getUserNotification(user, isHandle);
 		setStatus(201);
 		return SUCCESS;
 	}

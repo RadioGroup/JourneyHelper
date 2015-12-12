@@ -5,7 +5,7 @@ import com.fzu.journeyhelper.domain.User;
 /**
  * 
  * @author Volcano
- *
+ * 
  */
 public class RegistAction extends BaseAction {
 
@@ -14,8 +14,8 @@ public class RegistAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//301表示成功
-	//302表示失败
+	// 301表示成功
+	// 302表示失败
 	private Integer status;
 	private String userName;
 	private String passWord;
@@ -134,8 +134,6 @@ public class RegistAction extends BaseAction {
 		this.user = user;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "RegistAction [userName=" + userName + ", passWord=" + passWord
@@ -145,7 +143,6 @@ public class RegistAction extends BaseAction {
 				+ ", headUrl=" + headUrl + "]";
 	}
 
-	
 	@Override
 	public String execute() throws Exception {
 		return null;
@@ -158,26 +155,26 @@ public class RegistAction extends BaseAction {
 		user.setPassWord(getPassWord());
 		user.setNickName(getNickName());
 		user.setRealName(getRealName());
-		if(getSex().equals("女")){			
+		if (getSex().equals("女")) {
 			user.setSex("女");
-		}else{
+		} else {
 			user.setSex("男");
 		}
-		user.setAge(getAge());	
+		user.setAge(getAge());
 		user.setJob(getJob());
 		user.setEmail(getEmail());
 		user.setTelephoneNumber(getTelephone());
 		user.setLocation(getLocation());
 		user.setHeadUrl(getHeadUrl());
-		
-		// 鍏堟煡璇㈡槸鍚﹀瓨鍦�
+
+		// 判断账户是否被占用
 		if (userManager.registAvaliable(user)) {
 			user.setUserId(userManager.registNewUser(user));
 			setUser(user);
 			setStatus(301);
 			return SUCCESS;
 		} else {
-			//鐢ㄦ埛鍚嶅凡缁忚鍗犵敤
+
 			setStatus(302);
 			return ERROR;
 		}

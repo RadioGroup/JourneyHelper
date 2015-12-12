@@ -9,25 +9,11 @@ import com.fzu.journeyhelper.domain.Notification;;
 public interface NotificationManager {
 	
 	/**
-	 * 获取用户未处理的通知
+	 * 获取用户通知
 	 * @param user
 	 * @return
 	 */
-	public Set<Notification> getUserNotHandleNotification(User user);
-	
-	/**
-	 * 获取用户已处理的通知
-	 * @param user
-	 * @return
-	 */
-	public Set<Notification> getUserHasHandleNotification(User user);
-	
-	/**
-	 * 获取用户所有的通知
-	 * @param user
-	 * @return
-	 */
-	public Set<Notification> getUserAllNotification(User user);
+	public Set<Notification> getUserNotification(User user,Short isHandle);
 	
 	/**
 	 * 添加一条向某个行程申请加入的通通知
@@ -38,12 +24,17 @@ public interface NotificationManager {
 	public boolean addAapplyJoinNoteToRoute(User applicant,Route route);
 	
 	/**
-	 * 添加一条向某个行程管理员申请加入的通通知
+	 * 添加一条向某个行程管理员同意申请加入的通通知
 	 * @param applicant
 	 * @param route
 	 * @return
 	 */
 	public boolean addAapplyJoinNoteToRouteManager(User applicant,User receive);
 	
-	
+	/**
+	 * 处理申请加入，同意某用户申请加入
+	 * @param notification
+	 * @return
+	 */
+	public boolean agreeUserJoin(Notification notification,short isagree,Integer userId);
 }
