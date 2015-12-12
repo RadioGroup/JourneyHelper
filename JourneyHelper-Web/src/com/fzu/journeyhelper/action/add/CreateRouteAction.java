@@ -1,12 +1,11 @@
 package com.fzu.journeyhelper.action.add;
 
-import java.util.Date;
-
 import org.apache.struts2.json.annotations.JSON;
 
 import com.fzu.journeyhelper.action.BaseAction;
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.User;
+import com.fzu.journeyhelper.utils.TimeDateUtil;
 
 /**
  * 行程创建action
@@ -38,8 +37,8 @@ public class CreateRouteAction extends BaseAction {
 
 	// 创建行程需要的参数
 	private String title;
-	private Date beginTime;// 集合时间
-	private Date endTime;
+	private String beginTime;// 集合时间
+	private String endTime;
 	private String summary;
 	private String article;
 	private String routeImageUrl;// 标志图片
@@ -70,20 +69,20 @@ public class CreateRouteAction extends BaseAction {
 	}
 
 	@JSON(serialize = false)
-	public Date getBeginTime() {
+	public String getBeginTime() {
 		return beginTime;
 	}
 
-	public void setBeginTime(Date beginTime) {
+	public void setBeginTime(String beginTime) {
 		this.beginTime = beginTime;
 	}
 
 	@JSON(serialize = false)
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
@@ -171,8 +170,8 @@ public class CreateRouteAction extends BaseAction {
 
 		route = new Route();
 		route.setTitle(title);
-		route.setBeginTime(beginTime);
-		route.setEndTime(endTime);
+		route.setBeginTime(TimeDateUtil.stringToDate(beginTime));
+		route.setEndTime(TimeDateUtil.stringToDate(endTime));
 		route.setSummary(summary);
 		route.setArticle(article);
 		route.setRouteImageUrl(routeImageUrl);
@@ -180,10 +179,8 @@ public class CreateRouteAction extends BaseAction {
 		route.setSecnics(secnics);
 		route.setAssemblingPlace(assemblingPlace);
 		route.setStrengthGrade(strengthGrade);
-		
-		
+
 		Integer id = routeManager.createARoute(user, route);
-		//route.setRouteId(id);
 		System.out.println(id);
 
 		setStatus(201);

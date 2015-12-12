@@ -1,7 +1,5 @@
 package com.fzu.journeyhelper.service.impl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +10,7 @@ import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.Schedule;
 import com.fzu.journeyhelper.domain.User;
 import com.fzu.journeyhelper.service.RouteManager;
+import com.fzu.journeyhelper.utils.TimeDateUtil;
 
 /**
  * 
@@ -57,38 +56,28 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 	@Override
 	public boolean addScheduleForRoute(String shecduleJson, Route route) {
 
-		try {
-			JSONObject shecduleJsonObject = JSONObject.fromObject(shecduleJson);
+		JSONObject shecduleJsonObject = JSONObject.fromObject(shecduleJson);
 
-			JSONArray scheduleArray = shecduleJsonObject
-					.getJSONArray("schedules");
+		JSONArray scheduleArray = shecduleJsonObject.getJSONArray("schedules");
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			for (int i = 0; i < scheduleArray.size(); i++) {
-				JSONObject scheduleItem = scheduleArray.getJSONObject(i);
-				Schedule newSchedule = new Schedule();
+		for (int i = 0; i < scheduleArray.size(); i++) {
+			JSONObject scheduleItem = scheduleArray.getJSONObject(i);
+			Schedule newSchedule = new Schedule();
+			newSchedule.setAccommodation(scheduleItem
+					.getString("accommodation"));
+			newSchedule.setBeginTime(TimeDateUtil.stringToDate(scheduleItem
+					.getString("beginTime")));
+			newSchedule.setBudget(scheduleItem.getLong("budget"));
+			newSchedule.setDestination(scheduleItem.getString("destination"));
+			newSchedule.setDiner(scheduleItem.getString("diner"));
+			newSchedule.setEndTime(TimeDateUtil.stringToDate(scheduleItem
+					.getString("endTime")));
+			newSchedule.setRemark((scheduleItem.getString("remark")));
+			newSchedule.setVehicle(scheduleItem.getString("vehicle"));
+			newSchedule.setRoute(route);
 
-				newSchedule.setAccommodation(scheduleItem
-						.getString("accommodation"));
-				newSchedule.setBeginTime(sdf.parse(scheduleItem
-						.getString("beginTime")));
-				newSchedule.setBudget(scheduleItem.getLong("budget"));
-				newSchedule.setDestination(scheduleItem
-						.getString("destination"));
-				newSchedule.setDiner(scheduleItem.getString("diner"));
-				newSchedule.setEndTime(sdf.parse(scheduleItem
-						.getString("endTime")));
-				newSchedule.setRemark((scheduleItem.getString("remark")));
-				newSchedule.setVehicle(scheduleItem.getString("vehicle"));
-				newSchedule.setRoute(route);
-
-				scheduleDao.save(newSchedule);
-				System.out.println(newSchedule.toString());
-			}
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			scheduleDao.save(newSchedule);
+			System.out.println(newSchedule.toString());
 		}
 
 		return false;

@@ -14,9 +14,7 @@ public class ApplyJoinRouteAction extends BaseAction {
 	private Integer userId;
 	private String userName;
 	private String nickName;
-	private Integer routeId;// 申请加入的行程id;
-
-	
+	private Integer routeId;// 申请加入的行程id;	
 	private Integer status;// 201,202;
 
 	public Integer getUserId() {
