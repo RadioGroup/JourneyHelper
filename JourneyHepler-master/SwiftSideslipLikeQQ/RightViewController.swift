@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class RightViewController: UIViewController {
+class RightViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
 
     
     @IBOutlet weak var journeyPlanText: UITextView!
@@ -21,7 +21,10 @@ class RightViewController: UIViewController {
     {
         super.viewDidLoad()
         self.userDefaults = NSUserDefaults.standardUserDefaults()
-        
+        self.journeyPlaceText.delegate = self
+        self.journeyPlanText.delegate = self
+        self.journeyTimeText.delegate = self
+        self.journeyTitleText.delegate = self
         
         
         // Do any additional setup after loading the view.
@@ -82,8 +85,19 @@ class RightViewController: UIViewController {
         
         
     }
+   
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
     
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        journeyTitleText.resignFirstResponder()
+        journeyTimeText.resignFirstResponder()
+        journeyPlanText.resignFirstResponder()
+        journeyPlaceText.resignFirstResponder()
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

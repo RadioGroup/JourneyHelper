@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LogUpViewController: UIViewController
+class LogUpViewController: UIViewController,UITextFieldDelegate
 {
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var emailText: UITextField!
@@ -18,7 +18,10 @@ class LogUpViewController: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.phoneText.delegate = self
+        self.emailText.delegate = self
+        self.passwordText.delegate = self
+        self.usernameText.delegate = self
         
                // Do any additional setup after loading the view.
     }
@@ -63,6 +66,17 @@ class LogUpViewController: UIViewController
         }
     }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        passwordText.resignFirstResponder()
+        phoneText.resignFirstResponder()
+        usernameText.resignFirstResponder()
+        emailText.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     /*
     // MARK: - Navigation

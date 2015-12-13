@@ -96,7 +96,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCellWithIdentifier("leftViewCell", forIndexPath: indexPath) 
         
         cell.backgroundColor = UIColor.clearColor()

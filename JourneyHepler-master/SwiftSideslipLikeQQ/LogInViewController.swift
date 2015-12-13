@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LogInViewController: UIViewController
+class LogInViewController: UIViewController,UITextFieldDelegate
 {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -24,6 +24,8 @@ class LogInViewController: UIViewController
     {
         super.viewDidLoad()
         self.userDefaults = NSUserDefaults.standardUserDefaults()
+        self.usernameText.delegate = self
+        self.passwordText.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -40,7 +42,7 @@ class LogInViewController: UIViewController
         
         SVProgressHUD.showWithStatus("努力加载中")
         
-        Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/userLogin?userName=\(user)&passWord=\(password)")
+        Alamofire.request(.GET, "\(host)/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
@@ -62,7 +64,7 @@ class LogInViewController: UIViewController
                         print("数据监测userId\(userId)")
                         
                         //                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                        let URL = NSURL(string: "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=\(userId)")!
+                        let URL = NSURL(string: "\(host)/findCreatedRoutes?userId=\(userId)")!
                         print(URL)
                         let request = NSMutableURLRequest(URL: URL)
                         Alamofire.request(.GET,request)
@@ -109,6 +111,17 @@ class LogInViewController: UIViewController
         
     }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("键盘return")
+        textField.resignFirstResponder()
+        return true
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+    }
+    
     @IBAction func logUpAction(sender: AnyObject)
     {
         
