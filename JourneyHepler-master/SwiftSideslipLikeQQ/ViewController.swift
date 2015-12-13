@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 
 var string: NSMutableArray?
-var host:String? = "http://172.50.180.239/JourneyHelper-Web"
+//var host:String? = "http://172.50.180.239/JourneyHelper-Web"
+var host:String? = "http://120.27.34.200/JourneyHelper-Web"
 
 // 此 View Controller 为根容器，本身并不包含任何 UI 元素
 class ViewController: UIViewController
@@ -22,6 +23,7 @@ class ViewController: UIViewController
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var logUpButton: UIButton!
     var rightView : RightViewController!
+    var logUpView : LogUpViewController!
     // 该 TabBar Controller 不是传统意义上的容器，在此只负责提供 UITabBar 这个 UI 组件
     var mainTabBarController: MainTabBarController!
     var logFlag: Bool?
@@ -56,9 +58,14 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+//        logInButton.hidden = true
+//        logUpButton.hidden = true
+//        usernameText.hidden = true
+//        passWordLabel.hidden = true
         self.userDefaults = NSUserDefaults.standardUserDefaults()
         self.userDefaults.setBool(false , forKey: "log")
         self.logFlag = userDefaults.boolForKey("Log")
+//        self.logInView()
 //        if (self.logFlag != true)
 //        {
 //            self.logInView()
@@ -79,8 +86,9 @@ class ViewController: UIViewController
         let password = "root"
         
         SVProgressHUD.showWithStatus("努力加载中")
+        let hostString = host!
         
-        Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/userLogin?userName=\(user)&passWord=\(password)")
+        Alamofire.request(.GET, "\(hostString)/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
@@ -101,7 +109,7 @@ class ViewController: UIViewController
                     print("数据监测userId\(userId)")
                    
 //                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                    let URL = NSURL(string: "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=\(userId)")!
+                    let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
                     print(URL)
                     let request = NSMutableURLRequest(URL: URL)
                          Alamofire.request(.GET,request)
@@ -125,7 +133,6 @@ class ViewController: UIViewController
                                 
                             }else if response.result.isFailure
                             {
-//                                self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
                                 SVProgressHUD.showErrorWithStatus("您的网络挂了")
                             }
                             
@@ -306,6 +313,15 @@ class ViewController: UIViewController
             // 为了演示效果，在右侧菜单划出时隐藏漏出的左侧菜单，并无实际意义
             self.leftViewController.view.alpha = showWhat == "right" ? 0 : 1
             }, completion: nil)
+    }
+    @IBAction func logUp(sender: AnyObject)
+    {
+        logUpView = LogUpViewController()
+        logUpView.view.layer.cornerRadius = 10
+        logUpView.setPopinTransitionStyle(.Zoom)
+        logUpView.setPopinAlignment(.Centered)
+        presentPopinController(logUpView, animated: true, completion: nil)
+        
     }
     func doInsert()
     {

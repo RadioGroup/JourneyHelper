@@ -13,10 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
 
     var window: UIWindow?
+//    var userDefaults: NSUserDefaults!
+//    var logIn: Bool?
+//    var logInView: LogInViewController!
+//    var mainView: ViewController!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+//        userDefaults = NSUserDefaults.standardUserDefaults()
         
         // 改变 StatusBar 颜色
         application.statusBarStyle = UIStatusBarStyle.LightContent
@@ -27,6 +32,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         navigationBarAppearace.barTintColor = UIColor(hex: 0x80b6ed)//0x25b6ed
         navigationBarAppearace.tintColor = UIColor.whiteColor()
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+//        window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+//        logIn = userDefaults.boolForKey("Log")
+        
+//        if (logIn != nil)
+//        {
+//            mainView = ViewController()
+//            self.window?.rootViewController = mainView
+//        }else
+//        {
+//            logInView = LogInViewController()
+//            self.window?.rootViewController = logInView
+//        }
+//        
+//        window?.makeKeyAndVisible()
         
         return true
     }
