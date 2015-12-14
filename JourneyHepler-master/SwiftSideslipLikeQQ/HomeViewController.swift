@@ -10,10 +10,10 @@ import UIKit
 import Alamofire
 
 
-// 主页
+var routeId : Int?
 class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
-        
+    
     var titleOfOtherPages = ""
     var userDefalutsHome: NSUserDefaults!
     var alertView: UIAlertView!
@@ -22,11 +22,13 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var string3: NSMutableArray?
     var string4: NSMutableArray?
     var allData: NSDictionary?
+    var data: NSDictionary?
+    var userid: Int?
     
     var index:Int = 0
     
     //    var string: NSMutableArray?
-
+    
     @IBOutlet weak var homeTableView: UITableView!
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
@@ -34,10 +36,12 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     {
         super.viewDidLoad()
         self.userDefalutsHome = NSUserDefaults.standardUserDefaults()
-
+        self.homeTableView.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         self.homeTableView.dataSource = self
         self.homeTableView.delegate = self
         self.homeTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
+        
+        self.homeTableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: Selector("loadNewData"))
         
         // 设置中间 segmentView 视图
         let segmentView = UISegmentedControl(items: ["消息", "电话"])
@@ -48,7 +52,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         segmentView.hidden = true
         
-
+        
     }
     override func viewDidAppear(animated: Bool) {
         
@@ -60,40 +64,61 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:HomeTableViewCell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
-//        
-//        Alamofire.request(.GET, "http://172.50.180.239/findJoinedRouteList?userId=1")
-//            .responseJSON { response in
-//                //                    debugPrint(response)
-//                if response.result.isSuccess
-//                {
-//                    let data = response.result.value
-//                    self.allData = data as? NSDictionary
-//                    self.string1 = self.allData?.objectForKey("joindeList")as?NSMutableArray
-//                    
-//                    
-//                    print("数据数据：\(self.string1)")
-//                    
-//                }else if response.result.isFailure
-//                {
-//                    self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
-//                }
-//                
-//        }
-
-        cell.backgroundColor = UIColor.clearColor()
+        //
+        //        Alamofire.request(.GET, "http://172.50.180.239/findJoinedRouteList?userId=1")
+        //            .responseJSON { response in
+        //                //                    debugPrint(response)
+        //                if response.result.isSuccess
+        //                {
+        //                    let data = response.result.value
+        //                    self.allData = data as? NSDictionary
+        //                    self.string1 = self.allData?.objectForKey("joindeList")as?NSMutableArray
+        //
+        //
+        //                    print("数据数据：\(self.string1)")
+        //
+        //                }else if response.result.isFailure
+        //                {
+        //                    self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
+        //                }
+        //
+        //        }
+        
+        cell.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         cell.titleLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("title") as? String
         cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("beginTime") as? String
-        cell.typeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("type") as? String
-        cell.routeIdLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? String
+        
         
         var url:NSURL?
         var data:NSData?
         var image:UIImage?
-
+        var str:String?
         
-        url = NSURL(string: (string?.objectAtIndex(indexPath.row).objectForKey("routeImageUrl") as? String)!)!
-        data = NSData(contentsOfURL:url!)!
-        image = UIImage(data:data!)
+        
+        //        var ul = string?.objectAtIndex(indexPath.row).objectForKey("routeImageUrl")
+        //        print(ul)
+        
+        str = (string?.objectAtIndex(indexPath.row).objectForKey("routeImageUrl") as? String)!
+        //        print("数据输出\(str)")
+        
+        if str == nil
+        {
+            image = UIImage(named: "nil")
+            
+        }
+        else
+        {
+            url = NSURL(string: str!)
+            data = NSData(contentsOfURL:url!)
+            if data == nil
+            {
+                image = UIImage(named: "nil")
+                
+            }else
+            {
+                image = UIImage(data:data!)
+            }
+        }
         cell.imgae.image = image
         return cell
     }
@@ -118,34 +143,80 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 152.0
+        return 232.0
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         
         let index = indexPath.row
-        
+        routeId = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? Int
         self.performSegueWithIdentifier("showDetail", sender: index)
         Common.contactsVC.view.removeFromSuperview()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail"{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "showDetail"
+        {
             let controller = segue.destinationViewController as! RouteDetailViewController
-        controller.index = (sender as? Int)!
+            controller.index = (sender as? Int)!
         }
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showOtherPages" {
-//            if let a = segue.destinationViewController as? OtherPageViewController {
-//                a.PageTitle = titleOfOtherPages
-//            }
-//        }
-//    }
+    func loadNewData()
+    {
+        let hostString = host!
+        self.userid = self.userDefalutsHome.objectForKey("userId") as? Int
+        if (self.userid == nil)
+        {
+            SVProgressHUD.showErrorWithStatus("刷新失败，请重新登陆后尝试！")
+            self.homeTableView.mj_header.endRefreshing()
+        }
+        else
+        {
+            let userId = self.userid!
+            let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
+            print(URL)
+            Alamofire.request(.GET, URL)
+                .responseJSON
+                { response in
+                    self.data = response.result.value as? NSDictionary
+                    let status = self.data!["status"] as? Int
+                    if(status == 301)
+                    {
+                        if(response.result.isSuccess)
+                        {
+                            string = self.data?.objectForKey("createList")as?NSMutableArray
+                            self.homeTableView.reloadData()
+                            self.homeTableView.mj_header.endRefreshing()
+                        }else if(response.result.isFailure)
+                        {
+                            SVProgressHUD.showErrorWithStatus("刷新失败")
+                            self.homeTableView.mj_header.endRefreshing()
+                            
+                        }
+                    }else if(status == 302)
+                    {
+                        SVProgressHUD.showErrorWithStatus("刷新失败")
+                         self.homeTableView.mj_header.endRefreshing()
+                    }
+            }
+            
+        }
+        
+    }
     
-
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        if segue.identifier == "showOtherPages" {
+    //            if let a = segue.destinationViewController as? OtherPageViewController {
+    //                a.PageTitle = titleOfOtherPages
+    //            }
+    //        }
+    //    }
+    
+    
 }

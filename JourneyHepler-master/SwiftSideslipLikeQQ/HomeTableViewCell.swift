@@ -10,16 +10,21 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var createTimeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imgae: UIImageView!
-    @IBOutlet weak var createTimeLabel: UILabel!
-    @IBOutlet weak var routeIdLabel: UILabel!
    
+    
+//    @IBOutlet weak var titleLabel: UILabel!
+//    @IBOutlet weak var imgae: UIImageView!
+//    @IBOutlet weak var createTimeLabel: UILabel!
+    
     override func awakeFromNib()
     {
       
         super.awakeFromNib()
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = self.frame.size.width/14
         // Initialization code
     }
 

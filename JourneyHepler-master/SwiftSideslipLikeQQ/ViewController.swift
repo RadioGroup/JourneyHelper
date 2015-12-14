@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 
 var string: NSMutableArray?
-var host:String? = "http://172.50.180.239/JourneyHelper-Web"
+//var host:String? = "http://172.50.180.239/JourneyHelper-Web"
+var host:String? = "http://120.27.34.200/JourneyHelper-Web"
 
 // 此 View Controller 为根容器，本身并不包含任何 UI 元素
 class ViewController: UIViewController
@@ -81,8 +82,8 @@ class ViewController: UIViewController
     
     @IBAction func logInAction(sender: AnyObject)
     {
-        let user = usernameText.text!
-        let password = passWordLabel.text!
+        let user = "hoatson"
+        let password = "root"
         
         SVProgressHUD.showWithStatus("努力加载中")
         let hostString = host!
