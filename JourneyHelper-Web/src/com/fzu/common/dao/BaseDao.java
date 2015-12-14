@@ -6,6 +6,15 @@ import java.util.List;
 
 public interface BaseDao<T>
 {
+	
+	/**
+	 * 根据主键查询是否存在
+	 * @param entityClazz
+	 * @param id
+	 * @return
+	 */
+	boolean isExist(Class<T> entityClazz , Serializable id);
+	
 	/**
 	 * 
 	 * @param entityClazz

@@ -1,15 +1,20 @@
 package com.fzu.journeyhelper.domain;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * RouteCommentReplay entity. @author MyEclipse Persistence Tools
@@ -91,7 +96,7 @@ public class RouteCommentReplay implements java.io.Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;

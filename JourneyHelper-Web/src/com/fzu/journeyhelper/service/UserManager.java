@@ -24,7 +24,7 @@ public interface UserManager {
 	 */
 	public boolean registAvaliable(User user);
 
-	public Set<User> findRouteMenberList(Route route);
+	public Set<User> findRouteMenbers(Route route);
 	
 	public int updateUserInfo(User user);
 

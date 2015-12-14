@@ -56,6 +56,7 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 	@Override
 	public boolean addScheduleForRoute(String shecduleJson, Route route) {
 
+		
 		JSONObject shecduleJsonObject = JSONObject.fromObject(shecduleJson);
 
 		JSONArray scheduleArray = shecduleJsonObject.getJSONArray("schedules");
@@ -76,11 +77,16 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 			newSchedule.setVehicle(scheduleItem.getString("vehicle"));
 			newSchedule.setRoute(route);
 
-			scheduleDao.save(newSchedule);
-			System.out.println(newSchedule.toString());
+			try {
+				scheduleDao.save(newSchedule);	
+			} catch (Exception e) {
+				//如果无法插入证明id不存在。
+				e.printStackTrace();
+				return false;
+			}
+//			System.out.println(newSchedule.toString());
 		}
-
-		return false;
+		return true;
 	}
 
 	@Override

@@ -85,6 +85,7 @@ public class ImageIssue implements java.io.Serializable {
 		this.user = user;
 	}
 
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;

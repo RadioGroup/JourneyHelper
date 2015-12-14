@@ -1,15 +1,20 @@
 package com.fzu.journeyhelper.domain;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.apache.struts2.json.annotations.JSON;
 
 /**
  * Schedule entity. @author MyEclipse Persistence Tools
@@ -90,7 +95,7 @@ public class Schedule implements java.io.Serializable {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "beginTime", length = 19)
 	public Date getBeginTime() {
 		return this.beginTime;
@@ -99,7 +104,7 @@ public class Schedule implements java.io.Serializable {
 	public void setBeginTime(Date beginTime) {
 		this.beginTime = beginTime;
 	}
-
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "endTime", length = 19)
 	public Date getEndTime() {
 		return this.endTime;

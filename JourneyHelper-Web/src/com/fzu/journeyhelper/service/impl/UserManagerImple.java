@@ -30,11 +30,18 @@ public class UserManagerImple extends BaseManager implements UserManager {
 	}
 
 	@Override
-	public Set<User> findRouteMenberList(Route route) {
+	public Set<User> findRouteMenbers(Route route) {
+		Set<User> res = null;
 		route = routeDao.get(Route.class, route.getRouteId());
-		Set<User> res = route.getUsers();
-		res.size();
-		return res;
+		if (route != null) {
+			res = route.getUsers();
+			if (res != null) {
+				res.size();
+			}
+			return res;
+		} else {
+			return null;
+		}
 	}
 
 	@Override

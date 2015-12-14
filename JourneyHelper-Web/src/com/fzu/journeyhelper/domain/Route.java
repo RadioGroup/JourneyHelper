@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.struts2.json.annotations.JSON;
+import org.hibernate.annotations.OrderBy;
 import org.hibernate.annotations.Type;
 
 /**
@@ -41,7 +42,7 @@ public class Route implements java.io.Serializable {
 	private Date beginTime;// 集合时间
 	private Date endTime;
 	private Date createTime;
-	private String routeImageUrl;
+	private String routeImageUrl="";
 
 	private Integer type;// 行程类型101个人,102AA,103跟团
 	private String secnics;// 景点，各个景点已分号隔开，如吉林雾凇岛;东北雪乡;东升雪谷;
@@ -149,6 +150,7 @@ public class Route implements java.io.Serializable {
 		this.article = article;
 	}
 
+	@JSON(format = "yyyy-MM-dd HH:mm")
 	@Column(name = "beginTime", length = 19)
 	public Date getBeginTime() {
 		return this.beginTime;
@@ -158,6 +160,7 @@ public class Route implements java.io.Serializable {
 		this.beginTime = beginTime;
 	}
 
+	@JSON(format = "yyyy-MM-dd HH:mm")
 	@Column(name = "endTime", length = 19)
 	public Date getEndTime() {
 		return this.endTime;
@@ -167,6 +170,7 @@ public class Route implements java.io.Serializable {
 		this.endTime = endTime;
 	}
 
+	@JSON(format = "yyyy-MM-dd HH:mm")
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;
@@ -184,7 +188,7 @@ public class Route implements java.io.Serializable {
 	public void setRouteImageUrl(String routeImageUrl) {
 		this.routeImageUrl = routeImageUrl;
 	}
-	
+
 	@Column(name = "type")
 	public Integer getType() {
 		return type;
@@ -252,6 +256,7 @@ public class Route implements java.io.Serializable {
 	}
 
 	@JSON(serialize = false)
+	@OrderBy(clause="beginTime desc")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Schedule> getSchedules() {
 		return this.schedules;
@@ -263,6 +268,7 @@ public class Route implements java.io.Serializable {
 
 	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "joinRoutes")
+	@OrderBy(clause = "userId")
 	public Set<User> getUsers() {
 		return this.users;
 	}

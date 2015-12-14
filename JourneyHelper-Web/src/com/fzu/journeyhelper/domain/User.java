@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.struts2.json.annotations.JSON;
+import org.hibernate.annotations.OrderBy;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -237,6 +238,7 @@ public class User implements java.io.Serializable {
 	@JSON(serialize = false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "route_user_relevance", catalog = "journeyhelperweb", joinColumns = { @JoinColumn(name = "userId", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "routeId", nullable = false, updatable = false) })
+	@OrderBy(clause="routeId desc")
 	public Set<Route> getJoinRoutes() {
 		return this.joinRoutes;
 	}
@@ -268,6 +270,7 @@ public class User implements java.io.Serializable {
 
 	@JSON(serialize = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	@OrderBy(clause = "routeId desc")
 	public Set<Route> getCreateRoutes() {
 		return this.createRoutes;
 	}

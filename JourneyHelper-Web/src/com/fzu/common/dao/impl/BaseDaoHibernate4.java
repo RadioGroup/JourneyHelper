@@ -31,6 +31,13 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
+	
+	@Override
+	public boolean isExist(Class<T> entityClazz, Serializable id) {
+		// TODO 写一个判断是否存在的方法
+		return false;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> entityClazz, Serializable id) {
 		return (T) getCurrentSession().get(entityClazz, id);
@@ -179,5 +186,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 			throw re;
 		}
 	}
+
+	
 
 }

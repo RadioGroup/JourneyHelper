@@ -14,31 +14,31 @@ import com.fzu.common.dao.BaseDao;
 public class BaseDaoHibernate3<T> extends HibernateDaoSupport
 	implements BaseDao<T>
 {
-	// ¸ù¾İID¼ÓÔØÊµÌå
+	// ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public T get(Class<T> entityClazz, Serializable id)
 	{
 		return getHibernateTemplate().get(entityClazz, id);
 	}
 
-	// ±£´æÊµÌå
+	// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public Serializable save(T entity)
 	{
 		return getHibernateTemplate().save(entity);
 	}
 
-	// ¸üĞÂÊµÌå
+	// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public void update(T entity)
 	{
 		getHibernateTemplate().saveOrUpdate(entity);
 	}
 
-	// É¾³ıÊµÌå
+	// É¾ï¿½ï¿½Êµï¿½ï¿½
 	public void delete(T entity)
 	{
 		getHibernateTemplate().delete(entity);
 	}
 
-	// ¸ù¾İIDÉ¾³ıÊµÌå
+	// ï¿½ï¿½ï¿½IDÉ¾ï¿½ï¿½Êµï¿½ï¿½
 	public void delete(Class<T> entityClazz, Serializable id)
 	{
 		delete(get(entityClazz , id));
@@ -61,24 +61,24 @@ public class BaseDaoHibernate3<T> extends HibernateDaoSupport
 		return list.get(0);
 	}
 	/**
-	 * Ê¹ÓÃhql Óï¾ä½øĞĞ·ÖÒ³²éÑ¯²Ù×÷
-	 * @param hql ĞèÒª²éÑ¯µÄhqlÓï¾ä
-	 * @param pageNo ²éÑ¯µÚpageNoÒ³µÄ¼ÇÂ¼
-	 * @param pageSize Ã¿Ò³ĞèÒªÏÔÊ¾µÄ¼ÇÂ¼Êı
-	 * @return µ±Ç°Ò³µÄËùÓĞ¼ÇÂ¼
+	 * Ê¹ï¿½ï¿½hql ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * @param hql ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½hqlï¿½ï¿½ï¿½
+	 * @param pageNo ï¿½ï¿½Ñ¯ï¿½ï¿½pageNoÒ³ï¿½Ä¼ï¿½Â¼
+	 * @param pageSize Ã¿Ò³ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * @return ï¿½ï¿½Ç°Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(final String hql,
 		final int pageNo, final int pageSize)
 	{
-		// Í¨¹ıÒ»¸öHibernateCallback¶ÔÏóÀ´Ö´ĞĞ²éÑ¯
+		// Í¨ï¿½ï¿½Ò»ï¿½ï¿½HibernateCallbackï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ğ²ï¿½Ñ¯
 		List<T> list = getHibernateTemplate()
 			.execute(new HibernateCallback<List<T>>()
 		{
-			// ÊµÏÖHibernateCallback½Ó¿Ú±ØĞëÊµÏÖµÄ·½·¨
+			// Êµï¿½ï¿½HibernateCallbackï¿½Ó¿Ú±ï¿½ï¿½ï¿½Êµï¿½ÖµÄ·ï¿½ï¿½ï¿½
 			public List<T> doInHibernate(Session session)
 			{
-				// Ö´ĞĞHibernate·ÖÒ³²éÑ¯
+				// Ö´ï¿½ï¿½Hibernateï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 				List<T> result = session.createQuery(hql)
 					.setFirstResult((pageNo - 1) * pageSize)
 					.setMaxResults(pageSize)
@@ -90,27 +90,27 @@ public class BaseDaoHibernate3<T> extends HibernateDaoSupport
 	}
 
 	/**
-	 * Ê¹ÓÃhql Óï¾ä½øĞĞ·ÖÒ³²éÑ¯²Ù×÷
-	 * @param hql ĞèÒª²éÑ¯µÄhqlÓï¾ä
-	 * @param pageNo ²éÑ¯µÚpageNoÒ³µÄ¼ÇÂ¼
-	 * @param pageSize Ã¿Ò³ĞèÒªÏÔÊ¾µÄ¼ÇÂ¼Êı
-	 * @param params Èç¹ûhql´øÕ¼Î»·û²ÎÊı£¬paramsÓÃÓÚ´«ÈëÕ¼Î»·û²ÎÊı
-	 * @return µ±Ç°Ò³µÄËùÓĞ¼ÇÂ¼
+	 * Ê¹ï¿½ï¿½hql ï¿½ï¿½ï¿½ï¿½ï¿½Ğ·ï¿½Ò³ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * @param hql ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½hqlï¿½ï¿½ï¿½
+	 * @param pageNo ï¿½ï¿½Ñ¯ï¿½ï¿½pageNoÒ³ï¿½Ä¼ï¿½Â¼
+	 * @param pageSize Ã¿Ò³ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * @param params ï¿½ï¿½ï¿½hqlï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½paramsï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½Ç°Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(final String hql , final int pageNo, 
 		final int pageSize , final  Object... params)
 	{
-		// Í¨¹ıÒ»¸öHibernateCallback¶ÔÏóÀ´Ö´ĞĞ²éÑ¯
+		// Í¨ï¿½ï¿½Ò»ï¿½ï¿½HibernateCallbackï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ğ²ï¿½Ñ¯
 		List<T> list = getHibernateTemplate()
 			.execute(new HibernateCallback<List<T>>()
 		{
-			// ÊµÏÖHibernateCallback½Ó¿Ú±ØĞëÊµÏÖµÄ·½·¨
+			// Êµï¿½ï¿½HibernateCallbackï¿½Ó¿Ú±ï¿½ï¿½ï¿½Êµï¿½ÖµÄ·ï¿½ï¿½ï¿½
 			public List<T> doInHibernate(Session session)
 			{
-				// Ö´ĞĞHibernate·ÖÒ³²éÑ¯
+				// Ö´ï¿½ï¿½Hibernateï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 				Query query = session.createQuery(hql);
-				// Îª°üº¬Õ¼Î»·ûµÄHQLÓï¾äÉèÖÃ²ÎÊı
+				// Îªï¿½ï¿½Õ¼Î»ï¿½ï¿½ï¿½HQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
 				for(int i = 0 , len = params.length ; i < len ; i++)
 				{
 					query.setParameter(i + "" , params[i]);
@@ -122,5 +122,11 @@ public class BaseDaoHibernate3<T> extends HibernateDaoSupport
 			}
 		});
 		return list;
+	}
+
+	@Override
+	public boolean isExist(Class<T> entityClazz, Serializable id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

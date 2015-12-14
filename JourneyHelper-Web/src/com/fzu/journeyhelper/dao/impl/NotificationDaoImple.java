@@ -77,7 +77,6 @@ public class NotificationDaoImple extends BaseDaoHibernate4<Notification>
 
 	@Override
 	public List<Notification> findUserNotifications(User user, short isHandle) {
-		// TODO list向set的转化是否多余？等待优化探究
 		List<Notification> list = find(
 				"from Notification as n where n.userByReceiveUserId=?0 and n.ishandle=?1 order by n.createTime desc",
 				user, isHandle);
