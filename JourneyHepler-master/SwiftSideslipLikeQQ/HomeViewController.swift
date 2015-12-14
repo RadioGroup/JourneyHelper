@@ -34,8 +34,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     {
         super.viewDidLoad()
         self.userDefalutsHome = NSUserDefaults.standardUserDefaults()
-        //self.homeTableView.backgroundColor = UIColor(colorLiteralRed: <#T##Float#>, green: <#T##Float#>, blue: <#T##Float#>, alpha: <#T##Float#>)
-                self.homeTableView.dataSource = self
+        self.homeTableView.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
+        self.homeTableView.dataSource = self
         self.homeTableView.delegate = self
         self.homeTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //                
 //        }
 
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         cell.titleLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("title") as? String
         cell.createTimeLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("beginTime") as? String
         
@@ -139,7 +139,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 220.0
+        return 232.0
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
