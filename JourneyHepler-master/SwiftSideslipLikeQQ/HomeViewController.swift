@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 
-var routeId : Int?
+var routeIdPass : Int?
 class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
     
@@ -150,7 +150,7 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     {
         
         let index = indexPath.row
-        routeId = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? Int
+        routeIdPass = string?.objectAtIndex(indexPath.row).objectForKey("routeId") as? Int
         self.performSegueWithIdentifier("showDetail", sender: index)
         Common.contactsVC.view.removeFromSuperview()
     }

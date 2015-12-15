@@ -228,7 +228,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q2E-vH-DyQ" id="W3W-RZ-GYv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -449,7 +449,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bM4-31-K3N" id="wei-an-3ob">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -497,7 +497,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="01A-cg-zGj" id="YJj-in-tKM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -523,10 +523,10 @@
             </objects>
             <point key="canvasLocation" x="2454" y="1926"/>
         </scene>
-        <!--View Controller-->
+        <!--Personal View Controller-->
         <scene sceneID="OkQ-sn-aue">
             <objects>
-                <viewController id="zZr-u0-z0O" sceneMemberID="viewController">
+                <viewController id="zZr-u0-z0O" customClass="PersonalViewController" customModule="SwiftSideslipLikeQQ" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qip-gU-4u3"/>
                         <viewControllerLayoutGuide type="bottom" id="Qpl-fc-6HU"/>
@@ -534,9 +534,25 @@
                     <view key="view" contentMode="scaleToFill" id="ahL-a8-n2R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="na5-JW-YI6">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="na5-JW-YI6" firstAttribute="bottom" secondItem="Qpl-fc-6HU" secondAttribute="top" id="bR7-sh-VTs"/>
+                            <constraint firstItem="na5-JW-YI6" firstAttribute="top" secondItem="Qip-gU-4u3" secondAttribute="bottom" id="c8x-nW-QXB"/>
+                            <constraint firstAttribute="trailing" secondItem="na5-JW-YI6" secondAttribute="trailing" id="kfb-Tt-OJ2"/>
+                            <constraint firstItem="na5-JW-YI6" firstAttribute="leading" secondItem="ahL-a8-n2R" secondAttribute="leading" id="xoB-iX-Frz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="personalTable" destination="na5-JW-YI6" id="reQ-j7-CLS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Efo-XR-BIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
