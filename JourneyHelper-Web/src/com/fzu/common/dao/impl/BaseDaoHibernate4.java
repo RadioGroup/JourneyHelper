@@ -17,10 +17,8 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	protected static final Logger log = LoggerFactory
 			.getLogger(BaseDaoHibernate4.class);
 
-	// DAO������г־û������ײ�������SessionFactory���
 	private SessionFactory sessionFactory;
 
-	// ����ע��SessionFactory�����setter����
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -33,13 +31,11 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	// ���ID����ʵ��
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> entityClazz, Serializable id) {
 		return (T) getCurrentSession().get(entityClazz, id);
 	}
 
-	// ����ʵ��
 	public Serializable save(T entity) {
 		log.debug("saving User instance");
 		try {
@@ -53,17 +49,14 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return getCurrentSession().save(entity);
 	}
 
-	// ����ʵ��
 	public void update(T entity) {
 		getCurrentSession().saveOrUpdate(entity);
 	}
 
-	// ɾ��ʵ��
 	public void delete(T entity) {
 		getCurrentSession().delete(entity);
 	}
 
-	// ���IDɾ��ʵ��
 	public void delete(Class<T> entityClazz, Serializable id) {
 		getCurrentSession()
 				.createQuery(
@@ -72,17 +65,14 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 				.executeUpdate();
 	}
 
-	// ��ȡʵ������
 	public long findCount(Class<T> entityClazz) {
 		List<?> l = find("select count(*) from " + entityClazz.getSimpleName());
-		// ���ز�ѯ�õ���ʵ������
 		if (l != null && l.size() == 1) {
 			return (Long) l.get(0);
 		}
 		return 0;
 	}
 
-	// ���HQL����ѯʵ��
 	@SuppressWarnings("unchecked")
 	protected List<T> find(String hql) {
 		return (List<T>) getCurrentSession().createQuery(hql).list();
@@ -105,15 +95,11 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	}
 
 	/**
-	 * ʹ��hql �����з�ҳ��ѯ����
 	 * 
 	 * @param hql
-	 *            ��Ҫ��ѯ��hql���
 	 * @param pageNo
-	 *            ��ѯ��pageNoҳ�ļ�¼
 	 * @param pageSize
-	 *            ÿҳ��Ҫ��ʾ�ļ�¼��
-	 * @return ��ǰҳ�����м�¼
+	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<T> findByPage(String hql, int pageNo, int pageSize) {

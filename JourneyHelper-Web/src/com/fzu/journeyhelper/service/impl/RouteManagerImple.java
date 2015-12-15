@@ -3,13 +3,14 @@ package com.fzu.journeyhelper.service.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.fzu.journeyhelper.domain.Notification;
 import com.fzu.journeyhelper.domain.Route;
 import com.fzu.journeyhelper.domain.Schedule;
 import com.fzu.journeyhelper.domain.User;
 import com.fzu.journeyhelper.service.RouteManager;
+import com.fzu.journeyhelper.utils.TimeDateUtil;
 
 /**
  * 
@@ -55,7 +56,29 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 	@Override
 	public boolean addScheduleForRoute(String shecduleJson, Route route) {
 
-		JSONObject shecduleObject = new JSONObject();
+		JSONObject shecduleJsonObject = JSONObject.fromObject(shecduleJson);
+
+		JSONArray scheduleArray = shecduleJsonObject.getJSONArray("schedules");
+
+		for (int i = 0; i < scheduleArray.size(); i++) {
+			JSONObject scheduleItem = scheduleArray.getJSONObject(i);
+			Schedule newSchedule = new Schedule();
+			newSchedule.setAccommodation(scheduleItem
+					.getString("accommodation"));
+			newSchedule.setBeginTime(TimeDateUtil.stringToDate(scheduleItem
+					.getString("beginTime")));
+			newSchedule.setBudget(scheduleItem.getLong("budget"));
+			newSchedule.setDestination(scheduleItem.getString("destination"));
+			newSchedule.setDiner(scheduleItem.getString("diner"));
+			newSchedule.setEndTime(TimeDateUtil.stringToDate(scheduleItem
+					.getString("endTime")));
+			newSchedule.setRemark((scheduleItem.getString("remark")));
+			newSchedule.setVehicle(scheduleItem.getString("vehicle"));
+			newSchedule.setRoute(route);
+
+			scheduleDao.save(newSchedule);
+			System.out.println(newSchedule.toString());
+		}
 
 		return false;
 	}
