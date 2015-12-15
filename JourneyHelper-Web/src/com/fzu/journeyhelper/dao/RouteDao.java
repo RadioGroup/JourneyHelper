@@ -1,5 +1,6 @@
 package com.fzu.journeyhelper.dao;
 
+import java.math.BigInteger;
 import java.util.Set;
 
 import com.fzu.common.dao.BaseDao;
@@ -34,5 +35,5 @@ public interface RouteDao extends BaseDao<Route> {
 	 */
 	public Set<Route> findCreatelistByUser(User user);
 	
-	
+	public BigInteger findCount(Integer userId,Integer Type ,short isJoin);
 }

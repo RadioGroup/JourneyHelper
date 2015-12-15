@@ -2,6 +2,7 @@ package com.fzu.journeyhelper.dao.impl;
 
 import static org.hibernate.criterion.Example.create;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ import com.fzu.journeyhelper.domain.User;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao{
+public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao {
 	// property constants
 	public static final String TITLE = "title";
 	public static final String SUMMARY = "summary";
@@ -74,5 +75,30 @@ public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao{
 	@Override
 	public Set<Route> findCreatelistByUser(User user) {
 		return null;
+	}
+
+	/**
+	 * 根据参数查询数量
+	 */
+	@Override
+	public BigInteger findCount(Integer userId, Integer type, short isJoin) {
+
+		
+		//TODO isJoin 为判断用户是否参加，等待完善
+		String sql = "select count(r.routeId) from "
+				+ "journeyhelperweb.route_user_relevance j"
+				+ " inner join journeyhelperweb.route r "
+				+ "on j.routeId=r.routeId " + "where j.userId <> ?0 "
+				+ "and r.type = ?1 ";
+
+		System.out.println("something erro");
+		
+		List<?> l = findBySql(sql,userId,type);
+		
+		if (l != null && l.size() == 1) {
+			return (BigInteger) l.get(0);
+		}else{			
+			return new BigInteger("0");
+		}
 	}
 }

@@ -40,6 +40,15 @@
 			</result>
 		</action>
 
+		<action name="findNewRoute"
+			class="com.fzu.journeyhelper.action.find.FindRouteAction" method="findNewRoute">
+			<result name="success" type="json">
+				<param name="includeProperties">status,count,allList.*</param>
+			</result>
+		</action>
+
+
+
 		<action name="createRoute"
 			class="com.fzu.journeyhelper.action.add.CreateRouteAction" method="createRoute">
 			<result name="success" type="json">

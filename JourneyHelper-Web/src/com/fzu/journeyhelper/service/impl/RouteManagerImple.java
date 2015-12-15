@@ -1,6 +1,8 @@
 package com.fzu.journeyhelper.service.impl;
 
+import java.math.BigInteger;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.sf.json.JSONArray;
@@ -95,5 +97,27 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 		schedules.addAll(scheduleDao.findByRoute(route));
 		return schedules;
 	}
+
+	@Override
+	public BigInteger findNewRouteCount(Integer userId,Integer Type ,short isJoin) {
+		
+		return routeDao.findCount(userId,Type,isJoin);
+	}
+	
+	@Override
+	public List<Route> findNewRoute(int pageNo, int pageSize,
+			Object... params) {
+		String sql = "select * from journeyhelperweb.route re where re.routeId in ("
+				+ "select j.routeId from journeyhelperweb.route_user_relevance j"
+				+ " inner join journeyhelperweb.route r "
+				+ "on j.routeId=r.routeId " + "where j.userId<>?0 "
+				+ "and r.type =?1 )" + "order by re.routeId desc";
+		
+		return routeDao.findByPageSQL(sql, pageNo, pageSize, params);
+	}
+
+	
+	
+	
 
 }
