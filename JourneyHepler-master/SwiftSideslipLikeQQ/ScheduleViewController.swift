@@ -15,6 +15,7 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
         super.viewDidLoad()
         self.scheduleTableView.dataSource = self
         self.scheduleTableView.delegate = self
+        self.scheduleTableView.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         self.scheduleTableView.registerNib(UINib(nibName: "ScheduleTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleTableViewCell")
         // Do any additional setup after loading the view.
     }
@@ -41,6 +42,10 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 210.0
     }
     /*
     // MARK: - Navigation
