@@ -27,11 +27,17 @@
 		F7564B1E1BFEFCE50025B535 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7564B1D1BFEFCE50025B535 /* PhotosViewController.swift */; };
 		F7564B211BFEFD620025B535 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7564B1F1BFEFD620025B535 /* PhotosTableViewCell.swift */; };
 		F7564B221BFEFD620025B535 /* PhotosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7564B201BFEFD620025B535 /* PhotosTableViewCell.xib */; };
+		F761E35E1C1F0B3E0044BBD2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761E35D1C1F0B3E0044BBD2 /* ScheduleViewController.swift */; };
+		F761E3611C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */; };
+		F761E3621C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */; };
 		F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */; };
+		F77E6D1B1C20234300EB6157 /* BubbyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */; };
+		F77E6D1C1C20234300EB6157 /* BubbyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */; };
 		F7802C681C1AFBA1009647BA /* LogUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7802C661C1AFBA1009647BA /* LogUpViewController.swift */; };
 		F7802C691C1AFBA1009647BA /* LogUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7802C671C1AFBA1009647BA /* LogUpViewController.xib */; };
 		F7802C6C1C1B02FD009647BA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7802C6A1C1B02FD009647BA /* LogInViewController.swift */; };
 		F7802C6D1C1B02FD009647BA /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7802C6B1C1B02FD009647BA /* LogInViewController.xib */; };
+		F7802C6F1C1EDF5F009647BA /* BubbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7802C6E1C1EDF5F009647BA /* BubbyListViewController.swift */; };
 		F79864B71BFF7147005606DA /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79864B61BFF7147005606DA /* RouteDetailViewController.swift */; };
 		F7A7B96B1C19C4C000AC4349 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7B9691C19C4C000AC4349 /* RightViewController.swift */; };
 		F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A7B96A1C19C4C000AC4349 /* RightViewController.xib */; };
@@ -87,11 +93,17 @@
 		F7564B1D1BFEFCE50025B535 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F7564B1F1BFEFD620025B535 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F7564B201BFEFD620025B535 /* PhotosTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosTableViewCell.xib; sourceTree = "<group>"; };
+		F761E35D1C1F0B3E0044BBD2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewCell.xib; sourceTree = "<group>"; };
 		F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbyListTableViewCell.swift; sourceTree = "<group>"; };
+		F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbyListTableViewCell.xib; sourceTree = "<group>"; };
 		F7802C661C1AFBA1009647BA /* LogUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUpViewController.swift; sourceTree = "<group>"; };
 		F7802C671C1AFBA1009647BA /* LogUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogUpViewController.xib; sourceTree = "<group>"; };
 		F7802C6A1C1B02FD009647BA /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F7802C6B1C1B02FD009647BA /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
+		F7802C6E1C1EDF5F009647BA /* BubbyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbyListViewController.swift; sourceTree = "<group>"; };
 		F79864B61BFF7147005606DA /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
 		F7A7B9691C19C4C000AC4349 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		F7A7B96A1C19C4C000AC4349 /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightViewController.xib; sourceTree = "<group>"; };
@@ -177,7 +189,13 @@
 				F7564B201BFEFD620025B535 /* PhotosTableViewCell.xib */,
 				F74CD0381BFE21E5003B4E14 /* LoanViewController.swift */,
 				F7564B1D1BFEFCE50025B535 /* PhotosViewController.swift */,
+				F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */,
+				F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */,
 				F79864B61BFF7147005606DA /* RouteDetailViewController.swift */,
+				F761E35D1C1F0B3E0044BBD2 /* ScheduleViewController.swift */,
+				F7802C6E1C1EDF5F009647BA /* BubbyListViewController.swift */,
+				F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */,
+				F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */,
 				465933111AD7F60700969878 /* Images.xcassets */,
 				4659330E1AD7F60700969878 /* Main.storyboard */,
 				465933131AD7F60700969878 /* LaunchScreen.xib */,
@@ -301,9 +319,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				465933101AD7F60700969878 /* Main.storyboard in Resources */,
+				F77E6D1C1C20234300EB6157 /* BubbyListTableViewCell.xib in Resources */,
 				F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */,
 				F7802C6D1C1B02FD009647BA /* LogInViewController.xib in Resources */,
 				465933151AD7F60700969878 /* LaunchScreen.xib in Resources */,
+				F761E3621C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib in Resources */,
 				46617ED71AF3E4C5008F038F /* MainTabBarController.xib in Resources */,
 				F7564B161BFEF9720025B535 /* HomeTableViewCell.xib in Resources */,
 				F7564B221BFEFD620025B535 /* PhotosTableViewCell.xib in Resources */,
@@ -380,15 +400,19 @@
 				46617ED61AF3E4C5008F038F /* MainTabBarController.swift in Sources */,
 				F7802C6C1C1B02FD009647BA /* LogInViewController.swift in Sources */,
 				F79864B71BFF7147005606DA /* RouteDetailViewController.swift in Sources */,
+				F761E3611C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift in Sources */,
 				4659330D1AD7F60700969878 /* ViewController.swift in Sources */,
 				466C008F1AD92447002ED354 /* LeftViewController.swift in Sources */,
 				F7564B151BFEF9720025B535 /* HomeTableViewCell.swift in Sources */,
 				4659330B1AD7F60700969878 /* AppDelegate.swift in Sources */,
 				F74CD0391BFE21E5003B4E14 /* LoanViewController.swift in Sources */,
+				F761E35E1C1F0B3E0044BBD2 /* ScheduleViewController.swift in Sources */,
+				F77E6D1B1C20234300EB6157 /* BubbyListTableViewCell.swift in Sources */,
 				F7802C681C1AFBA1009647BA /* LogUpViewController.swift in Sources */,
 				F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */,
 				F7564B211BFEFD620025B535 /* PhotosTableViewCell.swift in Sources */,
 				F7564B1E1BFEFCE50025B535 /* PhotosViewController.swift in Sources */,
+				F7802C6F1C1EDF5F009647BA /* BubbyListViewController.swift in Sources */,
 				4642DDB71ADA7BAA00D0F32B /* OtherPageViewController.swift in Sources */,
 				4659332B1AD7FB0E00969878 /* HomeViewController.swift in Sources */,
 			);

@@ -25,7 +25,8 @@ class RouteDetailViewController: UIViewController {
     
     var index:Int = 0
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         
         super.viewDidLoad()
         self.titleLabel.text = string?.objectAtIndex(index).objectForKey("title") as? String
@@ -54,7 +55,12 @@ class RouteDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+    
+    
+    
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
