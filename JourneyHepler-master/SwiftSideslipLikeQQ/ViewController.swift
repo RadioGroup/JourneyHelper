@@ -92,7 +92,7 @@ class ViewController: UIViewController
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
-                debugPrint(response)
+//                debugPrint(response)
                 if response.result.isSuccess
             {
                 let data = response.result.value
