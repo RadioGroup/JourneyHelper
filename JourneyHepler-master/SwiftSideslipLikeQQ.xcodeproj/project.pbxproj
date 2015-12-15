@@ -31,6 +31,8 @@
 		F761E3611C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */; };
 		F761E3621C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */; };
 		F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */; };
+		F77E6D1B1C20234300EB6157 /* BubbyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */; };
+		F77E6D1C1C20234300EB6157 /* BubbyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */; };
 		F7802C681C1AFBA1009647BA /* LogUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7802C661C1AFBA1009647BA /* LogUpViewController.swift */; };
 		F7802C691C1AFBA1009647BA /* LogUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7802C671C1AFBA1009647BA /* LogUpViewController.xib */; };
 		F7802C6C1C1B02FD009647BA /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7802C6A1C1B02FD009647BA /* LogInViewController.swift */; };
@@ -95,6 +97,8 @@
 		F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewCell.xib; sourceTree = "<group>"; };
 		F76375A01BFDFFC5000D04B8 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbyListTableViewCell.swift; sourceTree = "<group>"; };
+		F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbyListTableViewCell.xib; sourceTree = "<group>"; };
 		F7802C661C1AFBA1009647BA /* LogUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogUpViewController.swift; sourceTree = "<group>"; };
 		F7802C671C1AFBA1009647BA /* LogUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogUpViewController.xib; sourceTree = "<group>"; };
 		F7802C6A1C1B02FD009647BA /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				F79864B61BFF7147005606DA /* RouteDetailViewController.swift */,
 				F761E35D1C1F0B3E0044BBD2 /* ScheduleViewController.swift */,
 				F7802C6E1C1EDF5F009647BA /* BubbyListViewController.swift */,
+				F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */,
+				F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */,
 				465933111AD7F60700969878 /* Images.xcassets */,
 				4659330E1AD7F60700969878 /* Main.storyboard */,
 				465933131AD7F60700969878 /* LaunchScreen.xib */,
@@ -313,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				465933101AD7F60700969878 /* Main.storyboard in Resources */,
+				F77E6D1C1C20234300EB6157 /* BubbyListTableViewCell.xib in Resources */,
 				F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */,
 				F7802C6D1C1B02FD009647BA /* LogInViewController.xib in Resources */,
 				465933151AD7F60700969878 /* LaunchScreen.xib in Resources */,
@@ -400,6 +407,7 @@
 				4659330B1AD7F60700969878 /* AppDelegate.swift in Sources */,
 				F74CD0391BFE21E5003B4E14 /* LoanViewController.swift in Sources */,
 				F761E35E1C1F0B3E0044BBD2 /* ScheduleViewController.swift in Sources */,
+				F77E6D1B1C20234300EB6157 /* BubbyListTableViewCell.swift in Sources */,
 				F7802C681C1AFBA1009647BA /* LogUpViewController.swift in Sources */,
 				F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */,
 				F7564B211BFEFD620025B535 /* PhotosTableViewCell.swift in Sources */,
