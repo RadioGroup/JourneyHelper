@@ -52,6 +52,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         segmentView.hidden = true
         
+        self.requestData()
+        
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -62,27 +64,44 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         // Dispose of any resources that can be recreated.
     }
     
+    func requestData()
+    {
+        let hostString = host!
+        self.userid = self.userDefalutsHome.objectForKey("userId") as? Int
+        if(userid == nil)
+        {
+            
+        }else
+        {
+            
+        let userId = self.userid!
+        let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
+        print(URL)
+        let request = NSMutableURLRequest(URL: URL)
+        Alamofire.request(.GET,request)
+            .responseJSON
+            {
+                response in
+                if response.result.isSuccess
+                {
+                    SVProgressHUD.dismiss()
+                    self.data = response.result.value as? NSDictionary
+                    string = self.data?.objectForKey("createList")as?NSMutableArray
+                    //                        self.userDefaults.setObject(self.string, forKey: "homeData")
+                    print("数据：\(string)")
+                    self.homeTableView.reloadData()
+                    
+                }else if response.result.isFailure
+                {
+                    SVProgressHUD.showErrorWithStatus("您的网络挂了")
+                }
+            }
+        }
+
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:HomeTableViewCell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell", forIndexPath: indexPath) as! HomeTableViewCell
-        //
-        //        Alamofire.request(.GET, "http://172.50.180.239/findJoinedRouteList?userId=1")
-        //            .responseJSON { response in
-        //                //                    debugPrint(response)
-        //                if response.result.isSuccess
-        //                {
-        //                    let data = response.result.value
-        //                    self.allData = data as? NSDictionary
-        //                    self.string1 = self.allData?.objectForKey("joindeList")as?NSMutableArray
-        //
-        //
-        //                    print("数据数据：\(self.string1)")
-        //
-        //                }else if response.result.isFailure
-        //                {
-        //                    self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
-        //                }
-        //
-        //        }
         
         cell.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         cell.titleLabel.text = string?.objectAtIndex(indexPath.row).objectForKey("title") as? String
@@ -182,24 +201,27 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 .responseJSON
                 { response in
                     self.data = response.result.value as? NSDictionary
-                    let status = self.data!["status"] as? Int
-                    if(status == 301)
+                    if(response.result.isSuccess)
                     {
-                        if(response.result.isSuccess)
+                        let status = self.data!["status"] as? Int
+                        if(status == 301)
                         {
                             string = self.data?.objectForKey("createList")as?NSMutableArray
                             self.homeTableView.reloadData()
                             self.homeTableView.mj_header.endRefreshing()
-                        }else if(response.result.isFailure)
+                            
+                        }else if(status == 302)
                         {
                             SVProgressHUD.showErrorWithStatus("刷新失败")
                             self.homeTableView.mj_header.endRefreshing()
-                            
                         }
-                    }else if(status == 302)
+
+                       
+                    }else if(response.result.isFailure)
                     {
                         SVProgressHUD.showErrorWithStatus("刷新失败")
-                         self.homeTableView.mj_header.endRefreshing()
+                        self.homeTableView.mj_header.endRefreshing()
+                        
                     }
             }
             

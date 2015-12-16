@@ -41,16 +41,29 @@ class RouteDetailViewController: UIViewController {
         var url:NSURL?
         var data:NSData?
         var image:UIImage?
+        var strUrl:String?
         
         
 
 //        var set = string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String
 //         set = set!.stringByReplacingOccurrencesOfString("/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 //                url = NSURL(string: set!)!
-        url = NSURL(string: (string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String)!)
+        strUrl =  (string?.objectAtIndex(index).objectForKey("routeImageUrl") as? String)!
+        if strUrl == nil
+        {
+            self.imageView.image = UIImage(named: "nil")
+        }else
+        {
+        url = NSURL(string:strUrl!)
         data = NSData(contentsOfURL:url!)
-        image = UIImage(data:data!)
-        self.imageView.image = image
+            if data == nil
+            {
+                self.imageView.image = UIImage(named: "nil")
+            }else{
+                image = UIImage(data:data!)
+                self.imageView.image = image
+            }
+        }
         
         // Do any additional setup after loading the view.
     }

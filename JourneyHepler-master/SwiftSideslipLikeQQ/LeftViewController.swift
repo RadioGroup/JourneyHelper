@@ -11,7 +11,7 @@ import UIKit
 // 侧滑菜单 View Controller
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let titlesDictionary = ["我的行程", "招募信息", "租借分享", "个人设置", "照片墙"]
+    let titlesDictionary = ["信息广场", "个人信息", "租借分享", "查找行程", "照片墙"]
 
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!

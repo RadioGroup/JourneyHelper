@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		18BF35841C2062DC007C7EFA /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35831C2062DC007C7EFA /* PersonalViewController.swift */; };
-		18BF35871C2067BF007C7EFA /* PersonalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35851C2067BF007C7EFA /* PersonalTableViewCell.swift */; };
-		18BF35881C2067BF007C7EFA /* PersonalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BF35861C2067BF007C7EFA /* PersonalTableViewCell.xib */; };
+		18BF358B1C218757007C7EFA /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35891C218757007C7EFA /* NewsTableViewCell.swift */; };
+		18BF358C1C218757007C7EFA /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BF358A1C218757007C7EFA /* NewsTableViewCell.xib */; };
+		18BF358E1C21B799007C7EFA /* GroundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF358D1C21B799007C7EFA /* GroundDetailViewController.swift */; };
+		18BF35901C21BDAD007C7EFA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF358F1C21BDAD007C7EFA /* SearchViewController.swift */; };
 		4642DDB51ADA76DA00D0F32B /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4642DDB41ADA76DA00D0F32B /* SwiftColors.swift */; };
 		4642DDB71ADA7BAA00D0F32B /* OtherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4642DDB61ADA7BAA00D0F32B /* OtherPageViewController.swift */; };
 		4659330B1AD7F60700969878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4659330A1AD7F60700969878 /* AppDelegate.swift */; };
@@ -72,8 +74,10 @@
 /* Begin PBXFileReference section */
 		0B3A2880D9865F3092C3565F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BF35831C2062DC007C7EFA /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
-		18BF35851C2067BF007C7EFA /* PersonalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalTableViewCell.swift; sourceTree = "<group>"; };
-		18BF35861C2067BF007C7EFA /* PersonalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalTableViewCell.xib; sourceTree = "<group>"; };
+		18BF35891C218757007C7EFA /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		18BF358A1C218757007C7EFA /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		18BF358D1C21B799007C7EFA /* GroundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundDetailViewController.swift; sourceTree = "<group>"; };
+		18BF358F1C21BDAD007C7EFA /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4642DDB41ADA76DA00D0F32B /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftColors.swift; sourceTree = "<group>"; };
 		4642DDB61ADA7BAA00D0F32B /* OtherPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherPageViewController.swift; sourceTree = "<group>"; };
 		465933051AD7F60700969878 /* SwiftSideslipLikeQQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSideslipLikeQQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,16 +201,18 @@
 				F7564B1D1BFEFCE50025B535 /* PhotosViewController.swift */,
 				F761E35F1C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift */,
 				F761E3601C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib */,
+				18BF35891C218757007C7EFA /* NewsTableViewCell.swift */,
+				18BF358A1C218757007C7EFA /* NewsTableViewCell.xib */,
 				F79864B61BFF7147005606DA /* RouteDetailViewController.swift */,
+				18BF358D1C21B799007C7EFA /* GroundDetailViewController.swift */,
 				F761E35D1C1F0B3E0044BBD2 /* ScheduleViewController.swift */,
+				18BF358F1C21BDAD007C7EFA /* SearchViewController.swift */,
 				F7802C6E1C1EDF5F009647BA /* BubbyListViewController.swift */,
 				F77E6D191C20234300EB6157 /* BubbyListTableViewCell.swift */,
 				F77E6D1A1C20234300EB6157 /* BubbyListTableViewCell.xib */,
 				465933111AD7F60700969878 /* Images.xcassets */,
 				4659330E1AD7F60700969878 /* Main.storyboard */,
 				18BF35831C2062DC007C7EFA /* PersonalViewController.swift */,
-				18BF35851C2067BF007C7EFA /* PersonalTableViewCell.swift */,
-				18BF35861C2067BF007C7EFA /* PersonalTableViewCell.xib */,
 				465933131AD7F60700969878 /* LaunchScreen.xib */,
 				465933081AD7F60700969878 /* Supporting Files */,
 				466C00871AD832D9002ED354 /* Common.swift */,
@@ -332,12 +338,12 @@
 				F7A7B96C1C19C4C000AC4349 /* RightViewController.xib in Resources */,
 				F7802C6D1C1B02FD009647BA /* LogInViewController.xib in Resources */,
 				465933151AD7F60700969878 /* LaunchScreen.xib in Resources */,
-				18BF35881C2067BF007C7EFA /* PersonalTableViewCell.xib in Resources */,
 				F761E3621C1F0CFA0044BBD2 /* ScheduleTableViewCell.xib in Resources */,
 				46617ED71AF3E4C5008F038F /* MainTabBarController.xib in Resources */,
 				F7564B161BFEF9720025B535 /* HomeTableViewCell.xib in Resources */,
 				F7564B221BFEFD620025B535 /* PhotosTableViewCell.xib in Resources */,
 				F7802C691C1AFBA1009647BA /* LogUpViewController.xib in Resources */,
+				18BF358C1C218757007C7EFA /* NewsTableViewCell.xib in Resources */,
 				465933121AD7F60700969878 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,18 +418,20 @@
 				F79864B71BFF7147005606DA /* RouteDetailViewController.swift in Sources */,
 				F761E3611C1F0CFA0044BBD2 /* ScheduleTableViewCell.swift in Sources */,
 				4659330D1AD7F60700969878 /* ViewController.swift in Sources */,
+				18BF358E1C21B799007C7EFA /* GroundDetailViewController.swift in Sources */,
+				18BF358B1C218757007C7EFA /* NewsTableViewCell.swift in Sources */,
 				466C008F1AD92447002ED354 /* LeftViewController.swift in Sources */,
 				F7564B151BFEF9720025B535 /* HomeTableViewCell.swift in Sources */,
 				18BF35841C2062DC007C7EFA /* PersonalViewController.swift in Sources */,
 				4659330B1AD7F60700969878 /* AppDelegate.swift in Sources */,
 				F74CD0391BFE21E5003B4E14 /* LoanViewController.swift in Sources */,
+				18BF35901C21BDAD007C7EFA /* SearchViewController.swift in Sources */,
 				F761E35E1C1F0B3E0044BBD2 /* ScheduleViewController.swift in Sources */,
 				F77E6D1B1C20234300EB6157 /* BubbyListTableViewCell.swift in Sources */,
 				F7802C681C1AFBA1009647BA /* LogUpViewController.swift in Sources */,
 				F76375A11BFDFFC5000D04B8 /* SwiftNotice.swift in Sources */,
 				F7564B211BFEFD620025B535 /* PhotosTableViewCell.swift in Sources */,
 				F7564B1E1BFEFCE50025B535 /* PhotosViewController.swift in Sources */,
-				18BF35871C2067BF007C7EFA /* PersonalTableViewCell.swift in Sources */,
 				F7802C6F1C1EDF5F009647BA /* BubbyListViewController.swift in Sources */,
 				4642DDB71ADA7BAA00D0F32B /* OtherPageViewController.swift in Sources */,
 				4659332B1AD7FB0E00969878 /* HomeViewController.swift in Sources */,
