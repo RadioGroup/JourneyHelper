@@ -91,9 +91,15 @@ public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao 
 				+ "on j.routeId=r.routeId " + "where j.userId <> ?0 "
 				+ "and r.type = ?1 ";
 
+		String sql2 = "select count(r.routeId) from journeyhelperweb.route r "
+				+ "where r.routeId not in "
+				+ "(select j.routeId from journeyhelperweb.route_user_relevance j"
+				+  " where j.userId =?0 ) "
+				+ "and r.type = ?1 ";
+		
 		System.out.println("something erro");
 		
-		List<?> l = findBySql(sql,userId,type);
+		List<?> l = findBySql(sql2,userId,type);
 		
 		if (l != null && l.size() == 1) {
 			return (BigInteger) l.get(0);

@@ -95,8 +95,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		System.out.println("queryString = ");
 		System.out.println(query.getQueryString());
 
-		return null;
-		// (List<T>) query.list();
+		return (List<T>) query.list();
 	}
 
 	// 带有参数的sql查询
@@ -148,6 +147,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	@Override
 	public List<T> findByPage(String hql, int pageNo, int pageSize,
 			Object... params) {
+		System.out.println(hql);
 		Query query = getCurrentSession().createQuery(hql);
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);

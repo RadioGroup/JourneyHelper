@@ -113,7 +113,24 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 				+ "on j.routeId=r.routeId " + "where j.userId<>?0 "
 				+ "and r.type =?1 )" + "order by re.routeId desc";
 		
-		return routeDao.findByPageSQL(sql, pageNo, pageSize, params);
+		String hql = "from Route re where re.routeId in ("
+				+ "select r.routeId from Route r"
+				+ " inner join r.users u "
+				+ "where u.userId<>?0 "
+				+ "and r.type =?1 )" + "order by re.routeId desc";
+		
+		String hql2 = "from Route re where re in ("
+				+ "select elements(u.joinRoutes) from User u"
+				+ " where u.userId<>?0 "
+				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
+		
+		String hql3 = "from Route re where re not in ("
+				+ "select elements(u.joinRoutes) from User u"
+				+ " where u.userId=?0 "
+				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
+		return routeDao.findByPage(hql3, pageNo, pageSize, params);
+		
+//		return routeDao.findByPageSQL(sql, pageNo, pageSize, params);
 	}
 
 	

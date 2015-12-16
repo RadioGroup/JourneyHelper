@@ -1,6 +1,7 @@
 package com.fzu.journeyhelper.action.find;
 
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class FindRouteAction extends BaseAction {
 
 	private Set<Route> createList;
 	private Set<Route> joindeList;
-	private List<Route> allList;
+	private Set<Route> allList;
 
 	public Integer getStatus() {
 		return status;
@@ -84,7 +85,7 @@ public class FindRouteAction extends BaseAction {
 		return joindeList;
 	}
 
-	public List<Route> getAllList() {
+	public Set<Route> getAllList() {
 		return allList;
 	}
 
@@ -139,7 +140,9 @@ public class FindRouteAction extends BaseAction {
 		System.out.println(toString());
 		count = routeManager.findNewRouteCount(userId, type, isJoin);
 		if (count.compareTo(BigInteger.ZERO) == 1) {
-			allList = routeManager.findNewRoute(page, pagesize, userId, type);
+			List<Route> ans = routeManager.findNewRoute(page, pagesize, userId, type);
+			allList = new HashSet<Route>();
+			allList.addAll(ans); 
 		}
 		status = 301;
 		return SUCCESS;
