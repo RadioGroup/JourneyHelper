@@ -65,13 +65,8 @@ class ViewController: UIViewController
         self.userDefaults = NSUserDefaults.standardUserDefaults()
         self.userDefaults.setBool(false , forKey: "log")
         self.logFlag = userDefaults.boolForKey("Log")
-//        self.logInView()
-//        if (self.logFlag != true)
-//        {
-//            self.logInView()
-//        }
-//        else
-//        {
+        self.logInView()
+
         
     }
     
@@ -81,6 +76,17 @@ class ViewController: UIViewController
     }
     
     @IBAction func logInAction(sender: AnyObject)
+    {
+        
+        self.requestData()
+    }
+    
+    func requestJourney()
+    {
+        
+    }
+    
+    func requestData()
     {
         let user = "hoatson"
         let password = "root"
@@ -92,70 +98,68 @@ class ViewController: UIViewController
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
-//                debugPrint(response)
+                //                debugPrint(response)
                 if response.result.isSuccess
-            {
-                let data = response.result.value
-                let status = data!["status"] as? Int
-                if(status == 201)
                 {
-                    let user = data!["user"]
-                    print("数据监测user\(user)")
-                    self.userData = user as? NSDictionary
-                    let userId = (self.userData!["userId"])!
-                    self.userDefaults.setObject(user, forKey:"data")
-                    self.userDefaults.setBool(true, forKey: "Log")
-                    self.userDefaults.setObject(userId, forKey: "userId")
-                    print("数据监测userId\(userId)")
-                   
-//                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                    let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
-                    print(URL)
-                    let request = NSMutableURLRequest(URL: URL)
-                         Alamofire.request(.GET,request)
-                        .responseJSON
-                        {
-                            response in
-                            if response.result.isSuccess
-                            {
-                                SVProgressHUD.dismiss()
-                                self.data = response.result.value as? NSDictionary
-                                string = self.data?.objectForKey("createList")as?NSMutableArray
-                                //                        self.userDefaults.setObject(self.string, forKey: "homeData")
-                                print("数据：\(string)")
+                    let data = response.result.value
+                    let status = data!["status"] as? Int
+                    if(status == 201)
+                    {
+                        let user = data!["user"]
+                        print("数据监测user\(user)")
+                        self.userData = user as? NSDictionary
+                        let userId = (self.userData!["userId"])!
+                        self.userDefaults.setObject(user, forKey:"data")
+                        self.userDefaults.setBool(true, forKey: "Log")
+                        self.userDefaults.setObject(userId, forKey: "userId")
+                        print("数据监测userId\(userId)")
                         
-                                self.logInView()
-                                self.nameLabel.hidden = true
-                                self.logInButton.hidden = true
-                                self.logUpButton.hidden = true
-                                self.usernameText.hidden = true
-                                self.passWordLabel.hidden = true
-                                
-                            }else if response.result.isFailure
+                        //                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
+                        let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
+                        print(URL)
+                        let request = NSMutableURLRequest(URL: URL)
+                        Alamofire.request(.GET,request)
+                            .responseJSON
                             {
-                                SVProgressHUD.showErrorWithStatus("您的网络挂了")
-                            }
-                            
-                            //            }
-                            
+                                response in
+                                if response.result.isSuccess
+                                {
+                                    SVProgressHUD.dismiss()
+                                    self.data = response.result.value as? NSDictionary
+                                    string = self.data?.objectForKey("createList")as?NSMutableArray
+                                    //                        self.userDefaults.setObject(self.string, forKey: "homeData")
+                                    print("数据：\(string)")
+                                    
+                                    self.logInView()
+                                    self.nameLabel.hidden = true
+                                    self.logInButton.hidden = true
+                                    self.logUpButton.hidden = true
+                                    self.usernameText.hidden = true
+                                    self.passWordLabel.hidden = true
+                                    
+                                }else if response.result.isFailure
+                                {
+                                    SVProgressHUD.showErrorWithStatus("您的网络挂了")
+                                }
+                                
+                                //            }
+                                
+                        }
+                        
                     }
-
-                }
-                else if(status == 202)
+                    else if(status == 202)
+                    {
+                        SVProgressHUD.dismiss()
+                        self.alertView = UIAlertView.init(title: "提示", message: "密码错误！！！", delegate: nil, cancelButtonTitle: "ok")
+                        self.alertView.show()
+                    }
+                }else if response.result.isFailure
                 {
-                    SVProgressHUD.dismiss()
-                    self.alertView = UIAlertView.init(title: "提示", message: "密码错误！！！", delegate: nil, cancelButtonTitle: "ok")
-                    self.alertView.show()
-                }
-            }else if response.result.isFailure
-                {
-//                    self.alertView = UIAlertView.init(title: "提示", message:"网络连接错误", delegate:nil, cancelButtonTitle: "好的")
-//                    self.alertView.show()
                     SVProgressHUD.showErrorWithStatus("您的网络挂了。。。")
                 }
                 
                 
-           }
+        }
 
     }
     // 响应 UIPanGestureRecognizer 事件

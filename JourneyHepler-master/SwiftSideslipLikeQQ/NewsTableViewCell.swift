@@ -1,18 +1,24 @@
 //
-//  PersonalTableViewCell.swift
+//  NewsTableViewCell.swift
 //  SwiftSideslipLikeQQ
 //
-//  Created by apple on 15/12/15.
+//  Created by apple on 15/12/16.
 //  Copyright © 2015年 com.lvwenhan. All rights reserved.
 //
 
 import UIKit
 
-class PersonalTableViewCell: UITableViewCell {
-    @IBOutlet weak var head: UILabel!
-    @IBOutlet weak var information: UILabel!
+class NewsTableViewCell: UITableViewCell {
+
+    
+    @IBOutlet weak var titleLabel: UILabel!
+  
+   
+    @IBOutlet weak var photoView: UIImageView!
+    
+    @IBOutlet weak var abstractLabel: UILabel!
+    
     override func awakeFromNib() {
-       
         super.awakeFromNib()
         // Initialization code
     }
