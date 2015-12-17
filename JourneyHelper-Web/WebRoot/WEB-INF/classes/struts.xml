@@ -40,6 +40,15 @@
 			</result>
 		</action>
 
+		<action name="findNewRoute"
+			class="com.fzu.journeyhelper.action.find.FindRouteAction" method="findNewRoute">
+			<result name="success" type="json">
+				<param name="includeProperties">status,count,allList.*</param>
+			</result>
+		</action>
+
+
+
 		<action name="createRoute"
 			class="com.fzu.journeyhelper.action.add.CreateRouteAction" method="createRoute">
 			<result name="success" type="json">
@@ -104,6 +113,16 @@
 			<result name="error" type="json" />
 		</action>
 
+		<action name="handleNotification"
+			class="com.fzu.journeyhelper.action.HandleNotificationAction" method="handleNotification">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+
+
+
+
 		<action name="updateUserInfoAction"
 			class="com.fzu.journeyhelper.action.update.UpdateUserInfoAction"
 			method="updateUserInfo">
@@ -114,8 +133,29 @@
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
 			</result>
+		</action>
 
 
+		<action name="searchUser" class="com.fzu.journeyhelper.action.find.FindAction"
+			method="searchUser">
+
+			<result name="success" type="json">
+				<param name="includeProperties">status,users.*,count</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
+		<action name="searchRoute" class="com.fzu.journeyhelper.action.find.FindAction"
+			method="searchRoute">
+
+			<result name="success" type="json">
+				<param name="includeProperties">status,routes.*,count</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
 		</action>
 
 

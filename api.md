@@ -97,7 +97,7 @@
 
 添加行程安排：
 
-    host/addSchedules?routeId=1&schedules={"routeId":1,"schedules":[{"accommodation":"七天连锁","beginTime":"2015-12-16 19:35:45","budget":204.3,"destination":"湘潭","diner":"火车上解决","endTime":"2015-12-09 19:36:23","remark":"下火车后直接到湘潭市中心七天旅馆","schedulingId":1,"vehicle":"火车"}],"status":null}
+    host/addSchedules?routeId=1&schedules={"routeId":1,"schedules":[{"accommodation":"七天连锁","beginTime":"2015-12-16 19:35:45","budget":204.3,"destination":"湘潭","diner":"火车上解决","endTime":"2015-12-09 19:36:23","remark":"下火车后直接到湘潭市中心七天旅馆","schedulingId":1,"vehicle":"火车"}]}
     
     返回数据形式：
     {
@@ -171,38 +171,10 @@
         "status": null
     }
 
-#### 查询行程参与用户的列表查询接口
-
-    host/findRouteMenberList?routeId=1
-    //返回数据类型
-    {
-        "routeId": 1,
-        "status": null,
-        "users": [
-            {
-                "age": 22,
-                "email": "756154017@qq.com",
-                "headUrl": "www.baidu.com",
-                "job": "学生",
-                "location": "福州",
-                "nickName": "陈灿",
-                "realName": "陈灿",
-                "sex": "男",
-                "telephoneNumber": "18859976557",
-                "userId": 1,
-                "userName": "root"
-            }
-            ……
-        ]
-    }
-
-
-
-
 ### 通知类型接口：
 #### 查询用户的通知：
 #####未读通知：
-    host/findUserNotHandleNotification?userId=1
+    host/findUserNotification?userId=1
     {
         "notifications": [
         {
@@ -243,15 +215,115 @@
         "status": 201
 }
 
+#### 发送一条加入行程的申请
+
+    host/applyJoinRoute?userId=1&routeId=1 //发送者的id,对应行程的id
+
+    返回数据类型
+    {
+        "status": 201//201成功
+    }
+
+#### 处理加入申请的接口
+    //上面申请的行程的创建者登录 调用查询行程接口后，查询到有用户申请加入的通知
+    //1表示同意，2表示不同意
+    host/agreeJoinRoute?userId=1&notificationId=1&isAgree=1
+
+#### 直接表示已经阅读某行程（不进行处理）
+    host/handleNotification?userId=5&notificationId=18
+
+
+
+
+
+#### 查询行程参与用户的列表查询接口
+
+    host/findRouteMenberList?routeId=1
+    //返回数据类型
+    {
+        "routeId": 1,
+        "status": null,
+        "users": [
+            {
+                "age": 22,
+                "email": "756154017@qq.com",
+                "headUrl": "www.baidu.com",
+                "job": "学生",
+                "location": "福州",
+                "nickName": "陈灿",
+                "realName": "陈灿",
+                "sex": "男",
+                "telephoneNumber": "18859976557",
+                "userId": 1,
+                "userName": "root"
+            }
+            ……
+        ]
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 #### 数据更新类型
 
 修改用户信息：
 
 host/updateUserInfoAction?userId=1&passWord=root&nickName=霍森&realName=陈灿&sex=男&age=22&job=学生&Email=756154017@qq.com&Telephone=18859976557&location=福州&headUrl=www.baidu.com
 
-#### 发送一条加入行程的申请
 
-    host/applyJoinRoute?userId=1&routeId=1
-    {
-        "status": 201//201成功
-    }
+
+
+
+#### 行程广场检索接口
+
+http://172.50.180.239/JourneyHelper-Web/findNewRoute?userId=5&type=1&page=2&pagesize=5
+
+http://172.50.180.239/JourneyHelper-Web/searchUser?searchUser=1&page=2&pagesize=5
+
+http://172.50.180.239/JourneyHelper-Web/searchRoute?searchRoute=&page=2&pagesize=5
+
+
+
+户外
+徒步 1
+登山 2
+摄影 3
+骑行 4
+骑马 5
+露营 6
+滑雪 7
+公益 8
+越野跑 9
+背包旅行 10
+其他 11
+
+休闲
+溯溪 12
+潜水 13
+垂钓 14
+体育健身 15
+跑步 16
+观鸟 17
+观星 18
+漂流 19
+冲浪 20
+航海 21
+划船 22
+滑板 23
+轮滑 24
+聚会 25
+滑雪 26
+
+极限
+攀岩 27
+探险 28
+滑翔 29
+潜水 20

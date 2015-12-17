@@ -1,5 +1,7 @@
 package com.fzu.journeyhelper.dao;
 
+import java.math.BigInteger;
+import java.util.List;
 import java.util.Set;
 
 import com.fzu.common.dao.BaseDao;
@@ -11,15 +13,15 @@ import com.fzu.journeyhelper.domain.User;
  * Copyright (C): 2015-Hoatshon Project Name: JourneyHelper-Web
  * 
  * Description: ClassName: com.fzu.journeyhelper.dao.RouteDao Author: Hoatson
- * Create Time: 2015Äê11ÔÂ20ÈÕ ÏÂÎç6:04:14 Modified By: Modified Time: 2015Äê11ÔÂ20ÈÕ
- * ÏÂÎç6:04:14 Modified Remark:
+ * Create Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6:04:14 Modified By: Modified Time: 2015ï¿½ï¿½11ï¿½ï¿½20ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½6:04:14 Modified Remark:
  * 
  * @version V1.0
  */
 public interface RouteDao extends BaseDao<Route> {
 
 	/**
-	 * ²éÑ¯ÓÃ»§µÄĞĞ³ÌÁĞ±í
+	 * æŸ¥è¯¢ç”¨æˆ·å‚ä¸çš„è¡Œç¨‹
 	 * 
 	 * @param myUser
 	 * @return
@@ -27,10 +29,20 @@ public interface RouteDao extends BaseDao<Route> {
 	public Set<Route> findRoutelistByUser(User user);
 
 	/**
-	 * ²éÑ¯ÓÃ»§µÄ´´½¨ÁĞ±í
+	 * æŸ¥è¯¢ç”¨æˆ·åˆ›å»ºçš„è¡Œç¨‹
 	 * 
 	 * @param myUser
 	 * @return
 	 */
 	public Set<Route> findCreatelistByUser(User user);
+	
+	public BigInteger findCount(Integer userId,Integer Type ,short isJoin);
+
+	public long findRoutesCount(String searchRoute);
+
+	public List<Route> findRoutesByPage(String searchRoute, Integer page,
+			Integer pagesize);
+
+	public List<Route> findNewRouteByPage(int pageNo,
+			int pageSize, Object[] params);
 }

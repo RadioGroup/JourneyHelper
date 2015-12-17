@@ -1,3 +1,4 @@
 #ignore these files 
 .metadata/ 
 JourneyHelper-Web/.settings/
+JourneyHelper-Web/WebRoot/WEB-INF/classes/*

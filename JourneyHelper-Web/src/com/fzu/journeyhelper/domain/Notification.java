@@ -86,7 +86,7 @@ public class Notification implements java.io.Serializable {
 		this.notificationId = notificationId;
 	}
 
-
+	@JSON(format = "yyyy-MM-dd HH:mm")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "routeId")
 	public Route getRoute() {
@@ -144,7 +144,7 @@ public class Notification implements java.io.Serializable {
 	public void setIshandle(short ishandle) {
 		this.ishandle = ishandle;
 	}
-
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;

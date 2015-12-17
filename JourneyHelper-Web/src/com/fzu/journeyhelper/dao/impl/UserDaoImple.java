@@ -148,4 +148,47 @@ public class UserDaoImple extends BaseDaoHibernate4<User> implements UserDao {
 		}
 
 	}
+
+	@Override
+	public List<User> findUsers(String findkey,Integer pageNo,Integer pageSize) {
+		
+		findkey = "%"+findkey+"%";
+//		String hql = "from User as u where u.userId LIKE " +findkey 
+//				+" or u.userName LIKE "+findkey
+//				+" or u.nickName LIKE "+findkey
+//				+" or u.email LIKE "+findkey
+//				+" or u.telephoneNumber LIKE "+findkey;
+		
+		String hql2 = "from User as u where "
+				//+ "u.userId LIKE ?0" 
+				+" u.userName LIKE ?0"
+				+" or u.nickName LIKE ?0"
+				+" or u.realName LIKE ?0"
+				+" or u.email LIKE ?0"
+				+" or u.telephoneNumber LIKE ?0 order by u.userId";
+
+		return findByPage(hql2, pageNo, pageSize,findkey);
+	}
+
+	@Override
+	public long findUsersCount(String findkey) {
+
+		findkey = "%"+findkey+"%";
+		
+		String hql1 = "select count(*) from User as u where "
+				//+ "u.userId LIKE ?0" 
+				+" u.userName LIKE ?0"
+				+" or u.nickName LIKE ?0"
+				+" or u.realName LIKE ?0"
+				+" or u.email LIKE ?0"
+				+" or u.telephoneNumber LIKE ?0";
+		
+		List<?> l = find(hql1,findkey);
+		if (l != null && l.size() == 1) {
+			return (Long) l.get(0);
+		}else{			
+			return 0;
+		}
+		
+	}
 }

@@ -43,8 +43,12 @@ public class CreateRouteScheduleAction extends BaseAction {
 		System.out.println(schedules);
 		Route route = new Route();
 		route.setRouteId(routeId);
-		routeManager.addScheduleForRoute(schedules, route);
-		status = 201;
-		return SUCCESS;
+		if(routeManager.addScheduleForRoute(schedules, route)){			
+			status = 201;
+			return SUCCESS;
+		}else{
+			status = 202;//插入错误。routeId不存在
+			return ERROR;
+		}
 	}
 }

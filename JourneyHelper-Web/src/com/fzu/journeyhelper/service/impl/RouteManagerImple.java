@@ -1,6 +1,8 @@
 package com.fzu.journeyhelper.service.impl;
 
+import java.math.BigInteger;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.sf.json.JSONArray;
@@ -56,6 +58,7 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 	@Override
 	public boolean addScheduleForRoute(String shecduleJson, Route route) {
 
+		
 		JSONObject shecduleJsonObject = JSONObject.fromObject(shecduleJson);
 
 		JSONArray scheduleArray = shecduleJsonObject.getJSONArray("schedules");
@@ -76,11 +79,16 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 			newSchedule.setVehicle(scheduleItem.getString("vehicle"));
 			newSchedule.setRoute(route);
 
-			scheduleDao.save(newSchedule);
-			System.out.println(newSchedule.toString());
+			try {
+				scheduleDao.save(newSchedule);	
+			} catch (Exception e) {
+				//如果无法插入证明id不存在。
+				e.printStackTrace();
+				return false;
+			}
+//			System.out.println(newSchedule.toString());
 		}
-
-		return false;
+		return true;
 	}
 
 	@Override
@@ -89,5 +97,55 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 		schedules.addAll(scheduleDao.findByRoute(route));
 		return schedules;
 	}
+
+	@Override
+	public BigInteger findNewRouteCount(Integer userId,Integer Type ,short isJoin) {
+		
+		return routeDao.findCount(userId,Type,isJoin);
+	}
+	
+	@Override
+	public List<Route> findNewRoute(int pageNo, int pageSize,
+			Object... params) {
+//		String sql = "select * from journeyhelperweb.route re where re.routeId in ("
+//				+ "select j.routeId from journeyhelperweb.route_user_relevance j"
+//				+ " inner join journeyhelperweb.route r "
+//				+ "on j.routeId=r.routeId " + "where j.userId<>?0 "
+//				+ "and r.type =?1 )" + "order by re.routeId desc";
+//		
+//		String hql = "from Route re where re.routeId in ("
+//				+ "select r.routeId from Route r"
+//				+ " inner join r.users u "
+//				+ "where u.userId<>?0 "
+//				+ "and r.type =?1 )" + "order by re.routeId desc";
+//		
+//		String hql2 = "from Route re where re in ("
+//				+ "select elements(u.joinRoutes) from User u"
+//				+ " where u.userId<>?0 "
+//				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
+		
+		
+		
+		return routeDao.findNewRouteByPage(pageNo, pageSize, params);
+		
+//		
+	}
+
+	@Override
+	public long searchRouteCount(String searchRoute) {
+		return routeDao.findRoutesCount(searchRoute);
+	}
+
+	@Override
+	public List<Route> searchRoute(String searchRoute, Integer page,
+			Integer pagesize) {
+		
+		return routeDao.findRoutesByPage(searchRoute,  page,
+				 pagesize);
+	}
+
+	
+	
+	
 
 }

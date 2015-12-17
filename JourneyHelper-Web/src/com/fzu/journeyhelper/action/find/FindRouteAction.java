@@ -1,5 +1,8 @@
 package com.fzu.journeyhelper.action.find;
 
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fzu.journeyhelper.action.BaseAction;
@@ -8,8 +11,9 @@ import com.fzu.journeyhelper.domain.User;
 
 /**
  * 行程查找action
+ * 
  * @author Volcano
- *
+ * 
  */
 public class FindRouteAction extends BaseAction {
 
@@ -23,13 +27,18 @@ public class FindRouteAction extends BaseAction {
 	private Integer userId;
 	private String userName;
 
-	
+	private Integer type;
+	private Integer page=1;// 页码
+	private Integer pagesize=20;// 每页大小
+	private BigInteger count = new BigInteger("0");// 总大小
+	private short isJoin = 0;// 是否参加这个行程 ， 0便是没有参加的，1表示包括参加的
+
+	private Set<Route> createList;
+	private Set<Route> joindeList;
+	private Set<Route> allList;
+
 	public Integer getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public Integer getUserId() {
@@ -48,35 +57,45 @@ public class FindRouteAction extends BaseAction {
 		this.userName = userName;
 	}
 
-	private Set<Route> createList;
-	private Set<Route> joindeList;
-	private Set<Route> allList;
-	
-	
-	public Set<Route> getCreateList() {
-		return createList;
+	public BigInteger getCount() {
+		return count;
 	}
 
-	public void setCreateList(Set<Route> createList) {
-		this.createList = createList;
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public void setPagesize(Integer pagesize) {
+		this.pagesize = pagesize;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public void setIsJoin(short isJoin) {
+		this.isJoin = isJoin;
+	}
+
+	public Set<Route> getCreateList() {
+		return createList;
 	}
 
 	public Set<Route> getJoindeList() {
 		return joindeList;
 	}
 
-	public void setJoindeList(Set<Route> joindeList) {
-		this.joindeList = joindeList;
-	}
-
 	public Set<Route> getAllList() {
 		return allList;
 	}
 
-	public void setAllList(Set<Route> allList) {
-		this.allList = allList;
+	@Override
+	public String toString() {
+		return "FindRouteAction [userId=" + userId + ", userName=" + userName
+				+ ", type=" + type + ", page=" + page + ", pagesize="
+				+ pagesize + ", count=" + count + ", isJoin=" + isJoin + "]";
 	}
-	
+
 	@Override
 	public String execute() throws Exception {
 		return null;
@@ -88,7 +107,7 @@ public class FindRouteAction extends BaseAction {
 		user.setUserName(userName);
 		createList = routeManager.findUserCreateRouteList(user);
 		System.out.println(createList.size());
-		setStatus(301);
+		status = 301;
 		return SUCCESS;
 	}
 
@@ -97,17 +116,36 @@ public class FindRouteAction extends BaseAction {
 		user.setUserId(getUserId());
 		user.setUserName(userName);
 		joindeList = routeManager.findUserJoinedRouteList(user);
-		setStatus(301);
+		status = 301;
 		return SUCCESS;
 	}
 
-	public String findallRoutes() throws Exception{
+	public String findallRoutes() throws Exception {
 		User user = new User();
 		user.setUserId(getUserId());
 		user.setUserName(userName);
 		createList = routeManager.findUserAllRouteList(user);
-		setStatus(status);
+		status = 301;
 		return SUCCESS;
 	}
-	
+
+	/**
+	 * 查询行程广场
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String findNewRoute() throws Exception {
+
+		System.out.println(toString());
+		count = routeManager.findNewRouteCount(userId, type, isJoin);
+		if (count.compareTo(BigInteger.ZERO) == 1) {
+			List<Route> ans = routeManager.findNewRoute(page, pagesize, userId, type);
+			allList = new HashSet<Route>();
+			allList.addAll(ans); 
+		}
+		status = 301;
+		return SUCCESS;
+	}
+
 }

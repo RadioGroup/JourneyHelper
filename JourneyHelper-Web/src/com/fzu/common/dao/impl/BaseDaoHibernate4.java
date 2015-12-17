@@ -31,6 +31,12 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
+	public boolean isExist(Class<T> entityClazz, Serializable id) {
+		// TODO 写一个判断是否存在的方法
+		return false;
+	}
+
 	@SuppressWarnings("unchecked")
 	public T get(Class<T> entityClazz, Serializable id) {
 		return (T) getCurrentSession().get(entityClazz, id);
@@ -81,10 +87,28 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	// 带有参数的hql查询
 	@SuppressWarnings("unchecked")
 	protected List<T> find(String hql, Object... params) {
+		System.out.println("enter");
 		Query query = getCurrentSession().createQuery(hql);
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);
 		}
+		System.out.println("queryString = ");
+		System.out.println(query.getQueryString());
+
+		return (List<T>) query.list();
+	}
+
+	// 带有参数的sql查询
+	@SuppressWarnings("unchecked")
+	protected List<T> findBySql(String sql, Object... params) {
+		System.out.println("enter");
+		Query query = getCurrentSession().createSQLQuery(sql);
+		for (int i = 0, len = params.length; i < len; i++) {
+			query.setParameter(i + "", params[i]);
+		}
+		System.out.println("queryString = ");
+		System.out.println(query.getQueryString());
+
 		return (List<T>) query.list();
 	}
 
@@ -95,6 +119,7 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	}
 
 	/**
+	 * 分页查询
 	 * 
 	 * @param hql
 	 * @param pageNo
@@ -102,10 +127,9 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected List<T> findByPage(String hql, int pageNo, int pageSize) {
-		// ������ѯ
+	@Override
+	public List<T> findByPage(String hql, int pageNo, int pageSize) {
 		return getCurrentSession().createQuery(hql)
-				// ִ�з�ҳ
 				.setFirstResult((pageNo - 1) * pageSize)
 				.setMaxResults(pageSize).list();
 	}
@@ -120,8 +144,10 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected List<T> findByPage(String hql, int pageNo, int pageSize,
+	@Override
+	public List<T> findByPage(String hql, int pageNo, int pageSize,
 			Object... params) {
+		System.out.println(hql);
 		Query query = getCurrentSession().createQuery(hql);
 		for (int i = 0, len = params.length; i < len; i++) {
 			query.setParameter(i + "", params[i]);
@@ -142,6 +168,47 @@ public class BaseDaoHibernate4<T> implements BaseDao<T> {
 			throw re;
 		}
 	}
+	
+	
+	/**
+	 * 分页查询
+	 * 
+	 * @param sql
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findByPageSQL(String sql, int pageNo, int pageSize) {
+		return getCurrentSession().createSQLQuery(sql)
+				.setFirstResult((pageNo - 1) * pageSize)
+				.setMaxResults(pageSize).list();
+	}
+
+	/**
+	 * sql 分页查询
+	 * 
+	 * @param hql
+	 * @param params
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findByPageSQL(String sql, int pageNo, int pageSize,
+			Object... params) {
+		Query query = getCurrentSession().createSQLQuery(sql);
+		for (int i = 0, len = params.length; i < len; i++) {
+			query.setParameter(i + "", params[i]);
+		}
+		return query.setFirstResult((pageNo - 1) * pageSize)
+				.setMaxResults(pageSize).list();
+	}
+	
+	
+	
 
 	@SuppressWarnings("unchecked")
 	public T merge(Class<T> detachedInstance) {

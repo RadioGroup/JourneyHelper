@@ -104,7 +104,7 @@ public class RouteComment implements java.io.Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	@JSON(format="yyyy-MM-dd HH:mm")
 	@Column(name = "createTime", length = 19)
 	public Date getCreateTime() {
 		return this.createTime;

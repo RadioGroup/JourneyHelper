@@ -30,7 +30,7 @@ public class FindRouteMenbersAction extends BaseAction {
 	}
 
 	private Integer routeId;
-	private Set<User> Users;
+	private Set<User> users;
 
 	public Integer getRouteId() {
 		return routeId;
@@ -41,19 +41,23 @@ public class FindRouteMenbersAction extends BaseAction {
 	}
 
 	public Set<User> getUsers() {
-		return Users;
+		return users;
 	}
 
 	public void setUsers(Set<User> Users) {
-		this.Users = Users;
+		this.users = Users;
 	}
 
 	public String findRouteMenberList() throws Exception {
 		Route Route = new Route();
 		Route.setRouteId(getRouteId());
-		Users = userManager.findRouteMenberList(Route);
+		status = 201;
+		users = userManager.findRouteMenbers(Route);
+		if(users==null){
+			status = 202;//routeId不存在
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 	
-
 }

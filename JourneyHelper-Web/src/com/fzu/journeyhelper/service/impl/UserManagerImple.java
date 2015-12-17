@@ -1,5 +1,6 @@
 package com.fzu.journeyhelper.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import com.fzu.journeyhelper.action.update.UpdateUserInfoAction;
@@ -30,11 +31,18 @@ public class UserManagerImple extends BaseManager implements UserManager {
 	}
 
 	@Override
-	public Set<User> findRouteMenberList(Route route) {
+	public Set<User> findRouteMenbers(Route route) {
+		Set<User> res = null;
 		route = routeDao.get(Route.class, route.getRouteId());
-		Set<User> res = route.getUsers();
-		res.size();
-		return res;
+		if (route != null) {
+			res = route.getUsers();
+			if (res != null) {
+				res.size();
+			}
+			return res;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -78,6 +86,16 @@ public class UserManagerImple extends BaseManager implements UserManager {
 		}
 
 		return res;
+	}
+
+	@Override
+	public List<User> searchUser(String searchKey,Integer pageNo,Integer pageSize) {
+		return userDao.findUsers(searchKey,pageNo,pageSize);
+	}
+
+	@Override
+	public long searchUserCount(String searchUser) {
+		return userDao.findUsersCount(searchUser);
 	}
 
 }
