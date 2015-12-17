@@ -48,7 +48,7 @@ public class FindNotificationAction extends BaseAction {
 		User user = new User();
 		user.setUserId(userId);
 		notifications = notificationManager.getUserNotification(user, isHandle);
-		System.out.println(notifications.get(0).getCreateTime().toString());
+		//System.out.println(notifications.get(0).getCreateTime().toString());
 		setStatus(201);
 		return SUCCESS;
 	}

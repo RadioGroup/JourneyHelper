@@ -37,4 +37,6 @@ public interface NotificationManager {
 	 * @return
 	 */
 	public boolean agreeUserJoin(Notification notification,short isagree,Integer userId);
+
+	public boolean handleNotification(Notification notification, Integer userId);
 }

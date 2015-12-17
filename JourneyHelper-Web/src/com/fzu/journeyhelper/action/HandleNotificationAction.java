@@ -36,7 +36,6 @@ public class HandleNotificationAction extends BaseAction {
 		if(userId==null||notificationId==null){
 			status =202;
 			return ERROR;
-			
 		}
 		Notification notification = new Notification();
 		notification.setNotificationId(notificationId);
@@ -48,4 +47,19 @@ public class HandleNotificationAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String handleNotification() {
+		if(userId==null||notificationId==null){
+			status =202;
+			return ERROR;
+		}
+		Notification notification = new Notification();
+		notification.setNotificationId(notificationId);
+		if(notificationManager.handleNotification(notification,userId)){			
+			status = 201;
+		}else{
+			status = 202;
+		}
+		return SUCCESS;
+	}
+	
 }

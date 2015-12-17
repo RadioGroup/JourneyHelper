@@ -1,6 +1,5 @@
 package com.fzu.journeyhelper.service.impl;
 
-
 import java.util.List;
 
 import com.fzu.journeyhelper.domain.Notification;
@@ -37,6 +36,7 @@ public class NotificationManagerImple extends BaseManager implements
 		if (u == null) {
 			res = false;
 		} else {
+			applicant = userDao.get(User.class, applicant.getUserId());
 			note.setUserByReceiveUserId(u);// 设置该通知的接收者
 			note.setUserBySendUserId(applicant);// 设置该通知的发送者
 			note.setRoute(route);// 设置通知对应的行程
@@ -122,6 +122,21 @@ public class NotificationManagerImple extends BaseManager implements
 
 		notificationDao.save(agreeNotification);
 
+		return true;
+	}
+
+	@Override
+	public boolean handleNotification(Notification notification, Integer userId) {
+
+		notification = notificationDao.get(Notification.class,
+				notification.getNotificationId());
+		
+		User sen = notification.getUserByReceiveUserId();
+		if (sen!=null&&!sen.getUserId().equals(userId)) {
+			return false;
+		}
+		// 设置该通知已经处理
+		notification.setIshandle(Notification.NOTIFICATION_STATUS_HAS_HANDLE);
 		return true;
 	}
 }

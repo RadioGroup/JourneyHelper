@@ -113,6 +113,16 @@
 			<result name="error" type="json" />
 		</action>
 
+		<action name="handleNotification"
+			class="com.fzu.journeyhelper.action.HandleNotificationAction" method="handleNotification">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+
+
+
+
 		<action name="updateUserInfoAction"
 			class="com.fzu.journeyhelper.action.update.UpdateUserInfoAction"
 			method="updateUserInfo">
