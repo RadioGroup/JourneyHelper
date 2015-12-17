@@ -63,6 +63,7 @@ class LogUpViewController: UIViewController,UITextFieldDelegate
                     SVProgressHUD.showErrorWithStatus("注册失败")
                     
                 }
+                self.presentingPopinViewController().dismissCurrentPopinControllerAnimated(true)
         }
     }
 

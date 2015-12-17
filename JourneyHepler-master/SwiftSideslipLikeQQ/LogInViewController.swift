@@ -37,12 +37,17 @@ class LogInViewController: UIViewController,UITextFieldDelegate
     
     @IBAction func logInAction(sender: AnyObject)
     {
-        let user = "hoatson"
-        let password = "root"
+        if(self.usernameText.text != nil && self.passwordText.text != nil)
+        {
+            SVProgressHUD.showErrorWithStatus("密码、账号不完整")
+        }else{
+        let user = self.usernameText.text!
+        let password = self.passwordText.text!
+        let hostString = host!
         
         SVProgressHUD.showWithStatus("努力加载中")
         
-        Alamofire.request(.GET, "\(host)/userLogin?userName=\(user)&passWord=\(password)")
+        Alamofire.request(.GET, "\(hostString)/userLogin?userName=\(user)&passWord=\(password)")
             .authenticate(user: user, password: password)
             .responseJSON
             {   response in
@@ -62,35 +67,34 @@ class LogInViewController: UIViewController,UITextFieldDelegate
                         self.userDefaults.setBool(true, forKey: "Log")
                         self.userDefaults.setObject(userId, forKey: "userId")
                         print("数据监测userId\(userId)")
-                        
-                        //                    Alamofire.request(.GET, "http://120.27.34.200/JourneyHelper-Web/findCreatedRoutes?userId=1")
-                        let URL = NSURL(string: "\(host)/findCreatedRoutes?userId=\(userId)")!
-                        print(URL)
-                        let request = NSMutableURLRequest(URL: URL)
-                        Alamofire.request(.GET,request)
-                            .responseJSON
-                            {
-                                response in
-                                if response.result.isSuccess
-                                {
-                                    SVProgressHUD.dismiss()
-                                    self.data = response.result.value as? NSDictionary
-                                    string = self.data?.objectForKey("createList")as?NSMutableArray
-                                    //                        self.userDefaults.setObject(self.string, forKey: "homeData")
-                                    print("数据：\(string)")
-                                    self.mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-                                    self.presentViewController(self.mainView, animated: true, completion: nil)
-        
-                                }else if response.result.isFailure
-                                {
-                                    //                                self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
-                                    SVProgressHUD.showErrorWithStatus("您的网络挂了")
-                                }
-                                
-                                //            }
-                                
-                        }
-                        
+                     
+//                        let URL = NSURL(string: "\(hostString)/findCreatedRoutes?userId=\(userId)")!
+//                        print(URL)
+//                        let request = NSMutableURLRequest(URL: URL)
+//                        Alamofire.request(.GET,request)
+//                            .responseJSON
+//                            {
+//                                response in
+//                                if response.result.isSuccess
+//                                {
+//                                    SVProgressHUD.dismiss()
+//                                    self.data = response.result.value as? NSDictionary
+//                                    string = self.data?.objectForKey("createList")as?NSMutableArray
+//                                    //                        self.userDefaults.setObject(self.string, forKey: "homeData")
+//                                    print("数据：\(string)")
+//                                    self.mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+//                                    self.presentViewController(self.mainView, animated: true, completion: nil)
+//        
+//                                }else if response.result.isFailure
+//                                {
+//                                    //                                self.alertView = UIAlertView.init(title: "提示", message:"网络失效", delegate: nil, cancelButtonTitle: "好吧")
+//                                    SVProgressHUD.showErrorWithStatus("您的网络挂了")
+//                                }
+//                                
+//                                //            }
+//                                
+//                        }
+//                        
                     }
                     else if(status == 202)
                     {
@@ -100,13 +104,15 @@ class LogInViewController: UIViewController,UITextFieldDelegate
                     }
                 }else if response.result.isFailure
                 {
-                    //                    self.alertView = UIAlertView.init(title: "提示", message:"网络连接错误", delegate:nil, cancelButtonTitle: "好的")
-                    //                    self.alertView.show()
                     SVProgressHUD.showErrorWithStatus("您的网络挂了。。。")
                 }
                 
                 
+            }
+            
+            
         }
+        self.presentingPopinViewController().dismissCurrentPopinControllerAnimated(true)
         
         
     }
@@ -122,11 +128,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate
         passwordText.resignFirstResponder()
     }
     
-    @IBAction func logUpAction(sender: AnyObject)
-    {
-        
-    }
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

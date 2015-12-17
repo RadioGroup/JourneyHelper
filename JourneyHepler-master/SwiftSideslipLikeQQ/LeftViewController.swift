@@ -15,9 +15,19 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!
+    var logUpView : LogUpViewController!
+    var logInView : LogInViewController!
     
     @IBOutlet weak var heightLayoutConstraintOfSettingTableView: NSLayoutConstraint!
 
+    @IBAction func signOut(sender: AnyObject)
+    {
+        logUpView = LogUpViewController()
+        logUpView.view.layer.cornerRadius = 10
+        logUpView.setPopinTransitionStyle(.Zoom)
+        logUpView.setPopinAlignment(.Centered)
+        presentPopinController(logUpView, animated: true, completion: nil)
+    }
     
     
     
@@ -27,8 +37,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         settingTableView.delegate = self
         settingTableView.dataSource = self
         settingTableView.tableFooterView = UIView()
-        
-//        heightLayoutConstraintOfSettingTableView.constant = Common.screenHeight < 500 ? Common.screenHeight * (568 - 221) / 568 : 347
+     //        heightLayoutConstraintOfSettingTableView.constant = Common.screenHeight < 500 ? Common.screenHeight * (568 - 221) / 568 : 347
         self.view.frame = CGRectMake(0, 0, 320 * 0.78, Common.screenHeight)
         
         
@@ -105,6 +114,17 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    
+    @IBAction func changACtion(sender: AnyObject)
+    {
+        logInView = LogInViewController()
+        logInView.view.layer.cornerRadius = 10
+        logInView.setPopinTransitionStyle(.Zoom)
+        logInView.setPopinAlignment(.Centered)
+        presentPopinController(logUpView, animated: true, completion: nil)
+    }
+
 
     /*
     // MARK: - Navigation

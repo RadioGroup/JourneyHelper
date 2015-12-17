@@ -1,37 +1,30 @@
 //
-//  ScheduleViewController.swift
+//  GroundScheduleViewController.swift
 //  SwiftSideslipLikeQQ
 //
-//  Created by 吴先滇 on 15/12/14.
+//  Created by apple on 15/12/17.
 //  Copyright © 2015年 com.lvwenhan. All rights reserved.
 //
 
 import UIKit
 import Alamofire
-
-class ScheduleViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class GroundScheduleViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet weak var scheduleTableView: UITableView!
-    
     var scheduleData:NSMutableArray?
     var data:NSDictionary?
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.scheduleTableView.dataSource = self
         self.scheduleTableView.delegate = self
         self.scheduleTableView.backgroundColor = UIColor(colorLiteralRed: 227.0/255.0, green: 227.0/255.0, blue: 227.0/255.0, alpha: 1)
         self.scheduleTableView.registerNib(UINib(nibName: "ScheduleTableViewCell", bundle: nil), forCellReuseIdentifier: "ScheduleTableViewCell")
-        requestdata()
+        self.requestdata()
+        
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ScheduleTableViewCell = tableView.dequeueReusableCellWithIdentifier("ScheduleTableViewCell", forIndexPath: indexPath) as! ScheduleTableViewCell
         cell.destinationLabel.text = self.scheduleData?.objectAtIndex(indexPath.row).objectForKey("destination") as? String
@@ -40,8 +33,8 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
         cell.vehicleLabel.text = self.scheduleData?.objectAtIndex(indexPath.row).objectForKey("vehicle") as? String
         
         return cell
+
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -56,7 +49,7 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
         {
             return count!
         }
-
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -66,19 +59,20 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 210.0
     }
-    
+
     
     func requestdata()
     {
-        let routeId = routeIdPass!
-        var str = "http://120.27.34.200/JourneyHelper-Web/findRouteScheduleList?routeId=\(routeId)"
+        let routeId = groundRouteId!
+        var str = "http://172.50.180.239/JourneyHelper-Web/findRouteScheduleList?routeId=\(routeId)"
         print(str)
         str =  str.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         let URL =  NSURL(string:str)!
         let request = NSMutableURLRequest(URL: URL)
-
+        
         Alamofire.request(.GET, request)
             .responseJSON { response in
+                print("详情数据\(response)")
                 
                 if response.result.isSuccess
                 {
@@ -97,11 +91,19 @@ class ScheduleViewController: UIViewController,UITableViewDataSource,UITableView
                 {
                     SVProgressHUD.showErrorWithStatus("请求出错！")
                 }
-//                print("Success: \(response.result.isSuccess)")
-//                print("Response String: \(response.result.value)")
+              
         }
         
     }
+
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
     /*
     // MARK: - Navigation
 
