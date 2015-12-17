@@ -80,6 +80,7 @@ class RightViewController: UIViewController,UITextFieldDelegate,UITextViewDelega
         {
             response in
                 debugPrint(response)
+             self.presentingPopinViewController().dismissCurrentPopinControllerAnimated(true)
         }
         
         
