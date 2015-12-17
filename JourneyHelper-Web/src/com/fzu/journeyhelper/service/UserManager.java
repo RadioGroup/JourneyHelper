@@ -1,5 +1,6 @@
 package com.fzu.journeyhelper.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.fzu.journeyhelper.domain.Route;
@@ -27,5 +28,9 @@ public interface UserManager {
 	public Set<User> findRouteMenbers(Route route);
 	
 	public int updateUserInfo(User user);
+	
+	public List<User> searchUser(String searchKey,Integer pageNo,Integer pageSize);
+
+	public long searchUserCount(String searchUser);
 
 }

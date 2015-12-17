@@ -107,30 +107,41 @@ public class RouteManagerImple extends BaseManager implements RouteManager {
 	@Override
 	public List<Route> findNewRoute(int pageNo, int pageSize,
 			Object... params) {
-		String sql = "select * from journeyhelperweb.route re where re.routeId in ("
-				+ "select j.routeId from journeyhelperweb.route_user_relevance j"
-				+ " inner join journeyhelperweb.route r "
-				+ "on j.routeId=r.routeId " + "where j.userId<>?0 "
-				+ "and r.type =?1 )" + "order by re.routeId desc";
+//		String sql = "select * from journeyhelperweb.route re where re.routeId in ("
+//				+ "select j.routeId from journeyhelperweb.route_user_relevance j"
+//				+ " inner join journeyhelperweb.route r "
+//				+ "on j.routeId=r.routeId " + "where j.userId<>?0 "
+//				+ "and r.type =?1 )" + "order by re.routeId desc";
+//		
+//		String hql = "from Route re where re.routeId in ("
+//				+ "select r.routeId from Route r"
+//				+ " inner join r.users u "
+//				+ "where u.userId<>?0 "
+//				+ "and r.type =?1 )" + "order by re.routeId desc";
+//		
+//		String hql2 = "from Route re where re in ("
+//				+ "select elements(u.joinRoutes) from User u"
+//				+ " where u.userId<>?0 "
+//				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
 		
-		String hql = "from Route re where re.routeId in ("
-				+ "select r.routeId from Route r"
-				+ " inner join r.users u "
-				+ "where u.userId<>?0 "
-				+ "and r.type =?1 )" + "order by re.routeId desc";
 		
-		String hql2 = "from Route re where re in ("
-				+ "select elements(u.joinRoutes) from User u"
-				+ " where u.userId<>?0 "
-				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
 		
-		String hql3 = "from Route re where re not in ("
-				+ "select elements(u.joinRoutes) from User u"
-				+ " where u.userId=?0 "
-				+ ") " + "and re.type =?1 "+ "order by re.routeId desc";
-		return routeDao.findByPage(hql3, pageNo, pageSize, params);
+		return routeDao.findNewRouteByPage(pageNo, pageSize, params);
 		
-//		return routeDao.findByPageSQL(sql, pageNo, pageSize, params);
+//		
+	}
+
+	@Override
+	public long searchRouteCount(String searchRoute) {
+		return routeDao.findRoutesCount(searchRoute);
+	}
+
+	@Override
+	public List<Route> searchRoute(String searchRoute, Integer page,
+			Integer pagesize) {
+		
+		return routeDao.findRoutesByPage(searchRoute,  page,
+				 pagesize);
 	}
 
 	

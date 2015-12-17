@@ -28,8 +28,8 @@ public class FindRouteAction extends BaseAction {
 	private String userName;
 
 	private Integer type;
-	private Integer page;// 页码
-	private Integer pagesize;// 每页大小
+	private Integer page=1;// 页码
+	private Integer pagesize=20;// 每页大小
 	private BigInteger count = new BigInteger("0");// 总大小
 	private short isJoin = 0;// 是否参加这个行程 ， 0便是没有参加的，1表示包括参加的
 

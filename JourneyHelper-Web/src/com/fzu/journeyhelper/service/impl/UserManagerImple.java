@@ -1,5 +1,6 @@
 package com.fzu.journeyhelper.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import com.fzu.journeyhelper.action.update.UpdateUserInfoAction;
@@ -85,6 +86,16 @@ public class UserManagerImple extends BaseManager implements UserManager {
 		}
 
 		return res;
+	}
+
+	@Override
+	public List<User> searchUser(String searchKey,Integer pageNo,Integer pageSize) {
+		return userDao.findUsers(searchKey,pageNo,pageSize);
+	}
+
+	@Override
+	public long searchUserCount(String searchUser) {
+		return userDao.findUsersCount(searchUser);
 	}
 
 }

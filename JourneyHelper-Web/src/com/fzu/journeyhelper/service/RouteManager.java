@@ -38,4 +38,9 @@ public interface RouteManager {
 
 	public Set<Schedule> findRoutesSchedules(Route route);
 
+	public long searchRouteCount(String searchRoute);
+
+	public List<Route> searchRoute(String searchRoute, Integer page,
+			Integer pagesize);
+
 }

@@ -123,8 +123,29 @@
 			<result name="error" type="json">
 				<param name="includeProperties">status</param>
 			</result>
+		</action>
 
 
+		<action name="searchUser" class="com.fzu.journeyhelper.action.find.FindAction"
+			method="searchUser">
+
+			<result name="success" type="json">
+				<param name="includeProperties">status,users.*,count</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
+		</action>
+
+		<action name="searchRoute" class="com.fzu.journeyhelper.action.find.FindAction"
+			method="searchRoute">
+
+			<result name="success" type="json">
+				<param name="includeProperties">status,routes.*,count</param>
+			</result>
+			<result name="error" type="json">
+				<param name="includeProperties">status</param>
+			</result>
 		</action>
 
 

@@ -1,5 +1,7 @@
 package com.fzu.journeyhelper.dao;
 
+import java.util.List;
+
 import com.fzu.common.dao.BaseDao;
 import com.fzu.journeyhelper.domain.User;
 
@@ -34,4 +36,8 @@ public interface UserDao extends BaseDao<User> {
 	 */
 	public boolean isExistByUserName(User User);
 
+	
+	public List<User> findUsers(String findkey,Integer pageNo,Integer pageSize);
+
+	public long findUsersCount(String searchUser);
 }

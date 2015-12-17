@@ -83,28 +83,75 @@ public class RouteDaoImple extends BaseDaoHibernate4<Route> implements RouteDao 
 	@Override
 	public BigInteger findCount(Integer userId, Integer type, short isJoin) {
 
-		
-		//TODO isJoin 为判断用户是否参加，等待完善
-		String sql = "select count(r.routeId) from "
-				+ "journeyhelperweb.route_user_relevance j"
-				+ " inner join journeyhelperweb.route r "
-				+ "on j.routeId=r.routeId " + "where j.userId <> ?0 "
-				+ "and r.type = ?1 ";
+		// TODO isJoin 为判断用户是否参加，等待完善
+		// String sql = "select count(r.routeId) from "
+		// + "journeyhelperweb.route_user_relevance j"
+		// + " inner join journeyhelperweb.route r "
+		// + "on j.routeId=r.routeId " + "where j.userId <> ?0 "
+		// + "and r.type = ?1 ";
 
 		String sql2 = "select count(r.routeId) from journeyhelperweb.route r "
 				+ "where r.routeId not in "
 				+ "(select j.routeId from journeyhelperweb.route_user_relevance j"
-				+  " where j.userId =?0 ) "
-				+ "and r.type = ?1 ";
-		
+				+ " where j.userId =?0 ) " + "and r.type = ?1 ";
+
 		System.out.println("something erro");
-		
-		List<?> l = findBySql(sql2,userId,type);
-		
+
+		List<?> l = findBySql(sql2, userId, type);
+
 		if (l != null && l.size() == 1) {
 			return (BigInteger) l.get(0);
-		}else{			
+		} else {
 			return new BigInteger("0");
 		}
+	}
+
+	@Override
+	public long findRoutesCount(String findkey) {
+
+		findkey = "%" + findkey + "%";
+
+		String hql1 = "select count(*) from Route as r left join r.user as u "
+				// + "where r.user = u "
+				+ "where " + " u.userName LIKE ?0" + " or u.nickName LIKE ?0"
+				+ " or u.realName LIKE ?0" + " or u.email LIKE ?0"
+				+ " or u.telephoneNumber LIKE ?0" + " or r.title LIKE ?0 "
+				+ " or r.assemblingPlace LIKE ?0" + " or r.secnics LIKE ?0 "
+				+ " or r.strengthGrade LIKE ?0 ";
+
+		List<?> l = find(hql1, findkey);
+		if (l != null && l.size() == 1) {
+			return (Long) l.get(0);
+		} else {
+			return 0;
+		}
+
+	}
+
+	@Override
+	public List<Route> findRoutesByPage(String findkey, Integer pageNo,
+			Integer pagesize) {
+		findkey = "%" + findkey + "%";
+
+		String hql = "select r from Route as r left join r.user u "
+				// + "where r.user = u "
+				+ " where " + " u.userName LIKE ?0" + " or u.nickName LIKE ?0"
+				+ " or u.realName LIKE ?0" + " or u.email LIKE ?0"
+				+ " or u.telephoneNumber LIKE ?0" + " or r.title LIKE ?0 "
+				+ " or r.assemblingPlace LIKE ?0" + " or r.secnics LIKE ?0 "
+				+ " or r.strengthGrade LIKE ?0 "
+				+ "order by r.routeId desc";
+		return findByPage(hql, pageNo, pagesize, findkey);
+	}
+
+	@Override
+	public List<Route> findNewRouteByPage(int pageNo, int pageSize,
+			Object[] params) {
+
+		String hql3 = "from Route re where re not in ("
+				+ "select elements(u.joinRoutes) from User u"
+				+ " where u.userId=?0 " + ") " + "and re.type =?1 "
+				+ "order by re.routeId desc";
+		return findByPage(hql3, pageNo, pageSize, params);
 	}
 }
